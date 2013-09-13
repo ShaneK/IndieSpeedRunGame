@@ -1,0 +1,11 @@
+{
+	"name": "openfl",
+	"url": "http://www.openfl.org",
+	"license": "MIT",
+	"tags": [],
+	"description": "OpenFL is a powerful framework for cross-platform development",
+	"version": "1.0.5",
+	"releasenote": "Fix CLI support for Mac using Neko 64-bit",
+	"contributors": [ "singmajesty" ],
+	"dependencies": {}
+}
