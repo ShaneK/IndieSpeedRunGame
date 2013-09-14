@@ -52,6 +52,7 @@ class Player extends PhysicalBody
     }
 
     public override function update(){
+        velocityX = 0;
     	super.update();
     	x = body.position.x;
     	y = body.position.y;
@@ -60,17 +61,15 @@ class Player extends PhysicalBody
         setAnimations();
     }
 
-    public function handleInput(){
+    public function handleInput(){                
         if (Input.check("left"))
         {
-            velocityX += maximumSpeed * .5;
+            velocityX += maximumSpeed;
         } 
-        else if (Input.check("right"))
+        
+        if (Input.check("right"))
         {
-            velocityX += -(maximumSpeed) * .5;
-        }
-        else{
-            velocityX = 0;
+            velocityX += -(maximumSpeed);
         }
 
         jumpVelocity = Input.check("jump") && isOnGround() ? jumpAmount : 0;

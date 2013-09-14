@@ -12,6 +12,8 @@ class Background extends Entity
     {
         super(x, y);
         image = new Backdrop("gfx/background.png", true, false);
+        image.scrollX = 0.5;
+        image.scrollY = 0.5;
         graphic = image;
         layer = 10000;
     }
