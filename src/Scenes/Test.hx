@@ -26,6 +26,10 @@ import com.haxepunk.tmx.TmxVec5;
 
 import classes.PlanetBody;
 
+import entities.WaterEmitter;
+import entities.FireEmitter;
+import com.haxepunk.Sfx;
+
 class Test extends Scene
 {
     private var space:Space;
@@ -38,69 +42,41 @@ class Test extends Scene
     public function new()
     {
         super();
+
         var gravity:Vec2 = new Vec2(0, 300); // units are pixels/second/second
         space = new Space(gravity);
 
         createMap();
 
-        // var floor = new entities.Block(0, HXP.height, HXP.width, 1);
-        // addObjectToSpace(floor);
+        var sfx = new Sfx("sfx/Intro.mp3");
+        sfx.loop();
 
-        // var leftWall = new entities.Block(-1, 0, 1, HXP.height);
-        // addObjectToSpace(leftWall);
-
-        // var rightWall = new entities.Block(HXP.width+1, 0, 1, HXP.height);
-        // addObjectToSpace(rightWall);
-
-        // for(i in 0...150){
-        //     var circle = new entities.Circle(Math.floor(HXP.width * HXP.random), Math.floor(HXP.height * HXP.random), Math.ceil(15*HXP.random), Math.ceil(5*HXP.random));
-        //     addObjectToSpace(circle);
-        // }
-
-        var player = new entities.Player(600, 200);
+        var player = new entities.Player(450, 100);
         addObjectToSpace(player);
+
+        // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
 
     public function createMap()
     {
         // create the map, set the assets in your nmml file to bytes
-        var e = new TmxEntity("maps/Level_2.tmx");
+        var e = new TmxEntity("maps/Level_1.tmx");
+        e.loadGraphic("gfx/tileset.png", ["Bottom"]);
 
-        // load layers named bottom, main, top with the appropriate tileset
-        e.loadGraphic("gfx/tiles_spritesheet.png", ["Middle", "Top"]);
+        var t = new TmxEntity("maps/Level_1.tmx");
+        t.loadGraphic("gfx/tileset.png", ["Top"]);
+        t.layer = 1;
 
         // loads a grid layer named collision and sets the entity type to walls
-        var groundTiles = e.loadMask("collision", "walls");
+        var groundTiles = e.loadMask("Collision", "walls");
 
         //Water
-        var waterTiles = e.loadMask("water", "water");
-
-        //Gravity opjects
-        var planets = e.loadMask("gravityObjects", "planets");
+        var waterTiles = e.loadMask("Water", "water");
 
         add(e);
+        add(t);
         layGroundTiles(groundTiles);
         layWaterTiles(waterTiles);
-        placePlanets(planets);
-    }
-
-    public function placePlanets(planets:Array<TmxVec5>){
-        if(planets.length > 0){
-            samplePoint = new Body();
-            samplePoint.shapes.add(new Circle(0.001));
-            for(planet in planets){
-                //Do something
-                var body = new Body(BodyType.STATIC); // Implicit BodyType.DYNAMIC
-                body.shapes.add(new Polygon(Polygon.rect(0, planet.top, planet.width, planet.height)));
-                body.position.setxy(planet.x, planet.y);
-                body.setShapeMaterials(Material.sand());
-                space.bodies.add(body);
-                if(planetList == null){
-                    planetList = new Array<PlanetBody>();
-                }
-                planetList.push(new PlanetBody(body, planet.x, planet.y, planet.width, planet.height));
-            }
-        }
     }
 
     public function layGroundTiles(groundTiles:Array<TmxVec5>){
@@ -137,72 +113,15 @@ class Test extends Scene
 
     public override function begin()
     {
+        HXP.setCamera(400, 50);
 
     }
  
     public override function update()
     {
         if(HXP.elapsed > 0){
-            planetGravity();
             space.step(HXP.elapsed);
         }
-        handleClickingAndDraggingCircles();
         super.update();
     }
-
-    public function planetGravity(){
-        if(planetList.length > 0 && HXP.elapsed > 0){
-            for(planet in planetList){
-                var closestA = Vec2.get();
-                var closestB = Vec2.get();
-         
-                for (body in space.liveBodies) {
-                    // Find closest points between bodies.
-                    samplePoint.position.set(body.position);
-                    var distance = Geom.distanceBody(planet.body, samplePoint, closestA, closestB);
-                    // Cut gravity off, well before distance threshold.
-                    if (distance > 300) {
-                        continue;
-                    }
-         
-                    // Gravitational force.
-                    var force = closestA.sub(body.position, true);
-         
-                    // We don't use a true description of gravity, as it doesn't 'play' as nice.
-                    force.length = 15 * 1e6 / (distance * distance);
-         
-                    // Impulse to be applied = force * deltaTime
-                    body.applyImpulse(force.muleq(HXP.elapsed), null, true);
-                }
-         
-                closestA.dispose();
-                closestB.dispose();
-            }
-        }
-    }
-
-    public function handleClickingAndDraggingCircles()
-    {
-        if(Input.mousePressed){
-            var collision = collidePoint("circle", Input.mouseX, Input.mouseY);
-            if(collision != null){
-                var circle = cast(collision, entities.Circle);
-                dragging = circle;
-            }else{
-                var circle = new entities.Circle(Math.floor(Input.mouseX), Math.floor(Input.mouseY), 10, 1);
-                var body = circle.getBody();
-                addObjectToSpace(circle);
-                dragging = circle;
-            }
-        }
-
-        if(dragging != null){
-            dragging.setXY(Input.mouseX, Input.mouseY);
-        }
-
-        if(Input.mouseReleased){
-            dragging = null;
-        }
-    }
- 
 }

@@ -26,8 +26,8 @@ class Player extends PhysicalBody
     public function new(x:Int, y:Int)
     {
         super(x, y);
- 		width = 50;
- 		height = 100;
+ 		width = 5;
+ 		height = 10;
 
         body = new Body(); // Implicit BodyType.DYNAMIC
         body.shapes.add(new Polygon(Polygon.rect(0, 0, width, height)));
@@ -37,6 +37,7 @@ class Player extends PhysicalBody
         body.mass = 10;
 
         image = Image.createRect(width,height, 0xFF0000);
+        layer = 2;
         graphic = image;
     }
 
@@ -44,8 +45,8 @@ class Player extends PhysicalBody
     	super.update();
     	x = body.position.x;
     	y = body.position.y;
-    	image.angle = body.rotation;
-        // followMe();
+    	// image.angle = body.rotation;
+        followMe();
         handleInput();
         velocityManagement();
     }
