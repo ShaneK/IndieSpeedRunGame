@@ -156,7 +156,7 @@ class Test extends Scene
             var water = new Polygon(Polygon.rect(0, waterTile.top, waterTile.width, waterTile.height));
             water.fluidEnabled = true;
             water.fluidProperties.density = 3;
-            water.fluidProperties.viscosity = 5;
+            water.fluidProperties.viscosity = 25;
             var body = new Body(BodyType.STATIC);
             body.shapes.add(water);
             body.position.setxy(waterTile.x, waterTile.y);

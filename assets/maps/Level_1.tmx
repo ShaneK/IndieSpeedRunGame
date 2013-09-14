@@ -10,7 +10,7 @@
  </layer>
  <layer name="Bottom" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt0c1Kw0AUgNHZqWAsKmiLilFRF+pSXfn3/i/lDU7oMLRGaJRiz4GPkkkHwr0pAQAM24q2o50/usf39qOD6LA6H5r3snus5iQ6XXA+NO9l9zp30X3uYdUP3DDX0U10Xp338z4buFd6yb+P0VP0Gj2P85kb5SK6rM76ed/m56tot6i70+T6u/0+3qL33McvffN/1kbTNJ/tJNfNfC+fHy24c1zUFP9tiud6zwxr09c+url2c5/l2jSfd3c+KSrf1U2L6j0yrE0/28dsyTv7GFeb7GOdtGncfZQ7sQ8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAdfQKbLRGM
+   eJzt081Kw0AUBtDZqWAtKmiLilFRF+pSu/Lv/V/KG5zQYZqaRWsRew58hEx7YbgfSQkAYNhOZDeyt6E5fnYYOYocV+dD+142x2rOIuc950P7XjbXeog85jytesEtcxu5i1xW592+LwbmSq/5+Rx5ibxFZuu55la5ilxXZ92+7/P7TWS/SDszyulmuz7eIx85n7905/+siUzSfLfjnHbnB/n8pGfmtMio+O+oeK97ZliTvvto99rufZrTpPm+2/NxkfK3OpMidY8Ma9K8j/pZ9jFN/V3pY72atLj/crf62KwmLfaxyvdRdqIPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgL/oCraoRbA==
   </data>
  </layer>
  <layer name="Middle" width="100" height="100">
@@ -25,12 +25,12 @@
  </layer>
  <layer name="Collision" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt0TEKACAMBDD9/6ddnESroIJgAoUWOt2lBAAAAPfkOis/o+GcUbZR5tGfrva02c723s05+niLPt6iDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4DcFFtYAMA==
+   eJzt0zkKACAMBED9/6dtrMQLPBCcgYBCql0SAgAAAJwT88zstIZ9Wtn2Mu/t6WpNme3oXfuzz8xN6OMefbxFHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwG8SQ8cANg==
   </data>
  </layer>
  <layer name="Water" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt0bENACAMA8Fk/6VpaKFDssKd5MrlVwEAAAC/6j0ynHr05eMdPbLokUUPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgugVY4AAX
+   eJzt0bENACAMA8Fk/6VpaKFEVriTXLn8KgAAAOBXvUeGU4++fLynRxY9sugBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABMsQAr7wAR
   </data>
  </layer>
  <layer name="Totem_test1" width="100" height="100">
