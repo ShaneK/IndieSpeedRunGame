@@ -38,6 +38,10 @@ class Test extends Scene
     private var dragging:entities.Circle;
     private var planetList:Array<PlanetBody>;
     private var samplePoint:Body;
+    private var cameraOffset:Int = 5;
+    private var cameraSpeed:Float = .5;
+
+    private var player:entities.PhysicalBody;
 
     public function new()
     {
@@ -51,10 +55,27 @@ class Test extends Scene
         var sfx = new Sfx("sfx/Intro.mp3");
         sfx.loop();
 
-        var player = new entities.Player(450, 100);
+        player = new entities.Player(450, 100);
         addObjectToSpace(player);
-
         // add(new WaterEmitter(500, 500, 490, 0, 10));
+    }
+
+    public function followMe(){              
+        var currentPos = HXP.camera;
+        var newX = player.x-(HXP.halfWidth);
+        var newY = player.y-(HXP.halfHeight);
+
+        var xDiff = camera.x - newX;
+        var yDiff = camera.y - newY;
+        
+        if(Math.abs(xDiff) > cameraOffset){
+            HXP.camera.x += (xDiff < 0 ? cameraSpeed : -cameraSpeed) * (Math.abs(xDiff) * .1);
+        }
+        if(Math.abs(yDiff) > cameraOffset){
+            HXP.camera.y += (yDiff < 0 ? cameraSpeed : -cameraSpeed) * (Math.abs(yDiff) * .1);
+        }
+
+        //HXP.setCamera(newX, newY);        
     }
 
     public function createMap()
@@ -114,14 +135,14 @@ class Test extends Scene
     public override function begin()
     {
         HXP.setCamera(400, 50);
-
     }
  
     public override function update()
-    {
+    {        
         if(HXP.elapsed > 0){
             space.step(HXP.elapsed);
         }
         super.update();
+        followMe();
     }
 }
