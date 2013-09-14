@@ -87,7 +87,7 @@ class Test extends Scene
 
         var playerTiles = tmxEntity.loadMask("PlayerSpawn", "p");
         for(playerSpawn in playerTiles){
-            var player = new entities.Player(Std.int(playerSpawn.x), Std.int(playerSpawn.y));
+            player = new entities.Player(Std.int(playerSpawn.x), Std.int(playerSpawn.y));
             addObjectToSpace(player);
         }
 
