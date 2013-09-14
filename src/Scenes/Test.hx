@@ -50,6 +50,9 @@ class Test extends Scene
     {
         super();
 
+        var bg = new entities.Background(0, 0);
+        add(bg);
+
         var gravity:Vec2 = new Vec2(0, 300); // units are pixels/second/second
         space = new Space(gravity);
 
@@ -118,9 +121,10 @@ class Test extends Scene
                 add(new AirEmitter(30, 100, 510, 80, 10));
              },
             "test4" => function(){ 
-                add(new GroundEmitter(752, 144, space));
-                add(new GroundEmitter(736, 144, space));
-                add(new GroundEmitter(752, 128, space));
+                add(new GroundEmitter(46*16, 9*16, space));
+                add(new GroundEmitter(47*16, 8*16, space));
+                add(new GroundEmitter(47*16, 9*16, space));
+                add(new GroundEmitter(48*16, 9*16, space));
              }
         ];
         placeTotems(totemMap);

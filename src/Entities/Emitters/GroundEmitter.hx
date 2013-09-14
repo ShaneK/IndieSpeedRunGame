@@ -23,10 +23,10 @@ class GroundEmitter extends Entity {
 		super(x, y);
 		this.space = space;
 		emitter = new Emitter("gfx/particles.png", 2, 2);
-		emitter.newType("dirt", [1]);
-		emitter.setMotion("dirt", 0, 30, 20, 360, 10);
+		emitter.newType("dirt", [0]);
+		emitter.setMotion("dirt", 0, 250, 20, 360, 10);
 		emitter.setAlpha("dirt", 1);
-		time = 1;
+		time = .7;
 		graphic = emitter;
 		layer = 2;
 	}
@@ -37,7 +37,7 @@ class GroundEmitter extends Entity {
 		if(timer <= time){
 			var randomWidth = w*Math.random();
 			var randomHeight = h*Math.random();
-			emitter.emit("dirt", randomWidth, randomHeight);
+			emitter.emitInCircle("dirt", randomWidth, randomHeight, 10);
 		}else{
 			var t = new entities.Block(x, y+1);
 			scene.add(t);

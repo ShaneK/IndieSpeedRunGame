@@ -14,6 +14,10 @@ class Totem extends Entity {
 	var sprite:Spritemap;
 	var upHit:Bool;
 	var upHitHook:Void->Void;
+	var isColliding:Bool;
+	var dialog:entities.Dialog;
+	var dialogOn:Bool;
+	var timer:Float;
 
 	public function new(x:Float, y:Float, upHit:Void->Void){
 		width = 16;
@@ -39,16 +43,45 @@ class Totem extends Entity {
         }else{
         	if(upHit){
         		upHit = false;
-        		if(scene.collideRect("player", x, y, 16, 16) != null){
+        		if(isColliding){
         			handleUpHit();
         		}
         	}
         }
 	}
 
+	public function checkForCollision(){
+		isColliding = scene.collideRect("player", x, y, 16, 16) != null;
+	}
+
 	public override function update(){
 		super.update();
+		checkForCollision();
+		handleDialogDisplay();
 		handleInput();
+	}
+
+	public function handleDialogDisplay(){
+		if(dialog == null){
+			dialog = new entities.Dialog(Std.int(x)-28, Std.int(y)-18, 78, 10, "Press Up to Pray");
+			dialogOn = false;
+			timer = 0;
+		}
+		if(isColliding){
+			if(!dialogOn){
+				timer += HXP.elapsed;
+				if(timer >= 1){
+					dialogOn = true;
+		        	scene.add(dialog);
+	        	}
+        	}
+    	}else if(dialogOn){
+    		scene.remove(dialog);
+			dialogOn = false;
+    		timer = 0;
+    	}else if(timer > 0){
+    		timer = 0;
+    	}
 	}
 
 	public function handleUpHit(){
