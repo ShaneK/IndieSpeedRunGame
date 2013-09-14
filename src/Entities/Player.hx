@@ -61,15 +61,19 @@ class Player extends PhysicalBody
         setAnimations();
     }
 
-    public function handleInput(){                
+    public function handleInput(){         
+        var speed = maximumSpeed * .5;
+        if(Input.check("run")){
+            speed = maximumSpeed;
+        }
         if (Input.check("left"))
         {
-            velocityX += maximumSpeed;
+            velocityX += speed;
         } 
         
         if (Input.check("right"))
         {
-            velocityX += -(maximumSpeed);
+            velocityX -= speed;
         }
 
         jumpVelocity = Input.check("jump") && isOnGround() ? jumpAmount : 0;

@@ -70,7 +70,7 @@ class Totem extends Entity {
 		if(isColliding){
 			if(!dialogOn){
 				timer += HXP.elapsed;
-				if(timer >= 1){
+				if(timer >= .25){
 					dialogOn = true;
 		        	scene.add(dialog);
 	        	}

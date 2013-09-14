@@ -9,7 +9,7 @@ class Main extends Engine
 
 	override public function init()
 	{
-        
+        Input.define("run",[Key.SHIFT]);
 		Input.define("left", [Key.LEFT, Key.A]);
         Input.define("right", [Key.RIGHT, Key.D]);
         Input.define("jump", [Key.W, Key.SPACE]);
