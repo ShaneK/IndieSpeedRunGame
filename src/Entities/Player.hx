@@ -48,6 +48,7 @@ class Player extends PhysicalBody
         
         graphic = sprite;        
         layer = 2;
+        type = "player";
     }
 
     public override function update(){

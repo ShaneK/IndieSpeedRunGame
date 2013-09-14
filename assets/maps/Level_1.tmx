@@ -1,26 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="Ben Is Awesome" tilewidth="16" tileheight="16">
-  <image source="Z:/IndieSpeedRun/Assets/CustomTilesets/images/tileset.png" width="160" height="64"/>
+  <image source="Z:/IndieSpeedRun/Assets/CustomTilesets/images/tileset.png" width="160" height="128"/>
  </tileset>
+ <layer name="PlayerSpawn" width="100" height="100" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6Dbv7QxPh0kIAEAAPhn2gEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM5aK6MAAg==
+  </data>
+ </layer>
  <layer name="Bottom" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt0dlqAkEQQNF+00CiWSAuSUjHLf//h1Zji4M4TsAxCJ4D96WGgqE6JQCAboNoGD380x7nvUSv0dvRvOvebXtc5iP6PDHvunfbHpdZR5vo+2i+v/dXx97qer92t36iRfTcmO3v/RvNo2X02KjsPNXoV46maXfb8i7jWrn5qM7fT+xMavQrp917lNuWu89qOR1uXubjRs1v9Cunv73HrOUb/crJe9ySnLwHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwX7aUrAs+
+   eJzt0c1Kw0AUgNHZqWAtKmiLilFRF+pSu/Pn/V/KG5zSYUiM0CjFngPfIpMMhHtTAgAYthPtRnt/dI/vHUZH0XF1PjTvvnus5yw67zgfmnffvdZD9Jh7WvcHt8xtdBddVufLeV8M3OvyHL1Er9FihH/cNlfRdXW2nPd9fr6J9ovaO5Ncffctes99/MYP/3NNNEur2U5z7cwP8vlJx53Toknx7aR4rnfFsCZ97aOdazv3ea5Jq3m359Oi8l3drKjeI8Oa9LN9zHve2ce4mmQfm6RJ4+6j3Il9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAm+gTyOEREg==
+  </data>
+ </layer>
+ <layer name="Middle" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
   </data>
  </layer>
  <layer name="Top" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztzsEJACAMA8CiruH+a/otHcAK3kEg+SUCAIDf7e4D0GSkcMdKfZYNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPCKA556AC8=
+   eJztzrEJACAMBMCgruH+a9oGESvRwjt4SCA8iQAA4Hf99QPwSEnhjpbmOu07+bYuugAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAThpbpgA9
   </data>
  </layer>
- <layer name="Collision" width="100" height="100">
+ <layer name="Collision" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt0TEKwCAQRUH3/pdOkUaCaIqFfMgMLCgsFr4xgC9VyBvc9MiiRxY9suiRRY8semSpad7urYYeu7/d/Xk9duixanA6z3c9eumRRY8segAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH90AWLiAEY=
+   eJzt0cEKgCAQRdH8/59uWYGM06YedQ4ICRoyd9u+Ybz9AC706HtiVnr06ZFFjyx6ZNEjix5Z9MgyTqt7brZWd+mpZlvNvDp3txeHWYPV92xf/Z8+PbLokUUPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgj3bXawBM
   </data>
  </layer>
  <layer name="Water" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt0UENAAAIxDDwb5oPIi7QJlOwKgAAAOCr3sjgRxY/sviRxQ8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOC6AfbHAAs=
+   eJzt0bENACAMA8Fk/6VpaKFDssKd5MrlVwEAAAC/6j0ynHr05eMdPbLokUUPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgugVY4AAX
+  </data>
+ </layer>
+ <layer name="Totem_test1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7DpwL9QLOwhPK2CJgAAAHBvvgMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKUFAqEAGw==
+  </data>
+ </layer>
+ <layer name="Totem_test2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAMAiBzrH/Q/RbwgQQkAAAAsHPrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAeQAxABs=
+  </data>
+ </layer>
+ <layer name="Totem_test3" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAMAiBzrH/QXWbwgQQkAAAA1K0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMPSX5ABs=
+  </data>
+ </layer>
+ <layer name="Totem_test4" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6DnsH9QY3xOSEACAAAAN0w7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8sPuqABs=
   </data>
  </layer>
 </map>
