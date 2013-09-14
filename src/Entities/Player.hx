@@ -39,6 +39,7 @@ class Player extends PhysicalBody
         image = Image.createRect(width,height, 0xFF0000);
         layer = 2;
         graphic = image;
+        type = "player";
     }
 
     public override function update(){

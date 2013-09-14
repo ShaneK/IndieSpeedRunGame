@@ -26,8 +26,10 @@ import com.haxepunk.tmx.TmxVec5;
 
 import classes.PlanetBody;
 
-import entities.WaterEmitter;
-import entities.FireEmitter;
+import entities.emitters.WaterEmitter;
+import entities.emitters.FireEmitter;
+import entities.emitters.AirEmitter;
+import entities.emitters.GroundEmitter;
 import com.haxepunk.Sfx;
 
 class Test extends Scene
@@ -38,6 +40,7 @@ class Test extends Scene
     private var dragging:entities.Circle;
     private var planetList:Array<PlanetBody>;
     private var samplePoint:Body;
+    private var tmxEntity:TmxEntity;
 
     public function new()
     {
@@ -48,11 +51,8 @@ class Test extends Scene
 
         createMap();
 
-        var sfx = new Sfx("sfx/Intro.mp3");
+        var sfx = new Sfx("sfx/haunted.mp3");
         sfx.loop();
-
-        var player = new entities.Player(450, 100);
-        addObjectToSpace(player);
 
         // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
@@ -60,23 +60,57 @@ class Test extends Scene
     public function createMap()
     {
         // create the map, set the assets in your nmml file to bytes
-        var e = new TmxEntity("maps/Level_1.tmx");
-        e.loadGraphic("gfx/tileset.png", ["Bottom"]);
+        tmxEntity = new TmxEntity("maps/Level_1.tmx");
+        tmxEntity.loadGraphic("gfx/tileset.png", ["Bottom", "Middle"]);
+
+        var playerTiles = tmxEntity.loadMask("PlayerSpawn", "p");
+        for(playerSpawn in playerTiles){
+            var player = new entities.Player(Std.int(playerSpawn.x), Std.int(playerSpawn.y));
+            addObjectToSpace(player);
+        }
 
         var t = new TmxEntity("maps/Level_1.tmx");
         t.loadGraphic("gfx/tileset.png", ["Top"]);
         t.layer = 1;
 
         // loads a grid layer named collision and sets the entity type to walls
-        var groundTiles = e.loadMask("Collision", "walls");
+        var groundTiles = tmxEntity.loadMask("Collision", "walls");
 
         //Water
-        var waterTiles = e.loadMask("Water", "water");
+        var waterTiles = tmxEntity.loadMask("Water", "water");
 
-        add(e);
+        add(tmxEntity);
         add(t);
         layGroundTiles(groundTiles);
         layWaterTiles(waterTiles);
+
+        //Totems
+        var totemMap = [
+            "test1" => function(){ 
+                add(new WaterEmitter(500, 500, 470, 0, 10));
+             },
+            "test2" => function(){ 
+                add(new FireEmitter(30, 40, 510, 160, 10));
+             },
+            "test3" => function(){ 
+                add(new AirEmitter(30, 100, 510, 80, 10));
+             },
+            "test4" => function(){ 
+                add(new GroundEmitter(752, 144, space));
+                add(new GroundEmitter(736, 144, space));
+                add(new GroundEmitter(752, 128, space));
+             }
+        ];
+        placeTotems(totemMap);
+    }
+
+    public function placeTotems(totemMap:Map<String, Void->Void>){
+        for(key in totemMap.keys()){
+            var totemTiles = tmxEntity.loadMask("Totem_"+key, "totem");
+            for(totem in totemTiles){
+                add(new entities.Totem(totem.x, totem.y, totemMap[key]));
+            }
+        }
     }
 
     public function layGroundTiles(groundTiles:Array<TmxVec5>){
@@ -97,7 +131,7 @@ class Test extends Scene
             water.fluidEnabled = true;
             water.fluidProperties.density = 3;
             water.fluidProperties.viscosity = 5;
-            var body = new Body(BodyType.STATIC); // Implicit BodyType.DYNAMIC
+            var body = new Body(BodyType.STATIC);
             body.shapes.add(water);
             body.position.setxy(waterTile.x, waterTile.y);
             water.body = body;
