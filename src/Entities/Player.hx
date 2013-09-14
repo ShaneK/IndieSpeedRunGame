@@ -28,8 +28,8 @@ class Player extends PhysicalBody
     public function new(x:Int, y:Int)
     {
         super(x, y);
- 		width = 50;
- 		height = 100;
+ 		width = 5;
+ 		height = 10;
 
         body = new Body(); // Implicit BodyType.DYNAMIC
         body.shapes.add(new Polygon(Polygon.rect(0, 0, width, height)));
@@ -52,6 +52,7 @@ class Player extends PhysicalBody
          graphic = sprite;
 
         // defines left and right as arrow keys and WASD controls
+        layer = 2;
         Input.define("left", [Key.LEFT, Key.A]);
         Input.define("right", [Key.RIGHT, Key.D]);
         Input.define("jump", [Key.UP, Key.W, Key.SPACE]);

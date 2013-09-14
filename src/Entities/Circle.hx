@@ -5,6 +5,7 @@ import com.haxepunk.graphics.Image;
  
 import nape.phys.Body;
 import nape.shape.Circle;
+import nape.shape.Polygon;
 import nape.geom.Vec2;
 import nape.phys.Material;
 
@@ -25,7 +26,7 @@ class Circle extends PhysicalBody
         body.position.setxy(x, y);
         var mat = Material.rubber();
         body.setShapeMaterials(mat);
-        body.mass = mass;
+        body.mass = 10;
         body.inertia = 0.1;
 
         image = Image.createCircle(radius);
