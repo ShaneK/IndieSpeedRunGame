@@ -92,6 +92,8 @@ class Test extends Scene
         for(playerSpawn in playerTiles){
             player = new entities.Player(Std.int(playerSpawn.x), Std.int(playerSpawn.y));
             addObjectToSpace(player);
+
+            add(new entities.SpeechBubble(60, 10, "Test", player.getBody(), 3));
         }
 
         var t = new TmxEntity("maps/Level_1.tmx");
@@ -118,7 +120,7 @@ class Test extends Scene
                 add(new FireEmitter(30, 40, 510, 160, 10));
              },
             "test3" => function(){ 
-                add(new AirEmitter(30, 100, 510, 80, 10));
+                add(new AirEmitter(10, 100, 510, 80, 10, space));
              },
             "test4" => function(){ 
                 add(new GroundEmitter(46*16, 9*16, space));

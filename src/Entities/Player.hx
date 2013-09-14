@@ -32,9 +32,11 @@ class Player extends PhysicalBody
  		height = 24;
 
         body = new Body(); // Implicit BodyType.DYNAMIC
-        body.shapes.add(new Polygon(Polygon.rect(0, 0, width, height)));
+        var polygon = new Polygon(Polygon.rect(0, 0, width, height));
+        polygon.filter.collisionMask = ~2;
+        body.shapes.add(polygon);
         body.position.setxy(x, y);
-        body.setShapeMaterials(new Material(0.0,500));
+        body.setShapeMaterials(new Material(0.0, .8, .0001));
         body.allowRotation = false;
         body.mass = 25;
 
