@@ -30,7 +30,7 @@ class Warrior extends NPC
         
         graphic = sprite;
         layer = 3;
-        type = "warrior";
+        type = "other-tribe";
     }
 
     public override function update(){

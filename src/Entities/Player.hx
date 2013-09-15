@@ -25,6 +25,7 @@ class Player extends PhysicalBody
     private var sprite:Spritemap;
     private var jumpSnd:Sfx;
     private var landSnd:Sfx;
+    private var atkSnd:Sfx;
     private var goingLeft:Bool;
     private var ignoreInput:Bool = false;
     
@@ -63,7 +64,7 @@ class Player extends PhysicalBody
         sprite.add("walk", [1, 2, 3, 4, 5], 8, true);
         sprite.add("run", [1, 2, 3, 4, 5], 12, true);
         sprite.add("jump", [19]);
-        sprite.add("push", [24]);
+        sprite.add("attack", [24,25,26],8);
         sprite.scaledWidth = width;
         sprite.scaledHeight = height;
         sprite.play("idle");
@@ -72,6 +73,7 @@ class Player extends PhysicalBody
         
         jumpSnd = new Sfx('sfx/SFX/Jump.mp3');
         landSnd = new Sfx('sfx/SFX/Land.mp3');
+        atkSnd = new Sfx('sfx/SFX/Hurt1.mp3');
 
         graphic = sprite;        
         layer = 2;
@@ -114,6 +116,10 @@ class Player extends PhysicalBody
             velocityX -= speed;
         }
 
+        if(Input.check("attack")){
+            attack();
+        }
+
         if(Input.check('jump') && isOnGround()){
             jumpVelocity = jumpAmount;            
             jumpSnd.play();
@@ -130,9 +136,12 @@ class Player extends PhysicalBody
 
      private function setAnimations()
      {
+        if(atkSnd.playing){
+            return;
+        }
         if (body.velocity.x > 10 || body.velocity.x < -10)
         {
-            goingLeft = velocityX > 0;
+            goingLeft = body.velocity.x <= 0;
             Input.check('run') ? sprite.play("run") : sprite.play("walk");
             sprite.flipped = goingLeft;
         }
@@ -159,6 +168,22 @@ class Player extends PhysicalBody
 
     public function damage(howMuch:Int){
         Settings.Health -= howMuch;
+    }
+
+    public function attack(){
+        if(!atkSnd.playing){
+            var centerX = x + width/2;
+            var centerY = y;// - height/2;
+
+            var attackDir = goingLeft ? -6 : 6;
+
+            var entityHit = scene.collideRect("other-tribe",centerX +attackDir ,y + 8, 1, 1);
+            if(entityHit != null){
+                trace("you punched: " + entityHit);
+            }
+            atkSnd.play();      
+            sprite.play("attack");      
+        }
     }
 
     public function levelUp(){

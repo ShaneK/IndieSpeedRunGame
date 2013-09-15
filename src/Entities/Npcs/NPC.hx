@@ -46,14 +46,12 @@ class NPC extends PhysicalBody
         timer += HXP.elapsed;
         randTimer += HXP.elapsed;
         if(timer > 1.5 && distFromStart >= dist){
-            trace("change dir");
             direction = -direction;
             body.kinematicVel.x = 0;    
             timer = 0;
         }
 
         if(randTimer > 3){
-            trace("rand dir change");
             direction = EMath.randomSignWithZero();
             randTimer = 0;
         }
