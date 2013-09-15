@@ -16,11 +16,15 @@ class Farmer extends NPC
 {    
     var sprite:Spritemap;
     var timer:Float = 0;
+    var randTimer:Float = 0;
     var direction:Int = 1;
-    var speed:Float = 5;
+    var speed:Float = 500;
+
+    var startX:Float;
 
     public function new(x:Float, y:Float)
     {
+        startX = x;
         super(x, y, 12, 24);
         width = 12;
         height = 24;
@@ -43,13 +47,22 @@ class Farmer extends NPC
     	x = body.position.x;
     	y = body.position.y;
 
-        body.kinematicVel.x += direction * speed * HXP.elapsed;
-
+        var distFromStart = Math.abs(startX - body.position.x);
         timer += HXP.elapsed;
-        if(timer > 1){
-            direction = EMath.randomSign();
+        randTimer += HXP.elapsed;
+        if(timer > 1.5 && distFromStart >= 16){
+            trace("change dir");
+            direction = -direction;
+            body.kinematicVel.x = 0;    
             timer = 0;
         }
+
+        if(randTimer > 3){
+            trace("rand dir change");
+            direction = EMath.randomSignWithZero();
+            randTimer = 0;
+        }
+        body.kinematicVel.x = direction * speed * HXP.elapsed;    
         setAnimations();
     }
 

@@ -14,6 +14,11 @@ class EMath
         return HXP.random > .5 ? 1 : -1;
     }
 
+    public static function randomSignWithZero(){
+        var rand = HXP.random;
+        return rand > .3 ? rand >.6 ? 1: 0 : -1;
+    }
+
     public static function getAngle(x:Float, y:Float, rX:Float, rY:Float) {
         var angle:Float = radToDeg(Math.atan2(rX - x, rY - y)) + 90;
 
