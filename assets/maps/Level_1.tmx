@@ -7,6 +7,12 @@
     <property name="EndElevator" value="1"/>
    </properties>
   </tile>
+  <tile id="10">
+   <properties>
+    <property name="height" value=".5"/>
+    <property name="top" value=".5"/>
+   </properties>
+  </tile>
   <tile id="11">
    <properties>
     <property name="BeginElevator" value="1"/>
@@ -20,22 +26,22 @@
  </layer>
  <layer name="Bottom" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt010vA0EUBuC9ESS0QUoFUQQXuMSVr///p8wms0yms7uKpHSfJ3kz3enO7PacTlUBDM9k2S/Ah0kSlmtSSGo9ZCNkc8F9v7tu6Pr6sROyG7KXzffVu20d3fr6cRRyXFjXV++2dbWbkNuYuwXfdxWsdcz19eMy5CrkNJtv6n3S8sxmXeopjvchDyHPIY89776qRjHbWUbZWPquznm2X1Pv63h9EbKV5KywtunHS8hrzNtv/cB/5iBkGsf08zRJ23UzNrUdx9Q1b3q2nz1vljzroCr3fFTN93koSvXt6kUp9T113Q9jZtVnvev5cZL0uzzpnnkfhyKtaakvpfm+85LWOO1T3iv9mJfXvStd56N0r34s7iv///ycdPXjJ+cj3X+o/QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP62dxexGuI=
+   eJzt1ltPwkAQhuG9ETURiBqkRo2oUS/UOw/xwgP/lJ/qrOnKsMx2CzRpie+TfKkU2t3OdFudA4D/Z9T2BGp4kDwm8tTivJo2UumyF8mzymu5/ZS8tTivJo2MaLuSPcn+iudd97gqX5LvRKaS9wbHakuuH4eSI8lxtD9X79Rx6+pJ+pJBmX60Dek1NF5bcv04k5wbx+XqnTrO0++Bus99X+eJZOzcLKRQCfu2oR87Ffty/biV3Ekuo/2h3heJMcNx2ke59e8B/+yv89zX60HX3uqFzyBzvq7Q16UTr33rO5/r6Hyh3vfl5xvJgcqVcWzoh34PTCvmXPbgN+MavQjpr1KYlsg8w3Ut/F24hWs2P4dtqO2wjK956NlJNN5EjTV2ds8HbrnPzs3vnWIxszjxs0tvwxhdZdW3qhdW/G983U/LTNy83n7/UEV/Fyc+p+6P0Ye/9WGtjSLRE5/4HukSff1WX6z9ufWia6z7FPeqqh+p8Y25La2LuP5xz7apH1WpWh/WbzfpR+47tTXXQ+od0vV+1Ln/rXszVbtN1oe1Ltfpi/X/Vrx2uv4eAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANBNP+3sZs0=
   </data>
  </layer>
  <layer name="Middle" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1cEJgDAMBdBuUffw4v6TiWAhCBGJPYi8B0Vo/T0kRFsDAAD4j23iXevEu3hPP+ZZCpl+rkqWe0dNe7Kf1Xtkrrme7PNcVr+sT+NsubwXZ8bc1FXmo4XMyMenftRl/4G7usZZiD3wvQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL5uB1/mBTY=
+   eJzt1UEKg0AMBdC5QZdjL9FNN73/yaTUgSDE2kGFDu9BEEa/i4RoKQAAwD97LMXH68B3PX983hzOtXceduK7qSNTl+rJHuUWaiTvntbkPOt3y6xzNTk/wz3USLL+ZXNq96bVc3FnrtibUefRsx8lZFo+Xs2jX/Yf2Opr3IU4gyu/VwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD1mJpUHKg==
   </data>
  </layer>
- <layer name="Top" width="100" height="100">
+ <layer name="Top" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
    eJzt0UEKgDAMBMBg6jP8/zel4CGUIvaiB2dgSdpQKCQCAIC/O77+AEzklSh1L/c9bZhnrNlKeEcrfQ7nO7N9P30LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALDqBNuIAF4=
   </data>
  </layer>
  <layer name="Collision" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt0sEKABAQRVH+/6ftJUnklXPKcizmTinn1Qt/sk+PLHpk0SOLHln0yKJHFj2y6JGlTt7unMbnjXa7unOt7ul78JbbBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgL81m68ALg==
+   eJzt10EOgjAQQNGy9gCN97+oYWcaVGw6OrTvJd0BgX4oUMp4W8Ax6adHLnrkkrnH7cOYUeYeK9Ijl8w9thNjNr+4pt51fz+3+mboEa+9/+uL7WqZ8xnpXQsi1pGefWdscuRobs/O+betRnVs95+xU9tjxPGi3sur9LjK98wKPa5kn//709Djv1b4PwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGI8ANVuAfk=
   </data>
  </layer>
  <layer name="Water" width="100" height="100" visible="0">
@@ -43,22 +49,22 @@
    eJzt0bENACAMA8Fk/6VpaKFEVriTXLn8KgAAAOBXvUeGU4++fLynRxY9sugBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABMsQAr7wAR
   </data>
  </layer>
- <layer name="Totem_test1" width="100" height="100">
+ <layer name="Totem_test1" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
    eJztzjENAAAIA7DpwL9QLOwhPK2CJgAAAHBvvgMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKUFAqEAGw==
   </data>
  </layer>
- <layer name="Totem_test2" width="100" height="100">
+ <layer name="Totem_test2" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
    eJztzjEBAAAMAiBzrH/Q/RbwgQQkAAAAsHPrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAeQAxABs=
   </data>
  </layer>
- <layer name="Totem_test3" width="100" height="100">
+ <layer name="Totem_test3" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
    eJztzjEBAAAMAiBzrH/QXWbwgQQkAAAA1K0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMPSX5ABs=
   </data>
  </layer>
- <layer name="Totem_test4" width="100" height="100">
+ <layer name="Totem_test4" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
    eJztzgENAAAIA6DnsH9QY3xOSEACAAAAN0w7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8sPuqABs=
   </data>
@@ -66,6 +72,11 @@
  <layer name="Elevator_0" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztzrENAAAEADB2/9/rCIOE9oJGAMBtuR0AAMZqOwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvNLULQAO
+  </data>
+ </layer>
+ <layer name="Elevator_1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzrENAAAEAEF6+89rBkF313/yEQB8qEWbZxcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATDVF3AAO
   </data>
  </layer>
 </map>
