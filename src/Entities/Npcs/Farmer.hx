@@ -57,7 +57,7 @@ class Farmer extends NPC
     }
 
     private function doFear(){
-        if((Settings.Attacks >= 4 || Settings.Kills >= 1) && isAlive()){
+        if((Settings.Attacks >= 1 || Settings.Kills >= 1 || Settings.Steals >= 1) && isAlive()){
             cower();
         }
         if(!isAlive()){

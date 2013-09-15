@@ -55,7 +55,7 @@ class Warrior extends NPC
     }
 
     private function doAggression(){
-        if((Settings.Attacks >= 4 || Settings.Kills >= 1) && isAlive()){
+        if((Settings.Attacks >= 1 || Settings.Kills >= 1 || Settings.Steals >= 1) && isAlive()){
             attack();
         }else{
             if(!isAlive()){
