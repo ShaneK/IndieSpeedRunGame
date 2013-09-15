@@ -65,13 +65,6 @@ class Tutorial extends Scene
 
         spawners = new Array<Spawner>();
         createMap();
-
-         var sfx = new Sfx("sfx/haunted.mp3");
-         sfx.loop();
-         sfx.volume = .33;
-         sfx.type = "MUSIC";
-
-         
         // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
 

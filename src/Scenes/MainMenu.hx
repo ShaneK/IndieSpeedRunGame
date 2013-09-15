@@ -28,7 +28,6 @@ class MainMenu extends Scene
 
     public var ready:Bool = false;
     var fade:Bool = false;
-    var sfx:Sfx;
 
     public function new()
     {
@@ -37,9 +36,12 @@ class MainMenu extends Scene
 
     public override function begin()
     {        
-        sfx = new Sfx("sfx/Intro.mp3");
-        sfx.loop();
-        sfx.type = "MUSIC";
+        if(Settings.sfx != null){
+            Settings.sfx.stop();
+        }
+        Settings.sfx = new Sfx("sfx/Intro.mp3");
+        Settings.sfx.loop();
+        Settings.sfx.type = "MUSIC";
 
         var screen = HXP.screen;
         screen.color = 0x000000;
@@ -85,18 +87,17 @@ class MainMenu extends Scene
 
     private function CheckInput(){
         if(Input.check("start") && ready){
-            sfx.stop();
             Settings.Health = Settings.MaxHealth;
             HXP.scene = new Tutorial();
             super.end();
         }
         if(Input.check("credits") && ready){            
-            sfx.stop();
+            Settings.sfx.stop();
             HXP.scene = new Credits();
             super.end();
         }
         if(Input.check("exit")){
-            sfx.stop();
+            Settings.sfx.stop();
             super.end();
             #if cpp
             Sys.exit(0);

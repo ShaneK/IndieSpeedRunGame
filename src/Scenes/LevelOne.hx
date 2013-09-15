@@ -66,10 +66,11 @@ class LevelOne extends Scene
         spawners = new Array<Spawner>();
         createMap();
 
-         var sfx = new Sfx("sfx/haunted.mp3");
-         sfx.loop();
-         sfx.volume = .33;
-         sfx.type = "MUSIC";
+        Settings.sfx.stop();
+        Settings.sfx = new Sfx("sfx/haunted.mp3");
+        Settings.sfx.loop();
+        Settings.sfx.volume = .33;
+        Settings.sfx.type = "MUSIC";
     }
 
     public override function begin(){

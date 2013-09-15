@@ -92,6 +92,9 @@ class Player extends PhysicalBody
             velocityManagement();
             setAnimations();
             watchHealth();
+            if(y > 880){
+                damage(Settings.Health);
+            }
         }else{
             levelUpAnimation();
         }
