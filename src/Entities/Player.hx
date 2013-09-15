@@ -29,6 +29,7 @@ class Player extends PhysicalBody
     private var goingLeft:Bool;
     private var ignoreInput:Bool = false;
     
+    
     //Leveling up related
     private var levelingUp:Bool = false;
     private var levelUpTimeout:Float = 0;
@@ -204,7 +205,7 @@ class Player extends PhysicalBody
 
     public function levelUpAnimation(){
         levelUpTimeout += HXP.elapsed;
-        if(levelUpTimeout <= 1){
+        if(levelUpTimeout <= .2){
 
         }else{
             levelingUp = false;
