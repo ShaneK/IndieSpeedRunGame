@@ -15,13 +15,9 @@ import flash.events.KeyboardEvent;
 import nape.geom.Vec2;
 import nape.phys.Body;
 import nape.phys.BodyType;
-import nape.shape.Circle;
 import nape.shape.Polygon;
 import nape.space.Space;
-import nape.util.BitmapDebug;
-import nape.util.Debug;
 import nape.phys.Material;
-import nape.geom.Geom;
 
 import com.haxepunk.tmx.TmxEntity;
 import com.haxepunk.tmx.TmxVec5;
@@ -54,6 +50,7 @@ class Test extends Scene
     {
         super();
 
+        HXP.screen.scale = 4;
         var bg = new entities.Background(0, 0);
         add(bg);
 
@@ -68,8 +65,10 @@ class Test extends Scene
         // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
 
-    public function followMe(){      
-    if(freeCamera){        
+    public override function begin(){
+    }
+
+    public function followMe(){              
         var currentPos = HXP.camera;
         var newX = player.x-(HXP.halfWidth);
         var newY = player.y-(HXP.halfHeight);
@@ -84,18 +83,7 @@ class Test extends Scene
         if(Math.abs(yDiff) > cameraOffset){
             HXP.camera.y += (yDiff < 0 ? cameraSpeed : -cameraSpeed) * (Math.abs(yDiff) * .1);
         }
-
-        //HXP.setCamera(newX, newY);   
-        } 
-
-        if(heldCameraTime > 0){
-            heldCameraTime -= HXP.elapsed;            
-        }
-
-        if(heldCameraTime <= 0 && !freeCamera){
-            freeCamera = true;
-            heldCameraTime = 0;
-        }
+        //HXP.setCamera(newX, newY);
     }
 
     public function createMap()
@@ -108,11 +96,12 @@ class Test extends Scene
         for(playerSpawn in playerTiles){
             player = new entities.Player(Std.int(playerSpawn.x), Std.int(playerSpawn.y));
             addObjectToSpace(player);
-
-            var npc = new entities.npcs.Trainer(26*16, 8*16);
-            addObjectToSpace(npc);
-            add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
+            followMe();
         }
+
+        var npc = new entities.npcs.Trainer(27*16, 18*16);
+        addObjectToSpace(npc);
+        add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
 
         var t = new TmxEntity("maps/Level_1.tmx");
         t.loadGraphic("gfx/tileset.png", ["Top"]);
@@ -205,8 +194,8 @@ class Test extends Scene
                     case "spikes": add(new entities.hazards.Spikes(hazard.x, hazard.y));
                     case "swamp": add(new entities.hazards.Swamp(hazard.x, hazard.y));
                     case "fire": add(new entities.hazards.Fire(hazard.x, hazard.y));
-                }                
-            }            
+                }
+            }
         }
     }
 
@@ -250,18 +239,14 @@ class Test extends Scene
         var body = e.getBody();
         space.bodies.add(body);
     }
-
-    public override function begin()
-    {
-        HXP.setCamera(400, 50);
-    }
  
     public override function update()
     {        
+
+        super.update();
         if(HXP.elapsed > 0){
             space.step(HXP.elapsed);
         }
-        super.update();
 
         followMe();
     }

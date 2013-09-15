@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<meta title="Prototyping" package="com.example.app" version="1.0.0" company="" />
+	<meta title="Do No Harm" package="com.donoharm" version="1.0.0" company="" />
 
  	<app file="Main" main="Main" path="bin" />
 
-	<window fps="30" background="0x6698FF" />
+	<window fps="30" background="0x000000" />
 	<window width="1000" height="600" resizable="true" unless="mobile" />
 	<window fullscreen="true" if="mobile" />
 	<window orientation="landscape" vsync="true" antialiasing="0" if="cpp" />
