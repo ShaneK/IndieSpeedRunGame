@@ -46,7 +46,6 @@ class Player extends PhysicalBody
 
     public function new(x:Int, y:Int)
     {
-        trace(x + " " + y);
         super(x, y);
  		width = 12;
  		height = 24;

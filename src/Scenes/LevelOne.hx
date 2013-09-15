@@ -111,7 +111,7 @@ class LevelOne extends Scene
     public function createMap()
     {
         // create the map, set the assets in your nmml file to bytes
-        tmxEntity = new TmxEntity("maps/Level_2.tmx");
+        tmxEntity = new TmxEntity("maps/Level_1.tmx");
         tmxEntity.loadGraphic("gfx/tileset.png", ["Bottom", "Middle"]);
 
         var spawnTiles = tmxEntity.loadMask("PlayerSpawn", "p");
@@ -130,7 +130,7 @@ class LevelOne extends Scene
         // addObjectToSpace(npc);
         // add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
 
-        var t = new TmxEntity("maps/Level_2.tmx");
+        var t = new TmxEntity("maps/Level_1.tmx");
         t.loadGraphic("gfx/tileset.png", ["Top"]);
         t.layer = 1;
 

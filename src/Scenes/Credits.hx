@@ -108,7 +108,7 @@ class Credits extends Scene
         if(TextUtils.fadeInText(scoreStealsText)){
         if(TextUtils.fadeInText(scoreStatusText)){
         if(TextUtils.fadeInText(returnText)){
-        }}}}}}}}}
+        }}}}}}}}}}
         super.update();
         CheckInput();
     }
