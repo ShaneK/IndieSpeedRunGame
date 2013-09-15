@@ -49,7 +49,7 @@ class Warrior extends NPC
         }else{
             body.velocity.x = 0;
             body.kinematicVel.x = 0;
-        }
+        }        
         setAnimations();
         doAggression();
     }
@@ -57,6 +57,10 @@ class Warrior extends NPC
     private function doAggression(){
         if((Settings.Attacks >= 4 || Settings.Kills >= 1) && isAlive()){
             attack();
+        }else{
+            if(!isAlive()){
+                isAttacking = false;
+            }
         }
     }
 

@@ -60,6 +60,9 @@ class Farmer extends NPC
         if((Settings.Attacks >= 4 || Settings.Kills >= 1) && isAlive()){
             cower();
         }
+        if(!isAlive()){
+            isCowering = false;
+        }
     }
 
     private function cower(){
@@ -70,8 +73,9 @@ class Farmer extends NPC
         else{
             if(atkTime > 1){
                 isCowering = false;
-            }
+            }            
         }
+
         atkTime += HXP.elapsed;
     }
 
