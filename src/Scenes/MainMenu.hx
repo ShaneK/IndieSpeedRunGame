@@ -61,7 +61,7 @@ class MainMenu extends Scene
     public override function update()
     {
         var doIsFaded = TextUtils.fadeInText(doText);
-        if(doIsFaded && !blink){
+        if(doIsFaded && !ready){
             var noIsFaded = TextUtils.fadeInText(noText);
             if(noIsFaded){
                 var harmIsFaded = TextUtils.fadeInText(harmText);
