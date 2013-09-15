@@ -34,6 +34,9 @@ class Spawner extends Entity {
 		var npc = new Farmer(this.x, this.y);
 		Settings.Scene.add(npc);
 		Settings.Space.bodies.add(npc.getBody());
+
+		var stand = new entities.interactive.BananaStand(this.x,this.y, function(){trace("stealing them bananas.");});
+		Settings.Scene.add(stand);
 	}
 
 	private function spawnWarrior(){

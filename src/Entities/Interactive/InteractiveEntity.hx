@@ -45,7 +45,8 @@ class InteractiveEntity extends Entity {
 
 	public function handleDialogDisplay(){
 		if(dialog == null){
-			dialog = new entities.Dialog(Std.int(x)-28, Std.int(y)-18, 78, 10, text);
+			var width = text.length * 5;
+			dialog = new entities.Dialog(Std.int(x)-28, Std.int(y)-18, width, 10, text);
 			dialogOn = false;
 			timer = 0;
 		}
