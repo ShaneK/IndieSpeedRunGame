@@ -170,7 +170,8 @@ class Tutorial extends Scene
 
     public function placeFloatingDialogs(){
         add(new entities.Dialog(22*16, 29*16, 160, 30, "Welcome to Do No Harm!\nUse your arrow keys to move!"));
-        add(new entities.Dialog(40*16, 29*16, 120, 20, "Use shift to run"));
+        add(new entities.Dialog(36*16, 29*16, 120, 20, "Press x to attack"));
+        add(new entities.Dialog(48*16, 29*16, 120, 20, "Use shift to run"));
         add(new entities.Dialog(62*16, 29*16, 120, 20, "Use space to jump"));
         add(new entities.Dialog(79*16, 29*16, 90, 20, "Avoid hazards!"));
         add(new entities.Dialog(100*16, 29*16, 140, 30, "Totems control the elements.\nHit up to interact"));
