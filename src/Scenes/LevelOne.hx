@@ -66,10 +66,11 @@ class LevelOne extends Scene
         spawners = new Array<Spawner>();
         createMap();
 
-         var sfx = new Sfx("sfx/haunted.mp3");
-         sfx.loop();
-         sfx.volume = .33;
-         sfx.type = "MUSIC";
+        Settings.sfx.stop();
+        Settings.sfx = new Sfx("sfx/haunted.mp3");
+        Settings.sfx.loop();
+        Settings.sfx.volume = .33;
+        Settings.sfx.type = "MUSIC";
     }
 
     public override function begin(){
@@ -125,9 +126,9 @@ class LevelOne extends Scene
             }
         }
 
-        var npc = new entities.npcs.Trainer(27*16, 18*16);
-        addObjectToSpace(npc);
-        add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
+        // var npc = new entities.npcs.Trainer(27*16, 18*16);
+        // addObjectToSpace(npc);
+        // add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
 
         var t = new TmxEntity("maps/Level_1.tmx");
         t.loadGraphic("gfx/tileset.png", ["Top"]);

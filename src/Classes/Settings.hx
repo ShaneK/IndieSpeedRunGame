@@ -1,6 +1,7 @@
 package classes;
 import nape.space.Space;
 import com.haxepunk.Scene;
+import com.haxepunk.Sfx;
 
 class Settings {
 	public static var Paused:Bool = false;
@@ -23,6 +24,8 @@ class Settings {
 	public static var Steals:Int = 0;
 	public static var Level:Int = 1;
 
+	public static var sfx:Sfx;
+	
 	//Player
     public static var Player:entities.PhysicalBody;
 

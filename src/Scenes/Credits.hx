@@ -5,7 +5,6 @@ import com.haxepunk.Entity;
 import com.haxepunk.Scene;
 import com.haxepunk.graphics.Image;
 import com.haxepunk.HXP;
-import com.haxepunk.Sfx;
 import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Input;
 import com.haxepunk.graphics.Image;
