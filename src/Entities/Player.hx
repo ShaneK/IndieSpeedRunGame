@@ -163,6 +163,9 @@ class Player extends PhysicalBody
 
     public function velocityManagement(){        
         body.kinematicVel.x = EMath.clamp(velocityX, -maximumSpeed, maximumSpeed);
+        if(!isOnGround()){
+            body.velocity.x -= EMath.clamp(velocityX * 2 * HXP.elapsed, -maximumSpeed, maximumSpeed);
+        }
         body.kinematicVel.y = jumpVelocity;
     }
 
