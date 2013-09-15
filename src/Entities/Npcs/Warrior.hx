@@ -37,5 +37,21 @@ class Warrior extends NPC
     	super.update();
     	x = body.position.x;
     	y = body.position.y;
+
+        wander(8);
+        setAnimations();
     }
+
+    private function setAnimations()
+     {
+        if (body.velocity.x > 2 || body.velocity.x < -2)
+        {
+            sprite.play("walk");
+            sprite.flipped = body.velocity.x < 0;
+        }
+        else
+        {
+            sprite.play("idle");
+        }
+     }
 }

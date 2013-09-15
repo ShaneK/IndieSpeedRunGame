@@ -10,6 +10,7 @@ import com.haxepunk.Sfx;
 import nape.phys.Body;
 import nape.phys.BodyType;
 import nape.shape.Polygon;
+import nape.shape.Circle;
 import nape.geom.Vec2;
 import nape.phys.Material;
 
@@ -48,10 +49,11 @@ class Player extends PhysicalBody
  		height = 24;
 
         body = new Body(); // Implicit BodyType.DYNAMIC
-        var polygon = new Polygon(Polygon.rect(0, 0, width, height));
+        //var polygon = new Polygon(Polygon.rect(0, 0, width, height));
+        var polygon = new Circle(width/2, new Vec2(width/2,18));
         polygon.filter.collisionMask = ~2;
         body.shapes.add(polygon);
-        body.position.setxy(x, y);
+        body.position.setxy(x, y-16);
         body.setShapeMaterials(new Material(0.0, .8, .0001));
         body.allowRotation = false;
         body.mass = 25;
