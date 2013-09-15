@@ -79,7 +79,7 @@ class Test extends Scene
         for(spawner in spawners){
             spawner.spawn();
         }
-        slider = new entities.Slider(0, 0, 55, 12, 8, 100, 100, 0x000000, 0xBB0000, 0xFFFFFF);
+        slider = new entities.Slider(0, 0, 55, 12, 8, Settings.MaxHealth, Settings.Health, 0x000000, 0xBB0000, 0xFFFFFF);
         add(slider);
     }
 

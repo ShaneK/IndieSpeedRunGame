@@ -79,7 +79,7 @@ class Tutorial extends Scene
         for(spawner in spawners){
             spawner.spawn();
         }
-        slider = new entities.Slider(0, 0, 55, 12, 8, 100, 100, 0x000000, 0xBB0000, 0xFFFFFF);
+        slider = new entities.Slider(0, 0, 55, 12, 8, Settings.MaxHealth, Settings.Health, 0x000000, 0xBB0000, 0xFFFFFF);
         add(slider);
     }
 
@@ -140,6 +140,9 @@ class Tutorial extends Scene
         //Water
         var waterTiles = tmxEntity.loadMask("Water", "water");
 
+        //Level up
+        var levelUpTiles = tmxEntity.loadMask("LevelChangeTrigger", "levelUp");
+
         add(tmxEntity);
         add(t);
         layGroundTiles(groundTiles);
@@ -154,8 +157,15 @@ class Tutorial extends Scene
         placeTotems(totemMap);
         placeHazards();
         placeElevators(2);
+        placeLevelUpTiles(levelUpTiles);
 
         placeFloatingDialogs();
+    }
+
+    public function placeLevelUpTiles(levelUpTiles:Array<TmxVec5>){
+        for(tile in levelUpTiles){
+            add(new entities.LevelUpBlock(tile.x, tile.y));
+        }
     }
 
     public function placeFloatingDialogs(){

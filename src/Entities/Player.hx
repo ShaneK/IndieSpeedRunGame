@@ -162,9 +162,21 @@ class Player extends PhysicalBody
     }
 
     public function levelUp(){
-        Settings.Level += 1;
-        ignoreInput = true;
-        levelingUp = true;
+        if(!levelingUp){
+            Settings.Level += 1;
+            ignoreInput = true;
+            levelingUp = true;
+        }
+    }
+
+    public override function moveCollideX(e:Entity){
+        trace("HIT ENTITY " + e);
+        return true;
+    }
+
+    public override function moveCollideY(e:Entity){
+        trace("HIT ENTITY " + e);
+        return true;
     }
 
     public function levelUpAnimation(){
@@ -181,6 +193,11 @@ class Player extends PhysicalBody
 
     public function watchHealth(){
         if(Settings.Health <= 0){
+            if(Settings.Level == 1){
+                Settings.Health = Settings.MaxHealth;
+                body.position.setxy(112*16, 32*16);
+                return;
+            }
             HXP.scene = new scenes.Credits();
         }
     }

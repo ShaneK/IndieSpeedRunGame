@@ -26,9 +26,9 @@ class Settings {
 	//Player
     public static var Player:entities.PhysicalBody;
 
-    public static function getNextScene(level:Int){
-    	if(level == 1){
-    		return new scenes.Credits();
+    public static function getNextScene(level:Int):com.haxepunk.Scene {
+    	if(level == 2){
+    		return new scenes.Test();
     	}
     	return new scenes.Credits();
     }
