@@ -13,13 +13,28 @@
     <property name="top" value=".5"/>
    </properties>
   </tile>
+  <tile id="4">
+   <properties>
+    <property name="hazardType" value="swamp"/>
+   </properties>
+  </tile>
   <tile id="11">
    <properties>
     <property name="BeginElevator" value="1"/>
    </properties>
   </tile>
+  <tile id="45">
+   <properties>
+    <property name="hazardType" value="spikes"/>
+   </properties>
+  </tile>
+  <tile id="56">
+   <properties>
+    <property name="hazardType" value="fire"/>
+   </properties>
+  </tile>
  </tileset>
- <layer name="PlayerSpawn" width="100" height="100" visible="0">
+ <layer name="PlayerSpawn" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztzgENAAAIA6Dbv7QxPh0kIAEAAPhn2gEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM5aK6MAAg==
   </data>
@@ -69,14 +84,19 @@
    eJztzgENAAAIA6DnsH9QY3xOSEACAAAAN0w7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8sPuqABs=
   </data>
  </layer>
- <layer name="Elevator_0" width="100" height="100">
+ <layer name="Elevator_0" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztzrENAAAEADB2/9/rCIOE9oJGAMBtuR0AAMZqOwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvNLULQAO
+   eJztzkERAAAEADD++ufVgnO2BIsAAJiX2wEATqntAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwSgPSlQAO
   </data>
  </layer>
  <layer name="Elevator_1" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztzrENAAAEAEF6+89rBkF313/yEQB8qEWbZxcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATDVF3AAO
+  </data>
+ </layer>
+ <layer name="Hazards" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzrEJAEAIBEET2zH//hszESzhEWZgufQiAAAA7nuz9fUF3JMTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAayTkAcg==
   </data>
  </layer>
 </map>

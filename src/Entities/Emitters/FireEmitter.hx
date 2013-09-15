@@ -31,7 +31,7 @@ class FireEmitter extends Entity {
 	public override function update(){
 		super.update();
 		timer += HXP.elapsed;
-		if(timer <= time){
+		if(timer <= time || time == -1){
 			var randomWidth = w*Math.random();
 			emitter.emit("fire", randomWidth, 0);
 		}else{

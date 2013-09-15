@@ -59,7 +59,8 @@ class Test extends Scene
         createMap();
 
          var sfx = new Sfx("sfx/haunted.mp3");
-         sfx.loop();
+         // sfx.loop();
+         sfx.type = "MUSIC";
         // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
 
@@ -131,7 +132,7 @@ class Test extends Scene
              }
         ];
         placeTotems(totemMap);
-
+        placeHazards();
         placeElevators(2);
     }
 
@@ -151,8 +152,23 @@ class Test extends Scene
                     beginningX = elevator.x;
                     beginningY = elevator.y;
                 }
-                addObjectToSpace(new entities.Elevator(beginningX, beginningY, endingX, endingY));
             }
+            addObjectToSpace(new entities.Elevator(beginningX, beginningY, endingX, endingY));
+        }
+    }
+
+    public function placeHazards(){
+        var hazardTiles = tmxEntity.loadMask("Hazards", "hazard");
+        for(hazard in hazardTiles){  
+            if(hazard.tileProperties.exists("hazardType"))
+            {
+                var type = hazard.tileProperties.get("hazardType");
+                switch (type) {
+                    case "spikes": add(new entities.hazards.Spikes(hazard.x, hazard.y));
+                    case "swamp": add(new entities.hazards.Swamp(hazard.x, hazard.y));
+                    case "fire": add(new entities.hazards.Fire(hazard.x, hazard.y));
+                }                
+            }            
         }
     }
 
