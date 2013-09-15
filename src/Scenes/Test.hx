@@ -62,7 +62,6 @@ class Test extends Scene
     }
 
     public override function begin(){
-        add(new entities.buttons.SettingsMenuButton(20, 20, 16, 16));
     }
 
     public function followMe(){              
@@ -79,7 +78,6 @@ class Test extends Scene
         if(Math.abs(yDiff) > cameraOffset){
             HXP.camera.y += (yDiff < 0 ? cameraSpeed : -cameraSpeed) * (Math.abs(yDiff) * .1);
         }
-
         //HXP.setCamera(newX, newY);
     }
 
@@ -217,10 +215,11 @@ class Test extends Scene
  
     public override function update()
     {        
+
+        super.update();
         if(HXP.elapsed > 0){
             space.step(HXP.elapsed);
         }
-        super.update();
         followMe();
     }
 }

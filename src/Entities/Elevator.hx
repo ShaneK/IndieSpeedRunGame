@@ -74,6 +74,8 @@ class Elevator extends PhysicalBody
         body.position.y += yi;
     }
 
+    
+
     public function move(){
         if(waiting){
             timer += HXP.elapsed;
