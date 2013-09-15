@@ -126,9 +126,9 @@ class LevelOne extends Scene
             }
         }
 
-        var npc = new entities.npcs.Trainer(27*16, 18*16);
-        addObjectToSpace(npc);
-        add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
+        // var npc = new entities.npcs.Trainer(27*16, 18*16);
+        // addObjectToSpace(npc);
+        // add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
 
         var t = new TmxEntity("maps/Level_1.tmx");
         t.loadGraphic("gfx/tileset.png", ["Top"]);
