@@ -14,6 +14,7 @@ import nape.geom.Vec2;
 import nape.phys.Material;
 
 import classes.EMath;
+import classes.Settings;
  
 class Player extends PhysicalBody
 {
@@ -78,6 +79,7 @@ class Player extends PhysicalBody
         handleInput();
         velocityManagement();
         setAnimations();
+        watchHealth();
     }
 
     public function handleInput(){         
@@ -140,5 +142,15 @@ class Player extends PhysicalBody
     public function velocityManagement(){        
         body.kinematicVel.x = EMath.clamp(velocityX, -maximumSpeed, maximumSpeed);
         body.kinematicVel.y = jumpVelocity;
+    }
+
+    public function damage(howMuch:Int){
+        Settings.Health -= howMuch;
+    }
+
+    public function watchHealth(){
+        if(Settings.Health <= 0){
+            HXP.scene = new scenes.Credits();
+        }
     }
 }

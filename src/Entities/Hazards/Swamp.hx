@@ -8,6 +8,7 @@ import com.haxepunk.graphics.Image;
 import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Key;
 import com.haxepunk.Sfx;
+import classes.Settings;
 
 class Swamp extends Entity {
 	private var w:Float;
@@ -32,7 +33,8 @@ class Swamp extends Entity {
 		graphic = sprite;
 
 		hurtCallback = function(){
-			trace("SWAMP BIAAATCH.");
+			var player = cast(Settings.Player, entities.Player);
+			player.damage(10);
 			setRandomHurtSFX();
 		};		
 

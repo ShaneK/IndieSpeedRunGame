@@ -15,4 +15,7 @@ class Settings {
 	public static var Kills:Int = 0;
 	public static var Attacks:Int = 0;
 	public static var Steals:Int = 0;
+
+	//Player
+    public static var Player:entities.PhysicalBody;
 }
