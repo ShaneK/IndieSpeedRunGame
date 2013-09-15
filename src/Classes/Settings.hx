@@ -32,6 +32,8 @@ class Settings {
     public static function getNextScene(level:Int):com.haxepunk.Scene {
     	if(level == 2){
     		return new scenes.LevelOne();
+    	}else if(level == 3){
+    		return new scenes.LevelTwo();
     	}
     	return new scenes.Credits();
     }

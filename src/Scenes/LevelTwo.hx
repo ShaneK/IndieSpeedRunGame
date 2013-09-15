@@ -142,6 +142,9 @@ class LevelTwo extends Scene
         //Water
         var waterTiles = tmxEntity.loadMask("Water", "water");
 
+        //Level up
+        var levelUpTiles = tmxEntity.loadMask("LevelChangeTrigger", "levelUp");
+
         add(tmxEntity);
         add(t);
         layGroundTiles(groundTiles);
@@ -165,6 +168,13 @@ class LevelTwo extends Scene
          placeTotems(totemMap);
         placeHazards();
         placeElevators(5);
+        placeLevelUpTiles(levelUpTiles);
+    }
+
+    public function placeLevelUpTiles(levelUpTiles:Array<TmxVec5>){
+        for(tile in levelUpTiles){
+            add(new entities.LevelUpBlock(tile.x, tile.y));
+        }
     }
 
     public function placeElevators(count:Int){
