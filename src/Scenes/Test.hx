@@ -50,6 +50,7 @@ class Test extends Scene
     {
         super();
 
+        HXP.screen.scale = 4;
         var bg = new entities.Background(0, 0);
         add(bg);
 

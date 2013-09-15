@@ -13,12 +13,15 @@ class Main extends Engine
 		Input.define("left", [Key.LEFT, Key.A]);
         Input.define("right", [Key.RIGHT, Key.D]);
         Input.define("jump", [Key.W, Key.SPACE]);
+        Input.define("start", [Key.ENTER]);
+        Input.define("exit", [Key.ESCAPE]);
+        Input.define("credits",[Key.C]);
 
 #if debug
 		HXP.console.enable();
 #end
-		HXP.scene = new scenes.Test();
-		HXP.screen.scale = 4;
+		HXP.scene = new scenes.MainMenu();
+		
 	}
 
 	public static function main() { new Main(); }
