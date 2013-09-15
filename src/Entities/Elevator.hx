@@ -31,10 +31,10 @@ class Elevator extends PhysicalBody
     {
         super(xb+2, yb);
         width = 15;
- 		height = 15;
+ 		height = 1;
  		
         body = new Body(BodyType.KINEMATIC);
-        var polygon = new Polygon(Polygon.rect(0, 0, width, height/4));
+        var polygon = new Polygon(Polygon.rect(0, 0, width, height));
         body.shapes.add(polygon);
         body.position.setxy(x, y);
         body.allowRotation = false;
@@ -64,6 +64,16 @@ class Elevator extends PhysicalBody
         move();
     }
 
+    public function movePlayer(xi:Float, yi:Float){
+        var player = scene.collideRect("player", x, y, 16, 16);
+        if(player == null) return;
+        var p = cast(player, PhysicalBody);
+        var body = p.getBody();
+        if(body.position.y+22 > y-yi) return;
+        body.position.x += xi;
+        body.position.y += yi;
+    }
+
     public function move(){
         if(waiting){
             timer += HXP.elapsed;
@@ -89,6 +99,7 @@ class Elevator extends PhysicalBody
         distX /= length;
         distY /= length;
         body.position.setxy(x + distX * speed, y + distY * speed);
+        movePlayer(distX*speed, distY*speed);
         if(body.position.x + range >= targetX && body.position.x - range <= targetX && body.position.y + range >= targetY && body.position.y - range <= targetY){
             goingTowardsEnd = !goingTowardsEnd;
             waiting = true;

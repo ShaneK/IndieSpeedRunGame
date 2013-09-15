@@ -63,9 +63,9 @@
    eJztzgENAAAIA6DnsH9QY3xOSEACAAAAN0w7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8sPuqABs=
   </data>
  </layer>
- <layer name="Elevator_0" width="100" height="100">
+ <layer name="Elevator_0" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztzkERAAAEADD++ufVgnO2BIsAAJiT2wEATqrtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwSgPSnQAO
+   eJztzkERAAAEADD++ufVgnO2BIsAAJiX2wEATqntAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwSgPSlQAO
   </data>
  </layer>
 </map>
