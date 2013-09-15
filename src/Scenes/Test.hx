@@ -142,6 +142,9 @@ class Test extends Scene
         //Water
         var waterTiles = tmxEntity.loadMask("Water", "water");
 
+        //Level up
+        var levelUpTiles = tmxEntity.loadMask("LevelChangeTrigger", "levelUp");
+
         add(tmxEntity);
         add(t);
         layGroundTiles(groundTiles);
@@ -149,21 +152,6 @@ class Test extends Scene
 
         //Totems
         var totemMap = [
-            "test1" => function(){ 
-                add(new WaterEmitter(500, 500, 470, 0, 10));
-             },
-            "test2" => function(){ 
-                add(new FireEmitter(30, 40, 510, 160, 10));
-             },
-            "test3" => function(){ 
-                add(new AirEmitter(10, 100, 510, 80, 10, space));
-             },
-            "test4" => function(){ 
-                add(new GroundEmitter(46*16, 9*16, space));
-                add(new GroundEmitter(47*16, 8*16, space));
-                add(new GroundEmitter(47*16, 9*16, space));
-                add(new GroundEmitter(48*16, 9*16, space));
-             },
             "earthbridge" => function(){
                 
                 freeCamera = false;
@@ -188,6 +176,13 @@ class Test extends Scene
         placeTotems(totemMap);
         placeHazards();
         placeElevators(6);
+        placeLevelUpTiles(levelUpTiles);
+    }
+
+    public function placeLevelUpTiles(levelUpTiles:Array<TmxVec5>){
+        for(tile in levelUpTiles){
+            add(new entities.LevelUpBlock(tile.x, tile.y));
+        }
     }
 
     public function placeElevators(count:Int){
