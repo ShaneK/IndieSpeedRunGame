@@ -33,7 +33,7 @@ import com.haxepunk.Sfx;
 
 import classes.Settings;
 
-class Test extends Scene
+class LevelOne extends Scene
 {
     private var space:Space;
     private var floor:Entity;
@@ -66,13 +66,11 @@ class Test extends Scene
         spawners = new Array<Spawner>();
         createMap();
 
-         var sfx = new Sfx("sfx/haunted.mp3");
-         sfx.loop();
-         sfx.volume = .33;
-         sfx.type = "MUSIC";
-
-         
-        // add(new WaterEmitter(500, 500, 490, 0, 10));
+        Settings.sfx.stop();
+        Settings.sfx = new Sfx("sfx/haunted.mp3");
+        Settings.sfx.loop();
+        Settings.sfx.volume = .33;
+        Settings.sfx.type = "MUSIC";
     }
 
     public override function begin(){
@@ -128,9 +126,9 @@ class Test extends Scene
             }
         }
 
-        var npc = new entities.npcs.Trainer(27*16, 18*16);
-        addObjectToSpace(npc);
-        add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
+        // var npc = new entities.npcs.Trainer(27*16, 18*16);
+        // addObjectToSpace(npc);
+        // add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
 
         var t = new TmxEntity("maps/Level_2.tmx");
         t.loadGraphic("gfx/tileset.png", ["Top"]);
@@ -142,6 +140,9 @@ class Test extends Scene
         //Water
         var waterTiles = tmxEntity.loadMask("Water", "water");
 
+        //Level up
+        var levelUpTiles = tmxEntity.loadMask("LevelChangeTrigger", "levelUp");
+
         add(tmxEntity);
         add(t);
         layGroundTiles(groundTiles);
@@ -149,21 +150,6 @@ class Test extends Scene
 
         //Totems
         var totemMap = [
-            "test1" => function(){ 
-                add(new WaterEmitter(500, 500, 470, 0, 10));
-             },
-            "test2" => function(){ 
-                add(new FireEmitter(30, 40, 510, 160, 10));
-             },
-            "test3" => function(){ 
-                add(new AirEmitter(10, 100, 510, 80, 10, space));
-             },
-            "test4" => function(){ 
-                add(new GroundEmitter(46*16, 9*16, space));
-                add(new GroundEmitter(47*16, 8*16, space));
-                add(new GroundEmitter(47*16, 9*16, space));
-                add(new GroundEmitter(48*16, 9*16, space));
-             },
             "earthbridge" => function(){
                 
                 freeCamera = false;
@@ -180,14 +166,20 @@ class Test extends Scene
                 add(new GroundEmitter(139*16,20*16,space));               
             },
             "windlaunch" => function(){
-
                  add(new AirEmitter(10, 100, 233 * 16, 9 * 16, 10, space));
             }
 
         ];
         placeTotems(totemMap);
         placeHazards();
-        placeElevators(6);
+        placeElevators(7);
+        placeLevelUpTiles(levelUpTiles);
+    }
+
+    public function placeLevelUpTiles(levelUpTiles:Array<TmxVec5>){
+        for(tile in levelUpTiles){
+            add(new entities.LevelUpBlock(tile.x, tile.y));
+        }
     }
 
     public function placeElevators(count:Int){

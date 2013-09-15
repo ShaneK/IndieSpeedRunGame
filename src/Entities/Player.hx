@@ -93,6 +93,9 @@ class Player extends PhysicalBody
             velocityManagement();
             setAnimations();
             watchHealth();
+            if(y > 880){
+                damage(Settings.Health);
+            }
         }else{
             levelUpAnimation();
         }
@@ -183,7 +186,8 @@ class Player extends PhysicalBody
 
             var entityHit = scene.collideRect("other-tribe",centerX +attackDir ,y + 8, 1, 1);
             if(entityHit != null){
-                trace("you punched: " + entityHit);
+                var npc = cast(entityHit, entities.npcs.NPC);
+                npc.onAttacked();
             }
             atkSnd.play();      
             sprite.play("attack");      
@@ -196,16 +200,6 @@ class Player extends PhysicalBody
             ignoreInput = true;
             levelingUp = true;
         }
-    }
-
-    public override function moveCollideX(e:Entity){
-        trace("HIT ENTITY " + e);
-        return true;
-    }
-
-    public override function moveCollideY(e:Entity){
-        trace("HIT ENTITY " + e);
-        return true;
     }
 
     public function levelUpAnimation(){
@@ -227,6 +221,7 @@ class Player extends PhysicalBody
                 body.position.setxy(112*16, 32*16);
                 return;
             }
+            Settings.sfx.stop();
             HXP.scene = new scenes.Credits();
         }
     }

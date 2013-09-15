@@ -18,7 +18,6 @@ class WaterEmitter extends Entity {
 		this.w = w;
 		this.h = h;
 
-		trace(yi);
 		super(xi, yi);
 		emitter = new Emitter("gfx/particles.png", 2, 2);
 		emitter.newType("water", [1]);

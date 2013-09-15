@@ -1,9 +1,11 @@
 package entities.npcs;
 
-
+import classes.Settings;
 import com.haxepunk.Entity;
+import com.haxepunk.HXP;
 import com.haxepunk.graphics.Image;
- 
+import com.haxepunk.Sfx; 
+
 import nape.phys.Body;
 import nape.phys.BodyType;
 import nape.shape.Polygon;
@@ -14,7 +16,8 @@ import com.haxepunk.graphics.Spritemap;
 class Farmer extends NPC
 {    
     var sprite:Spritemap;
-
+    var atkTime:Float = 0;
+    var isCowering:Bool = false;
 
     public function new(x:Float, y:Float)
     {
@@ -28,9 +31,14 @@ class Farmer extends NPC
         sprite.add("idle", [0]);        
         sprite.add("walk", [1, 2, 3, 4, 5], 8, true);
         sprite.add("jump", [19]);
+        sprite.add("dead", [54]);
+        sprite.add("cower", [12]);
         sprite.scaledWidth = width;
         sprite.scaledHeight = height;
         sprite.play("idle");
+
+        alrtSnd = new Sfx("sfx/SFX/Farmer_Alert.mp3");
+        hurtSnd = new Sfx("sfx/SFX/Farmer_Hurt.mp3");
         
         graphic = sprite;
         layer = 3;
@@ -38,20 +46,62 @@ class Farmer extends NPC
     }
 
     public override function update(){
-    	super.update();        
-    	x = body.position.x;
-    	y = body.position.y;
+        super.update();        
+        x = body.position.x;
+        y = body.position.y;
 
-        wander();
+        if(isAlive() && !isCowering){
+            wander();
+        }else{
+            body.velocity.x = 0;
+            body.kinematicVel.x = 0;
+        }
         setAnimations();
+        doFear();
+    }
+
+    private function doFear(){
+        if((Settings.Attacks >= 1 || Settings.Kills >= 1 || Settings.Steals >= 1) && isAlive()){
+            cower();
+        }
+        if(!isAlive()){
+            isCowering = false;
+        }
+    }
+
+    private function cower(){
+        if(scene.collideRect("player", x+4, y+8, 16, 16) != null && atkTime > 1){            
+            isCowering = true;
+            atkTime = 0;
+            if(!alerted){
+                alerted = true;      
+                alrtSnd.play();
+            }
+        }
+        else{
+            if(atkTime > 1){
+                isCowering = false;
+            }            
+        }
+
+        atkTime += HXP.elapsed;
     }
 
      private function setAnimations()
      {
+        sprite.flipped = body.velocity.x < 0;
+        if(isCowering){            
+            sprite.play('cower');
+            return;
+        }
+        if(!isAlive()){
+            sprite.play("dead");
+            return;
+        }
+
         if (body.velocity.x > 2 || body.velocity.x < -2)
         {
-            sprite.play("walk");
-            sprite.flipped = body.velocity.x < 0;
+            sprite.play("walk");            
         }
         else
         {

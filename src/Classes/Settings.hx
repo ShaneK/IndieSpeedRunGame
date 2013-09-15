@@ -1,6 +1,7 @@
 package classes;
 import nape.space.Space;
 import com.haxepunk.Scene;
+import com.haxepunk.Sfx;
 
 class Settings {
 	public static var Paused:Bool = false;
@@ -23,12 +24,14 @@ class Settings {
 	public static var Steals:Int = 0;
 	public static var Level:Int = 1;
 
+	public static var sfx:Sfx;
+	
 	//Player
     public static var Player:entities.PhysicalBody;
 
     public static function getNextScene(level:Int):com.haxepunk.Scene {
     	if(level == 2){
-    		return new scenes.Test();
+    		return new scenes.LevelOne();
     	}
     	return new scenes.Credits();
     }
@@ -36,4 +39,13 @@ class Settings {
     //Space
     public static var Space:Space;
     public static var Scene:Scene;
+
+    public static function restoreDefault(){
+		Paused = false;
+		Health = 100;
+		Kills = 0;
+		Attacks = 0;
+		Steals = 0;
+		Level = 1;
+    }
 }
