@@ -51,6 +51,7 @@ class Slider extends Entity
         addGraphic(sliderText);
 
         type = "slider";
+        layer = 0;
 	}
 
 	public override function update(){

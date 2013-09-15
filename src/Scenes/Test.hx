@@ -70,9 +70,6 @@ class Test extends Scene
          sfx.loop();
          sfx.volume = .33;
          sfx.type = "MUSIC";
-
-         
-        // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
 
     public override function begin(){
@@ -168,15 +165,17 @@ class Test extends Scene
                 add(new GroundEmitter(139*16,20*16,space));               
             },
             "windlaunch" => function(){
-
                  add(new AirEmitter(10, 100, 233 * 16, 9 * 16, 10, space));
             }
 
         ];
         placeTotems(totemMap);
         placeHazards();
-        placeElevators(6);
+        trace("MADE IT HERE");
+        placeElevators(7);
+        trace("MADE IT HERE");
         placeLevelUpTiles(levelUpTiles);
+        trace("MADE IT HERE");
     }
 
     public function placeLevelUpTiles(levelUpTiles:Array<TmxVec5>){
