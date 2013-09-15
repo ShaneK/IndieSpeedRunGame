@@ -25,6 +25,11 @@ class Player extends PhysicalBody
     private var jumpSnd:Sfx;
     private var landSnd:Sfx;
     private var goingLeft:Bool;
+    private var ignoreInput:Bool = false;
+    
+    //Leveling up related
+    private var levelingUp:Bool = false;
+    private var levelUpTimeout:Float = 0;
 
 #if debug
     var maximumSpeed = 10000;
@@ -72,14 +77,20 @@ class Player extends PhysicalBody
     }
 
     public override function update(){
-        velocityX = 0;
-    	super.update();
-    	x = body.position.x;
-    	y = body.position.y;
-        handleInput();
-        velocityManagement();
-        setAnimations();
-        watchHealth();
+        super.update();
+        if(!levelingUp){
+            velocityX = 0;
+        	x = body.position.x;
+        	y = body.position.y;
+            if(!ignoreInput){
+                handleInput();
+            }
+            velocityManagement();
+            setAnimations();
+            watchHealth();
+        }else{
+            levelUpAnimation();
+        }
     }
 
     public function handleInput(){         
@@ -146,6 +157,24 @@ class Player extends PhysicalBody
 
     public function damage(howMuch:Int){
         Settings.Health -= howMuch;
+    }
+
+    public function levelUp(){
+        Settings.Level += 1;
+        ignoreInput = true;
+        levelingUp = true;
+    }
+
+    public function levelUpAnimation(){
+        levelUpTimeout += HXP.elapsed;
+        if(levelUpTimeout <= 1){
+
+        }else{
+            levelingUp = false;
+            levelUpTimeout = 0;
+            ignoreInput = false;
+            HXP.scene = Settings.getNextScene(Settings.Level);
+        }
     }
 
     public function watchHealth(){
