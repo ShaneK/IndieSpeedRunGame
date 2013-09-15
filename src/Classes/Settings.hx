@@ -36,4 +36,13 @@ class Settings {
     //Space
     public static var Space:Space;
     public static var Scene:Scene;
+
+    public static function restoreDefault(){
+		Paused = false;
+		Health = 100;
+		Kills = 0;
+		Attacks = 0;
+		Steals = 0;
+		Level = 1;
+    }
 }
