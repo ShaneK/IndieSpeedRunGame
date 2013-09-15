@@ -38,7 +38,7 @@ class Credits extends Scene
         thingText.size = 18;
         createdText = buildCreditsTest("Created By:",20,50);
         shaneText = buildCreditsTest("Level Design/Programming: Shane King",20,120);
-        calebText = buildCreditsTest("Art/Music/Level Design: Caleb Creed",20,180);
+        calebText = buildCreditsTest("Art/Original Music/Level Design: Caleb Creed",20,180);
         benText = buildCreditsTest("Art/Programming: Ben Van Treese",20,240);
 
         var Status = "";
