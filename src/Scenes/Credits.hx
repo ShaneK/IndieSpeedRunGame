@@ -9,6 +9,7 @@ import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Input;
 import com.haxepunk.graphics.Image;
 import com.haxepunk.graphics.Text;
+import com.haxepunk.Sfx;
 
 import utils.TextUtils;
 
@@ -31,6 +32,10 @@ class Credits extends Scene
 
     public override function begin()
     {       
+        Settings.sfx = new Sfx("sfx/longhouse.mp3");
+        Settings.sfx.loop();
+        Settings.sfx.type = "MUSIC";
+
         var screen = HXP.screen;
         screen.color = 0x000000;
         screen.scale = 1;
@@ -109,6 +114,7 @@ class Credits extends Scene
     private function CheckInput(){
         if(Input.check("exit")){
             super.end();
+            Settings.sfx.stop();
             HXP.scene = new MainMenu();
         }
     }
