@@ -152,8 +152,8 @@ class Test extends Scene
                     beginningX = elevator.x;
                     beginningY = elevator.y;
                 }
-                addObjectToSpace(new entities.Elevator(beginningX, beginningY, endingX, endingY));
             }
+            addObjectToSpace(new entities.Elevator(beginningX, beginningY, endingX, endingY));
         }
     }
 

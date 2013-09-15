@@ -80,7 +80,7 @@
  </layer>
  <layer name="Elevator_0" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztzrENAAAEADB2/9/rCIOE9oJGAMBtuR0AAMZqOwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvNLULQAO
+   eJztzkERAAAEADD++ufVgnO2BIsAAJiT2wEATqrtAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwSgPSnQAO
   </data>
  </layer>
  <layer name="Hazards" width="100" height="100">

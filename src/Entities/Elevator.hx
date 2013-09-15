@@ -21,8 +21,13 @@ class Elevator extends PhysicalBody
     private var xEnding:Float;
     private var yEnding:Float;
     private var goingTowardsEnd:Bool;
+    private var waiting:Bool;
+    private var timer:Float;
+    private var duration:Float;
+    private var speed:Int;
+    private var range:Float;
 
-    public function new(xb:Float, yb:Float, xe:Float, ye:Float)
+    public function new(xb:Float, yb:Float, xe:Float, ye:Float, duration:Float = 1, speed:Int = 1)
     {
         super(xb+2, yb);
         width = 15;
@@ -39,12 +44,17 @@ class Elevator extends PhysicalBody
         sprite.play("elevator");
         graphic = sprite;
 
-        xStart = xe;
-        yStart = ye;
+        xStart = xb;
+        yStart = yb;
         xEnding = xe;
         yEnding = ye;
 
         goingTowardsEnd = true;
+
+        this.duration = duration;
+        this.speed = speed;
+        timer = 0;
+        range = .5;
     }
 
     public override function update(){
@@ -55,24 +65,33 @@ class Elevator extends PhysicalBody
     }
 
     public function move(){
-        var distX:Float;
-        var distY:Float;
-        var speed = .2;
-        if(goingTowardsEnd){
-            distX = xEnding - x;
-            distY = yEnding - y;
-        }else{
-            distX = xStart - x;
-            distY = yStart - y;
+        if(waiting){
+            timer += HXP.elapsed;
+            if(timer >= duration){
+                timer = 0;
+                waiting = false;
+            }else{
+                return;
+            }
         }
+        var targetX:Float;
+        var targetY:Float;
+        if(goingTowardsEnd){
+            targetX = xEnding;
+            targetY = yEnding;
+        }else{
+            targetX = xStart;
+            targetY = yStart;
+        }
+        var distX = targetX - x;
+        var distY = targetY - y;
         var length = EMath.getLengthOfVector([distX, distY]);
         distX /= length;
         distY /= length;
-
-        // var force = Vec2.get(x, y);
-        // var t = force.sub(Vec2.get(xEnding, yEnding));
-        // t.length = 1000 * 1e10;
         body.position.setxy(x + distX * speed, y + distY * speed);
-        // if(body.position.x )
+        if(body.position.x + range >= targetX && body.position.x - range <= targetX && body.position.y + range >= targetY && body.position.y - range <= targetY){
+            goingTowardsEnd = !goingTowardsEnd;
+            waiting = true;
+        }
     }
 }
