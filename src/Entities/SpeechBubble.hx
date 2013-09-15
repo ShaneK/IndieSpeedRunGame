@@ -19,7 +19,7 @@ class SpeechBubble extends Entity
     var timer:Float;
     var duration:Int;
 
-    public function new(width:Int, height:Int, text:String, following:Body, duration:Int, offsetX:Float = 7, offsetY:Float = -7)
+    public function new(width:Int, height:Int, text:String, following:Body, duration:Int = 0, offsetX:Float = 7, offsetY:Float = -7)
     {
         super(following.position.x + offsetX, following.position.y + offsetY);
 
@@ -55,12 +55,17 @@ class SpeechBubble extends Entity
 
     public override function update(){
     	super.update();
-        timer += HXP.elapsed;
-        if(timer <= duration){
+        if(duration != 0){
+            timer += HXP.elapsed;
+            if(timer <= duration){
+                x = following.position.x + offsetX;
+                y = following.position.y + offsetY;
+            }else{
+                scene.remove(this);
+            }
+        }else{
             x = following.position.x + offsetX;
             y = following.position.y + offsetY;
-        }else{
-            scene.remove(this);
         }
     }
 }

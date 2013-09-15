@@ -20,6 +20,7 @@ class Player extends PhysicalBody
     private var velocityX:Float = 0;
     private var velocityY:Float = 0;
     private var sprite:Spritemap;
+    private var goingLeft:Bool;
 
     var maximumSpeed = 75;
     var jumpAmount = 110;
@@ -47,6 +48,8 @@ class Player extends PhysicalBody
         sprite.scaledWidth = width;
         sprite.scaledHeight = height;
         sprite.play("idle");
+
+        goingLeft = false;
         
         graphic = sprite;        
         layer = 2;
@@ -89,8 +92,9 @@ class Player extends PhysicalBody
      {
         if (body.velocity.x > 1 || body.velocity.x < -1)
         {
+            goingLeft = velocityX > 0;
             sprite.play("walk");
-            sprite.flipped = velocityX > 0;            
+            sprite.flipped = goingLeft;
         }
         else
         {

@@ -58,8 +58,8 @@ class Test extends Scene
 
         createMap();
 
-        var sfx = new Sfx("sfx/haunted.mp3");
-        sfx.loop();
+        // var sfx = new Sfx("sfx/haunted.mp3");
+        // sfx.loop();
 
         // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
@@ -93,7 +93,9 @@ class Test extends Scene
             player = new entities.Player(Std.int(playerSpawn.x), Std.int(playerSpawn.y));
             addObjectToSpace(player);
 
-            add(new entities.SpeechBubble(60, 10, "Test", player.getBody(), 3));
+            var npc = new entities.npcs.Trainer(26*16, 8*16);
+            addObjectToSpace(npc);
+            add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
         }
 
         var t = new TmxEntity("maps/Level_1.tmx");
@@ -130,6 +132,29 @@ class Test extends Scene
              }
         ];
         placeTotems(totemMap);
+
+        placeElevators(1);
+    }
+
+    public function placeElevators(count:Int){
+        for(i in 0...count){
+            var beginningX:Float = 0;
+            var beginningY:Float = 0;
+            var endingX:Float = 0;
+            var endingY:Float = 0;
+            var elevatorTiles = tmxEntity.loadMask("Elevator_"+i, "elevator");
+            for(elevator in elevatorTiles){
+                trace(elevator.tileProperties);
+                if(elevator.tileProperties.exists("EndElevator")){
+                    endingX = elevator.x;
+                    endingY = elevator.y;
+                }else{
+                    beginningX = elevator.x;
+                    beginningY = elevator.y;
+                }
+                addObjectToSpace(new entities.Elevator(beginningX, beginningY, endingX, endingY));
+            }
+        }
     }
 
     public function placeTotems(totemMap:Map<String, Void->Void>){
