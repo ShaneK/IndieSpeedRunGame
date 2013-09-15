@@ -34,6 +34,7 @@ class Totem extends Entity {
 		graphic = sprite;
 
 		praySnd = new Sfx("sfx/SFX/Pray.mp3", upHit);
+		praySnd.type = "SFX";
 	}
 
 	public function handleInput(){

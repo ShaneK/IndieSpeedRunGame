@@ -7,25 +7,40 @@
     <property name="EndElevator" value="1"/>
    </properties>
   </tile>
+  <tile id="4">
+   <properties>
+    <property name="hazardType" value="swamp"/>
+   </properties>
+  </tile>
   <tile id="11">
    <properties>
     <property name="BeginElevator" value="1"/>
    </properties>
   </tile>
+  <tile id="45">
+   <properties>
+    <property name="hazardType" value="spikes"/>
+   </properties>
+  </tile>
+  <tile id="56">
+   <properties>
+    <property name="hazardType" value="fire"/>
+   </properties>
+  </tile>
  </tileset>
- <layer name="PlayerSpawn" width="100" height="100" visible="0">
+ <layer name="PlayerSpawn" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztzgENAAAIA6Dbv7QxPh0kIAEAAPhn2gEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM5aK6MAAg==
   </data>
  </layer>
  <layer name="Bottom" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt010vA0EUBuC9ESS0QUoFUQQXuMSVr///p8wms0yms7uKpHSfJ3kz3enO7PacTlUBDM9k2S/Ah0kSlmtSSGo9ZCNkc8F9v7tu6Pr6sROyG7KXzffVu20d3fr6cRRyXFjXV++2dbWbkNuYuwXfdxWsdcz19eMy5CrkNJtv6n3S8sxmXeopjvchDyHPIY89776qRjHbWUbZWPquznm2X1Pv63h9EbKV5KywtunHS8hrzNtv/cB/5iBkGsf08zRJ23UzNrUdx9Q1b3q2nz1vljzroCr3fFTN93koSvXt6kUp9T113Q9jZtVnvev5cZL0uzzpnnkfhyKtaakvpfm+85LWOO1T3iv9mJfXvStd56N0r34s7iv///ycdPXjJ+cj3X+o/QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP62dxexGuI=
+   eJzt010vA0EUBuC9ESS0QUoFUQQXuMSVr///p8wms0yms7uKpHSfJ3kz3enO7PacTlUBDM9k2S/Ah0kSlmtSSGo9ZCNkc8F9v7tu6Pr6sROyG7KXzffVu20d3fr6cRRyXFjXV++2dbWbkNuYuwXfdxWsdcz19aN2FXKazTX1Pml55mVcl3qK433IQ8hzyGPXi6+wUcx2llE2lr6rc57t19T7Ol5fhGwlOSusbfrxEvIa8/ZbP/CfOQiZxjH9PE3Sdt2MTW3HMXXNm57tZ8+bJc86qMo9H1XzfR6KUn27elFKfU9d98OYWfVZ73p+nCT9Lk+6Z97HoUhrWupLab7vvKQ1TvuU90o/5uV170rX+Sjdqx+L+8r/Pz8nXf34yflI9x9qPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgL/tHV4qGr0=
   </data>
  </layer>
  <layer name="Middle" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1cEJgDAMBdBuUffw4v6TiWAhCBGJPYi8B0Vo/T0kRFsDAAD4j23iXevEu3hPP+ZZCpl+rkqWe0dNe7Kf1Xtkrrme7PNcVr+sT+NsubwXZ8bc1FXmo4XMyMenftRl/4G7usZZiD3wvQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL5uB1/mBTY=
+   eJzt1dEJgDAMBcBuUfdw/91EsBCLEQmCftxBEVoflIRoawAAAFxZv74AJ/rxnqWQ6ceqZLm317Qn+1m9R2bO9WSf57L6ZX0aZ8v0XpwZc1NXmY8WMiMfn/pRl/0H7uoaZyH2wPcKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4uw0B9QT+
   </data>
  </layer>
  <layer name="Top" width="100" height="100">
@@ -66,6 +81,11 @@
  <layer name="Elevator_0" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztzrENAAAEADB2/9/rCIOE9oJGAMBtuR0AAMZqOwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvNLULQAO
+  </data>
+ </layer>
+ <layer name="Hazards" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzrEJAEAIBEET2zH//hszESzhEWZgufQiAAAA7nuz9fUF3JMTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAayTkAcg==
   </data>
  </layer>
 </map>
