@@ -230,7 +230,6 @@ class Player extends PhysicalBody
                 body.position.setxy(112*16, 32*16);
                 return;
             }
-            Settings.restoreDefault();
             HXP.scene = new scenes.Credits();
         }
     }

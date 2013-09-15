@@ -172,11 +172,8 @@ class LevelOne extends Scene
         ];
         placeTotems(totemMap);
         placeHazards();
-        trace("MADE IT HERE");
         placeElevators(7);
-        trace("MADE IT HERE");
         placeLevelUpTiles(levelUpTiles);
-        trace("MADE IT HERE");
     }
 
     public function placeLevelUpTiles(levelUpTiles:Array<TmxVec5>){
