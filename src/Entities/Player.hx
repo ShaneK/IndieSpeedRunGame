@@ -206,7 +206,7 @@ class Player extends PhysicalBody
 
     public function levelUpAnimation(){
         levelUpTimeout += HXP.elapsed;
-        if(levelUpTimeout <= .2){
+        if(levelUpTimeout <= 1){
 
         }else{
             levelingUp = false;
