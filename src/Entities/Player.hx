@@ -23,6 +23,7 @@ class Player extends PhysicalBody
     private var sprite:Spritemap;
     private var jumpSnd:Sfx;
     private var landSnd:Sfx;
+    private var goingLeft:Bool;
 
     var maximumSpeed = 75;
     var jumpAmount = 110;
@@ -36,9 +37,11 @@ class Player extends PhysicalBody
  		height = 24;
 
         body = new Body(); // Implicit BodyType.DYNAMIC
-        body.shapes.add(new Polygon(Polygon.rect(0, 0, width, height)));
+        var polygon = new Polygon(Polygon.rect(0, 0, width, height));
+        polygon.filter.collisionMask = ~2;
+        body.shapes.add(polygon);
         body.position.setxy(x, y);
-        body.setShapeMaterials(new Material(0.0,1,.001));
+        body.setShapeMaterials(new Material(0.0, .8, .0001));
         body.allowRotation = false;
         body.mass = 25;
 
@@ -50,6 +53,8 @@ class Player extends PhysicalBody
         sprite.scaledWidth = width;
         sprite.scaledHeight = height;
         sprite.play("idle");
+
+        goingLeft = false;
         
         jumpSnd = new Sfx('sfx/SFX/Jump.mp3');
         landSnd = new Sfx('sfx/SFX/Land.mp3');
@@ -102,8 +107,9 @@ class Player extends PhysicalBody
      {
         if (body.velocity.x > 10 || body.velocity.x < -10)
         {
+            goingLeft = velocityX > 0;
             sprite.play("walk");
-            sprite.flipped = velocityX > 0;            
+            sprite.flipped = goingLeft;
         }
         else
         {

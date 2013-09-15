@@ -2,6 +2,16 @@
 <map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="Ben Is Awesome" tilewidth="16" tileheight="16">
   <image source="Z:/IndieSpeedRun/Assets/CustomTilesets/images/tileset.png" width="160" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="EndElevator" value="1"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="BeginElevator" value="1"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="PlayerSpawn" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
@@ -10,27 +20,27 @@
  </layer>
  <layer name="Bottom" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt0c1Kw0AUgNHZqWAsKmiLilFRF+pSXfn3/i/lDU7oMLRGaJRiz4GPkkkHwr0pAQAM24q2o50/usf39qOD6LA6H5r3snus5iQ6XXA+NO9l9zp30X3uYdUP3DDX0U10Xp338z4buFd6yb+P0VP0Gj2P85kb5SK6rM76ed/m56tot6i70+T6u/0+3qL33McvffN/1kbTNJ/tJNfNfC+fHy24c1zUFP9tiud6zwxr09c+url2c5/l2jSfd3c+KSrf1U2L6j0yrE0/28dsyTv7GFeb7GOdtGncfZQ7sQ8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAdfQKbLRGM
+   eJzt010vA0EUBuC9ESS0QUoFUQQXuMSVr///p8wms0yms7uKpHSfJ3kz3enO7PacTlUBDM9k2S/Ah0kSlmtSSGo9ZCNkc8F9v7tu6Pr6sROyG7KXzffVu20d3fr6cRRyXFjXV++2dbWbkNuYuwXfdxWsdcz19eMy5CrkNJtv6n3S8sxmXeopjvchDyHPIY89776qRjHbWUbZWPquznm2X1Pv63h9EbKV5KywtunHS8hrzNtv/cB/5iBkGsf08zRJ23UzNrUdx9Q1b3q2nz1vljzroCr3fFTN93koSvXt6kUp9T113Q9jZtVnvev5cZL0uzzpnnkfhyKtaakvpfm+85LWOO1T3iv9mJfXvStd56N0r34s7iv///ycdPXjJ+cj3X+o/QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP62dxexGuI=
   </data>
  </layer>
  <layer name="Middle" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1dEJgDAMBcBuUfdw/91EsBCLEQmCftxBEVoflIRoawAAAFxZv74AJ/rxnqWQ6ceqZLm317Qn+1m9R2bO9WSf57L6ZX0aZ8v0XpwZc1NXmY8WMiMfn/pRl/0H7uoaZyH2wPcKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4uw0B9QT+
+   eJzt1cEJgDAMBdBuUffw4v6TiWAhCBGJPYi8B0Vo/T0kRFsDAAD4j23iXevEu3hPP+ZZCpl+rkqWe0dNe7Kf1Xtkrrme7PNcVr+sT+NsubwXZ8bc1FXmo4XMyMenftRl/4G7usZZiD3wvQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL5uB1/mBTY=
   </data>
  </layer>
  <layer name="Top" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztzrEJACAMBMCgruH+a9oGESvRwjt4SCA8iQAA4Hf99QPwSEnhjpbmOu07+bYuugAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAThpbpgA9
+   eJzt0UEKgDAMBMBg6jP8/zel4CGUIvaiB2dgSdpQKCQCAIC/O77+AEzklSh1L/c9bZhnrNlKeEcrfQ7nO7N9P30LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALDqBNuIAF4=
   </data>
  </layer>
- <layer name="Collision" width="100" height="100">
+ <layer name="Collision" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt0TEKACAMBDD9/6ddnESroIJgAoUWOt2lBAAAAPfkOis/o+GcUbZR5tGfrva02c723s05+niLPt6iDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4DcFFtYAMA==
+   eJzt0sEKABAQRVH+/6ftJUnklXPKcizmTinn1Qt/sk+PLHpk0SOLHln0yKJHFj2y6JGlTt7unMbnjXa7unOt7ul78JbbBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgL81m68ALg==
   </data>
  </layer>
  <layer name="Water" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt0bENACAMA8Fk/6VpaKFDssKd5MrlVwEAAAC/6j0ynHr05eMdPbLokUUPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgugVY4AAX
+   eJzt0bENACAMA8Fk/6VpaKFEVriTXLn8KgAAAOBXvUeGU4++fLynRxY9sugBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABMsQAr7wAR
   </data>
  </layer>
  <layer name="Totem_test1" width="100" height="100">
@@ -51,6 +61,11 @@
  <layer name="Totem_test4" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztzgENAAAIA6DnsH9QY3xOSEACAAAAN0w7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8sPuqABs=
+  </data>
+ </layer>
+ <layer name="Elevator_0" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzrENAAAEADB2/9/rCIOE9oJGAMBtuR0AAMZqOwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvNLULQAO
   </data>
  </layer>
 </map>

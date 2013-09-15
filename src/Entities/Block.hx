@@ -19,7 +19,8 @@ class Block extends PhysicalBody
  		height = 16;
  		
         body = new Body(BodyType.STATIC); // Implicit BodyType.DYNAMIC
-        body.shapes.add(new Polygon(Polygon.rect(0, 0, width, height)));
+        var polygon = new Polygon(Polygon.rect(0, 0, width, height));
+        body.shapes.add(polygon);
         body.position.setxy(x, y);
         body.setShapeMaterials(Material.steel());
         body.allowRotation = false;

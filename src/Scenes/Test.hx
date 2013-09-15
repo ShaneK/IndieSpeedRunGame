@@ -58,9 +58,8 @@ class Test extends Scene
 
         createMap();
 
-        var sfx = new Sfx("sfx/haunted.mp3");
-
-        sfx.loop();
+        // var sfx = new Sfx("sfx/haunted.mp3");
+        // sfx.loop();
         sfx.volume = .5;
         // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
@@ -93,6 +92,10 @@ class Test extends Scene
         for(playerSpawn in playerTiles){
             player = new entities.Player(Std.int(playerSpawn.x), Std.int(playerSpawn.y));
             addObjectToSpace(player);
+
+            var npc = new entities.npcs.Trainer(26*16, 8*16);
+            addObjectToSpace(npc);
+            add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
         }
 
         var t = new TmxEntity("maps/Level_1.tmx");
@@ -119,7 +122,7 @@ class Test extends Scene
                 add(new FireEmitter(30, 40, 510, 160, 10));
              },
             "test3" => function(){ 
-                add(new AirEmitter(30, 100, 510, 80, 10));
+                add(new AirEmitter(10, 100, 510, 80, 10, space));
              },
             "test4" => function(){ 
                 add(new GroundEmitter(46*16, 9*16, space));
@@ -129,6 +132,29 @@ class Test extends Scene
              }
         ];
         placeTotems(totemMap);
+
+        placeElevators(1);
+    }
+
+    public function placeElevators(count:Int){
+        for(i in 0...count){
+            var beginningX:Float = 0;
+            var beginningY:Float = 0;
+            var endingX:Float = 0;
+            var endingY:Float = 0;
+            var elevatorTiles = tmxEntity.loadMask("Elevator_"+i, "elevator");
+            for(elevator in elevatorTiles){
+                trace(elevator.tileProperties);
+                if(elevator.tileProperties.exists("EndElevator")){
+                    endingX = elevator.x;
+                    endingY = elevator.y;
+                }else{
+                    beginningX = elevator.x;
+                    beginningY = elevator.y;
+                }
+                addObjectToSpace(new entities.Elevator(beginningX, beginningY, endingX, endingY));
+            }
+        }
     }
 
     public function placeTotems(totemMap:Map<String, Void->Void>){
@@ -157,7 +183,7 @@ class Test extends Scene
             var water = new Polygon(Polygon.rect(0, waterTile.top, waterTile.width, waterTile.height));
             water.fluidEnabled = true;
             water.fluidProperties.density = 3;
-            water.fluidProperties.viscosity = 5;
+            water.fluidProperties.viscosity = 25;
             var body = new Body(BodyType.STATIC);
             body.shapes.add(water);
             body.position.setxy(waterTile.x, waterTile.y);
