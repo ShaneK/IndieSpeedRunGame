@@ -83,10 +83,10 @@ class MainMenu extends Scene
         CheckInput();
     }
 
-    private function CheckInput(){
+private function CheckInput(){
         if(Input.check("start") && ready){
             sfx.stop();
-            Settings.Health = Settings.MaxHealth;
+            Settings.restoreDefault();
             HXP.scene = new Tutorial();
             super.end();
         }
