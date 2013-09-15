@@ -18,6 +18,7 @@ class NPC extends PhysicalBody
     var randTimer:Float = 0;
     var direction:Int = 1;
     var speed:Float = 500;
+    var health:Float = 100;
 
     public function new(x:Float, y:Float, width:Int, height:Int)
     {
@@ -39,6 +40,16 @@ class NPC extends PhysicalBody
     	super.update();
     	x = body.position.x;
     	y = body.position.y;
+    }
+
+    public function isAlive(){
+        return health > 0;
+    }
+
+    public function onAttacked(){
+        if(isAlive()){
+            health -= 25;
+        }
     }
 
     public function wander(dist:Float = 16){

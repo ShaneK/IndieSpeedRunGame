@@ -28,6 +28,7 @@ class Farmer extends NPC
         sprite.add("idle", [0]);        
         sprite.add("walk", [1, 2, 3, 4, 5], 8, true);
         sprite.add("jump", [19]);
+        sprite.add("dead", [54]);
         sprite.scaledWidth = width;
         sprite.scaledHeight = height;
         sprite.play("idle");
@@ -42,12 +43,22 @@ class Farmer extends NPC
     	x = body.position.x;
     	y = body.position.y;
 
-        wander();
+        if(isAlive()){
+            wander();
+        }else{
+            body.velocity.x = 0;
+            body.kinematicVel.x = 0;
+        }
         setAnimations();
     }
 
      private function setAnimations()
      {
+        if(!isAlive()){
+            sprite.play("dead");
+            return;
+        }
+
         if (body.velocity.x > 2 || body.velocity.x < -2)
         {
             sprite.play("walk");
