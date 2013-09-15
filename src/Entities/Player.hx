@@ -26,6 +26,7 @@ class Player extends PhysicalBody
     private var jumpSnd:Sfx;
     private var landSnd:Sfx;
     private var atkSnd:Sfx;
+    private var dieSnd:Sfx;
     private var goingLeft:Bool;
     private var ignoreInput:Bool = false;
     
@@ -75,6 +76,7 @@ class Player extends PhysicalBody
         jumpSnd = new Sfx('sfx/SFX/Jump.mp3');
         landSnd = new Sfx('sfx/SFX/Land.mp3');
         atkSnd = new Sfx('sfx/SFX/Hurt1.mp3');
+        dieSnd = new Sfx('sfx/SFX/Die.mp3');
 
         graphic = sprite;        
         layer = 2;
@@ -222,6 +224,7 @@ class Player extends PhysicalBody
                 return;
             }
             Settings.sfx.stop();
+            dieSnd.play();
             HXP.scene = new scenes.Credits();
         }
     }
