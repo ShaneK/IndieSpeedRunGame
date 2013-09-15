@@ -48,9 +48,6 @@ class Credits extends Scene
 
         var Status = "";
 
-        Settings.Kills = 1;
-        Settings.Attacks = 7;
-        Settings.Steals = 4;
         if(Settings.Kills == 0 && Settings.Attacks == 0 && Settings.Steals == 0){
             Status = "HERO!";
         }
@@ -83,10 +80,9 @@ class Credits extends Scene
             }
         }
 
-
-        scoreKillsText = buildCreditsTest("You killed " + Settings.Kills + " people",20,360);
-        scoreAttacksText = buildCreditsTest("and attacked people " + Settings.Attacks + " times",20,400);
-        scoreStealsText = buildCreditsTest("and stole " + Settings.Steals + " bananas.",20,440);
+        scoreKillsText = buildCreditsTest("You killed " + Settings.Kills + (Settings.Kills == 1 ? " person" : " people"),20,360);
+        scoreAttacksText = buildCreditsTest("and attacked people " + Settings.Attacks + (Settings.Attacks == 1 ? " time" : " times"),20,400);
+        scoreStealsText = buildCreditsTest("and stole " + Settings.Steals + (Settings.Steals == 1 ? " banana" : " bananas"),20,440);
         scoreStatusText = buildCreditsTest(Status,540,300);
         scoreStatusText.size = 64;
 
