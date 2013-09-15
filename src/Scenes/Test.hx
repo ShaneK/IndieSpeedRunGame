@@ -60,6 +60,10 @@ class Test extends Scene
         // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
 
+    public override function begin(){
+        add(new entities.buttons.SettingsMenuButton(20, 20, 16, 16));
+    }
+
     public function followMe(){              
         var currentPos = HXP.camera;
         var newX = player.x-(HXP.halfWidth);
@@ -75,7 +79,7 @@ class Test extends Scene
             HXP.camera.y += (yDiff < 0 ? cameraSpeed : -cameraSpeed) * (Math.abs(yDiff) * .1);
         }
 
-        //HXP.setCamera(newX, newY);        
+        //HXP.setCamera(newX, newY);
     }
 
     public function createMap()
@@ -88,7 +92,7 @@ class Test extends Scene
         for(playerSpawn in playerTiles){
             player = new entities.Player(Std.int(playerSpawn.x), Std.int(playerSpawn.y));
             addObjectToSpace(player);
-            HXP.setCamera(playerSpawn.x, playerSpawn.y);
+            followMe();
         }
 
         var npc = new entities.npcs.Trainer(27*16, 18*16);
@@ -164,8 +168,8 @@ class Test extends Scene
                     case "spikes": add(new entities.hazards.Spikes(hazard.x, hazard.y));
                     case "swamp": add(new entities.hazards.Swamp(hazard.x, hazard.y));
                     case "fire": add(new entities.hazards.Fire(hazard.x, hazard.y));
-                }                
-            }            
+                }
+            }
         }
     }
 

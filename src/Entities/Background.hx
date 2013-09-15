@@ -11,7 +11,7 @@ class Background extends Entity
     public function new(x:Int, y:Int)
     {
         super(x, y);
-        image = new Backdrop("gfx/smoother-forest.png", true, false);
+        image = new Backdrop("gfx/background.png", true, false);
         image.scrollX = 0.5;
         image.scrollY = 0.01;
         graphic = image;
