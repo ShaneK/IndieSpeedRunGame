@@ -1,6 +1,7 @@
 package entities.npcs;
 
 import classes.EMath;
+import classes.Settings;
 import com.haxepunk.HXP;
 import com.haxepunk.Entity;
 import com.haxepunk.graphics.Image;
@@ -46,9 +47,13 @@ class NPC extends PhysicalBody
         return health > 0;
     }
 
-    public function onAttacked(){
+    public function onAttacked(){        
         if(isAlive()){
+            Settings.Attacks += 1;
             health -= 25;
+            if(!isAlive()){
+                Settings.Kills +=1;
+            }
         }
     }
 

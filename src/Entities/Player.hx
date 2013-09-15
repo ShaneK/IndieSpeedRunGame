@@ -182,7 +182,6 @@ class Player extends PhysicalBody
 
             var entityHit = scene.collideRect("other-tribe",centerX +attackDir ,y + 8, 1, 1);
             if(entityHit != null){
-                trace("you punched: " + entityHit);
                 var npc = cast(entityHit, entities.npcs.NPC);
                 npc.onAttacked();
             }

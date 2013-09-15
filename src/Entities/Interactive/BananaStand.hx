@@ -33,6 +33,7 @@ class BananaStand extends InteractiveEntity {
 				sprite.play("empty");
 				upHit();
 				Settings.Health += 10;
+				Settings.Steals += 1;
 				hasBanana = false;
 			}
 		};
