@@ -33,7 +33,7 @@ import com.haxepunk.Sfx;
 
 import classes.Settings;
 
-class Test extends Scene
+class LevelOne extends Scene
 {
     private var space:Space;
     private var floor:Entity;
