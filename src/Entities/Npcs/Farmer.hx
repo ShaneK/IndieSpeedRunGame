@@ -21,7 +21,8 @@ class Farmer extends NPC
         startX = x;
         width = 12;
         height = 24;
-        super(x, y, width, height);        
+        super(x, y, width, height);
+        
 
         sprite = new Spritemap("gfx/farmer.png", 32, 64);        
         sprite.add("idle", [0]);        
@@ -33,7 +34,7 @@ class Farmer extends NPC
         
         graphic = sprite;
         layer = 3;
-        type = "farmer";
+        type = "other-tribe";
     }
 
     public override function update(){

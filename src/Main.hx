@@ -15,6 +15,7 @@ class Main extends Engine
         Input.define("start", [Key.ENTER]);
         Input.define("exit", [Key.ESCAPE]);
         Input.define("credits",[Key.C]);
+        Input.define("attack",[Key.X]);
 
 #if debug
 		HXP.console.enable();
