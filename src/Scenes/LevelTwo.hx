@@ -33,7 +33,7 @@ import com.haxepunk.Sfx;
 
 import classes.Settings;
 
-class Test extends Scene
+class LevelTwo extends Scene
 {
     private var space:Space;
     private var floor:Entity;
@@ -147,47 +147,24 @@ class Test extends Scene
         layGroundTiles(groundTiles);
         layWaterTiles(waterTiles);
 
-        //Totems
+       // Totems
         var totemMap = [
-            "test1" => function(){ 
-                add(new WaterEmitter(500, 500, 470, 0, 10));
-             },
-            "test2" => function(){ 
-                add(new FireEmitter(30, 40, 510, 160, 10));
-             },
-            "test3" => function(){ 
-                add(new AirEmitter(10, 100, 510, 80, 10, space));
-             },
-            "test4" => function(){ 
-                add(new GroundEmitter(46*16, 9*16, space));
-                add(new GroundEmitter(47*16, 8*16, space));
-                add(new GroundEmitter(47*16, 9*16, space));
-                add(new GroundEmitter(48*16, 9*16, space));
-             },
-            "earthbridge" => function(){
+                   
+            "landbridge" => function(){
                 
-                freeCamera = false;
-                HXP.camera.x = 129*16;
-                HXP.camera.y = 17*16;
-                heldCameraTime = 2;
+         
 
-                add(new GroundEmitter(133*16,20*16,space));
-                add(new GroundEmitter(134*16,20*16,space));
-                add(new GroundEmitter(135*16,20*16,space));
-                add(new GroundEmitter(136*16,20*16,space));
-                add(new GroundEmitter(137*16,20*16,space));
-                add(new GroundEmitter(138*16,20*16,space));
-                add(new GroundEmitter(139*16,20*16,space));               
-            },
-            "windlaunch" => function(){
-
-                 add(new AirEmitter(10, 100, 233 * 16, 9 * 16, 10, space));
+                add(new GroundEmitter(192*16,34*16,space));
+                add(new GroundEmitter(193*16,33*16,space));
+                add(new GroundEmitter(194*16,33*16,space));
+                          
             }
+           
 
-        ];
-        placeTotems(totemMap);
+         ];
+         placeTotems(totemMap);
         placeHazards();
-        placeElevators(6);
+        placeElevators(5);
     }
 
     public function placeElevators(count:Int){
