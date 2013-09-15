@@ -13,13 +13,9 @@ import flash.events.KeyboardEvent;
 import nape.geom.Vec2;
 import nape.phys.Body;
 import nape.phys.BodyType;
-import nape.shape.Circle;
 import nape.shape.Polygon;
 import nape.space.Space;
-import nape.util.BitmapDebug;
-import nape.util.Debug;
 import nape.phys.Material;
-import nape.geom.Geom;
 
 import com.haxepunk.tmx.TmxEntity;
 import com.haxepunk.tmx.TmxVec5;
@@ -92,11 +88,12 @@ class Test extends Scene
         for(playerSpawn in playerTiles){
             player = new entities.Player(Std.int(playerSpawn.x), Std.int(playerSpawn.y));
             addObjectToSpace(player);
-
-            var npc = new entities.npcs.Trainer(26*16, 8*16);
-            addObjectToSpace(npc);
-            add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
+            HXP.setCamera(playerSpawn.x, playerSpawn.y);
         }
+
+        var npc = new entities.npcs.Trainer(27*16, 18*16);
+        addObjectToSpace(npc);
+        add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
 
         var t = new TmxEntity("maps/Level_1.tmx");
         t.loadGraphic("gfx/tileset.png", ["Top"]);
@@ -211,11 +208,6 @@ class Test extends Scene
         add(e);
         var body = e.getBody();
         space.bodies.add(body);
-    }
-
-    public override function begin()
-    {
-        HXP.setCamera(400, 50);
     }
  
     public override function update()
