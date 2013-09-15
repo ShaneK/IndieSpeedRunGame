@@ -56,7 +56,7 @@ class Player extends PhysicalBody
         body.allowRotation = false;
         body.mass = 25;
 
-        sprite = new Spritemap("gfx/warrior.png", 32, 64);        
+        sprite = new Spritemap("gfx/player.png", 32, 64);        
         sprite.add("idle", [0]);        
         sprite.add("walk", [1, 2, 3, 4, 5], 8, true);
         sprite.add("run", [1, 2, 3, 4, 5], 12, true);

@@ -1,7 +1,11 @@
+package entities.npcs;
+
+import com.haxepunk.Entity;
+import classes.Settings;
 
 enum NPCTYPE {
-	FARMER,
-	WARRIOR
+	FARMER;
+	WARRIOR;
 }
 
 class Spawner extends Entity {
@@ -9,8 +13,8 @@ class Spawner extends Entity {
 	var hasSpawned:Bool = false;
 
 	public function new(x:Float, y:Float, type:NPCTYPE, once:Bool = true){
-		super(x, y+2);
-		setOrigin(0, 2);
+		super(x, y);
+		setOrigin(0, 0);
 
 		npcType = type;
 	}
@@ -18,19 +22,26 @@ class Spawner extends Entity {
 	public function spawn(){		
 		if(!hasSpawned){
 			switch (npcType) {
-				case NPCTYPE.FARMER: spawnFarmer(); break;
-				case NPCTYPE.WARRIOR: spawnWarrior(); break;
+				case FARMER: return spawnFarmer();
+				case WARRIOR: return spawnWarrior();
 			}
 		}
-
 		hasSpawned = true;
+		return null;
 	}
 
 	private function spawnFarmer(){
-		trace("Spawning: Farmer");
+		var npc = new Farmer(this.x, this.y);
+		Settings.Scene.add(npc);
+		Settings.Space.bodies.add(npc.getBody());
+
+		var stand = new entities.interactive.BananaStand(this.x,this.y, function(){trace("stealing them bananas.");});
+		Settings.Scene.add(stand);
 	}
 
 	private function spawnWarrior(){
-		trace("Spawning: WARRIOR");
+		var npc = new Warrior(this.x, this.y);
+		Settings.Scene.add(npc);
+		Settings.Space.bodies.add(npc.getBody());
 	}
 }

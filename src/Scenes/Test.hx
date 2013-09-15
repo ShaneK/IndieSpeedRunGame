@@ -24,6 +24,7 @@ import com.haxepunk.tmx.TmxVec5;
 
 import classes.PlanetBody;
 
+import entities.npcs.Spawner;
 import entities.emitters.WaterEmitter;
 import entities.emitters.FireEmitter;
 import entities.emitters.AirEmitter;
@@ -47,6 +48,8 @@ class Test extends Scene
     private var heldCameraTime:Float = 0;
     private var slider:entities.Slider;
 
+    private var spawners:Array<Spawner>;
+
     public function new()
     {
         super();
@@ -57,17 +60,25 @@ class Test extends Scene
 
         var gravity:Vec2 = new Vec2(0, 300); // units are pixels/second/second
         space = new Space(gravity);
+        Settings.Space = space;
+        Settings.Scene = this;
 
+        spawners = new Array<Spawner>();
         createMap();
 
          var sfx = new Sfx("sfx/haunted.mp3");
          sfx.loop();
          sfx.volume = .33;
          sfx.type = "MUSIC";
+
+         
         // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
 
     public override function begin(){
+        for(spawner in spawners){
+            spawner.spawn();
+        }
         slider = new entities.Slider(0, 0, 55, 12, 8, 100, 100, 0x000000, 0xBB0000, 0xFFFFFF);
         add(slider);
     }
@@ -105,11 +116,16 @@ class Test extends Scene
         tmxEntity = new TmxEntity("maps/Level_1.tmx");
         tmxEntity.loadGraphic("gfx/tileset.png", ["Bottom", "Middle"]);
 
-        var playerTiles = tmxEntity.loadMask("PlayerSpawn", "p");
-        for(playerSpawn in playerTiles){
-            Settings.Player = new entities.Player(Std.int(playerSpawn.x), Std.int(playerSpawn.y));
-            addObjectToSpace(Settings.Player);
-            followMe();
+        var spawnTiles = tmxEntity.loadMask("PlayerSpawn", "p");
+        for(spawnTile in spawnTiles){
+            var spawnType = spawnTile.tileProperties.get("spawnType");
+            switch (spawnType) {
+                case 'player':
+                    Settings.Player = new entities.Player(Std.int(spawnTile.x), Std.int(spawnTile.y));
+                    addObjectToSpace(Settings.Player);
+                case 'warrior': spawners.push(new Spawner(Std.int(spawnTile.x), Std.int(spawnTile.y), WARRIOR));   
+                case 'farmer': spawners.push(new Spawner(Std.int(spawnTile.x), Std.int(spawnTile.y), FARMER));   
+            }
         }
 
         var npc = new entities.npcs.Trainer(27*16, 18*16);
@@ -213,7 +229,7 @@ class Test extends Scene
         for(key in totemMap.keys()){
             var totemTiles = tmxEntity.loadMask("Totem_"+key, "totem");
             for(totem in totemTiles){
-                add(new entities.Totem(totem.x, totem.y, totemMap[key]));
+                add(new entities.interactive.Totem(totem.x, totem.y, totemMap[key]));
             }
         }
     }

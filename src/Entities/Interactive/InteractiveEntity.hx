@@ -1,4 +1,4 @@
-package entities;
+package entities.interactive;
 
 import com.haxepunk.Entity;
 import com.haxepunk.HXP;
@@ -9,38 +9,26 @@ import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Key;
 import com.haxepunk.Sfx;
 
-class Totem extends Entity {
-	private var w:Float;
-	private var h:Float;
-	var sprite:Spritemap;
+class InteractiveEntity extends Entity {
 	var isColliding:Bool;
 	var dialog:entities.Dialog;
 	var dialogOn:Bool;
 	var timer:Float;
-	var praySnd:Sfx;
+	var sfx:Sfx;
+	var text:String;
 
-	public function new(x:Float, y:Float, upHit:Void->Void){
-		width = 16;
-		height = 16;
+	public function new(x:Float, y:Float, sfx:Sfx, interactionText:String){
 		super(x, y+2);
 		setOrigin(0, 2);
-
-		sprite = new Spritemap("gfx/tileset.png", 16, 16);
-		sprite.add("neutral", [25]);
-		sprite.add("sad", [15]);
-		sprite.add("happy", [35]);
-
-		sprite.play("neutral");
-		graphic = sprite;
-
-		praySnd = new Sfx("sfx/SFX/Pray.mp3", upHit);
-		praySnd.type = "SFX";
+		this.sfx = sfx;
+		sfx.type = "SFX";
+		text = interactionText;
 	}
 
 	public function handleInput(){
-        if (Input.check(Key.UP) && isColliding && !praySnd.playing)
+        if (Input.check(Key.UP) && isColliding && !sfx.playing)
         {        	
-        	praySnd.play();
+        	sfx.play();
         }
 	}
 
@@ -57,7 +45,8 @@ class Totem extends Entity {
 
 	public function handleDialogDisplay(){
 		if(dialog == null){
-			dialog = new entities.Dialog(Std.int(x)-28, Std.int(y)-18, 78, 10, "Press Up to Pray");
+			var width = text.length * 5;
+			dialog = new entities.Dialog(Std.int(x)-28, Std.int(y)-18, width, 10, text);
 			dialogOn = false;
 			timer = 0;
 		}
