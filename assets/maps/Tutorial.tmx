@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="200" height="100" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16">
+  <image source="Z:/IndieSpeedRun/Assets/CustomTilesets/images/tileset.png" width="160" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="EndElevator" value="1"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="hazardType" value="swamp"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="StartElevator" value=""/>
+   </properties>
+  </tile>
+  <tile id="45">
+   <properties>
+    <property name="hazardType" value="spikes"/>
+   </properties>
+  </tile>
+  <tile id="56">
+   <properties>
+    <property name="hazardType" value="fire"/>
+   </properties>
+  </tile>
+  <tile id="72">
+   <properties>
+    <property name="spawnType" value="player"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="PlayerSpawn" width="200" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6DXs38hY3w6SEACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcNu0AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPLWTLAEo=
+  </data>
+ </layer>
+ <layer name="Bottom" width="200" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2stu3CAUAFCkdDuza5Mlyf9/ZLKoNQRzL7iLjhTOkZDjF+Z1cexxKQAAAAAAAAAAAAAAAAAAAABc8f6Vbkn6eF7R4OnqV3rr0muz/PO0ksHz1fKIh7fB3+KDndUiPiBSyyMWXgd/iw92Vsv3uOjvIeKDndVyvne0z+rig53Vcn5/1cZJFB+/uwQ/US3xs4f4YHe1PGJiFCfig53VMv5d0P9XEL+/+snx8fLsAvxnR31//U2lWe+X/TG7tVWvlvHvgm2MHN9i3bvlKLXH3INz+mNG+6N90fWi9f4bsvdm/SU4/17G5en1x7Zug21ZfaL26dvpX76HO76xG9Ur67NRHXZTy/mdbr8ebY/eCUe/xY+ecbLzo+vMlqPrHX197D/WR89co3r2+dySY6J7cX/srO5RvbLvSQ/tttE1Zn3W7t9ZLeexFKWoXaP9ozGSxeKVcRrlG43L6Jzs3URUlmjfynyQvSvM5pWV/GdtHrXrrGw7qyVu35XxMGvzLI6y8R2N39nYXhk7q+NnVq+VuqyUMxurs7LM+iGr/yxf94/z83nUniv9MRsD2VwX9c1sHp9d7+p8P5tPr8T4lTkj277SZrP11fgbpZ1lYzgbm9lcn81FK3lkfTmbj1fyXClHNpav1G02T1+Ji5X8Zn242i7tfgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA6H0CbYNQkA==
+  </data>
+ </layer>
+ <layer name="Middle" width="200" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztwYEAAAAAw6D5Ux/gClUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAbOI8AAQ==
+  </data>
+ </layer>
+ <layer name="Top" width="200" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0jEKwCAQBEBB6/wh+f8j00QIl7taITONhXu6gq0BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK4ywTr3IjPad6UkmnlnNxrviuVU29o3zPclmfar5aq/q+u6cdYy50b7vhN1czzr/6LmqCGzsWF0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB+4gZragD2
+  </data>
+ </layer>
+ <layer name="Hazards" width="200" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt07EJACAMRUEb17F3/8WshBCwDBi4g1f/NBkDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPjNCmUzdO1QxQ3rsVGxC93l/wQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgM4OBQEDXQ==
+  </data>
+ </layer>
+ <layer name="Collision" width="200" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1N0KQEAYBFDe/6VdKvlpZTB1TrkSdmf2M00AAAAAAAAAAAAAAAAAAACQMX+9APgx8wHHzEc3/WXJt5v+suTbTX9Z8u2mvyz5dtNflny76S9Lvt30lyXfbvrLkm83/WXJt5v+suTbTX9Zc8G1XevdtZ/te+9eIqdRb3+PPldzMvqevWfP5vHJczbyH3C+YWUmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKDPAumpAJE=
+  </data>
+ </layer>
+ <layer name="Water" width="200" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt00ENAAAIxLDDv2m+SADSJpOwBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC4pEbAPv4EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCTBkGHAAY=
+  </data>
+ </layer>
+ <layer name="NotImportant" width="200" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1MEJACAMA8C6/9JuINoIgtyBz4YgtFUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkBuLl86f5JzmpzmpTqfkn273Z4/9uNerM2M/gB+4SwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8MgGvEQBY
+  </data>
+ </layer>
+ <layer name="Totem_Example" width="200" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzgEJAAAMA6DleP+gjzEYmsAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYMO1AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABjHqYqABs=
+  </data>
+ </layer>
+ <layer name="Elevator_0" width="200" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzqENAAAIwDDw/H8vHyAJCa2dWQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAXzW0XLsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAuKkB7JUADg==
+  </data>
+ </layer>
+ <layer name="Elevator_1" width="200" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzqEBAAAIw7Dh+f9ePA+ASFxdEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEh6dZ1cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACfDBN8AA4=
+  </data>
+ </layer>
+</map>

@@ -87,7 +87,7 @@ class MainMenu extends Scene
         if(Input.check("start") && ready){
             sfx.stop();
             Settings.Health = Settings.MaxHealth;
-            HXP.scene = new Test();
+            HXP.scene = new Tutorial();
             super.end();
         }
         if(Input.check("credits") && ready){            
