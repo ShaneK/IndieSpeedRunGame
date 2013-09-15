@@ -79,7 +79,7 @@ class Tutorial extends Scene
         for(spawner in spawners){
             spawner.spawn();
         }
-        slider = new entities.Slider(0, 0, 55, 12, 8, 100, 100, 0x000000, 0xBB0000, 0xFFFFFF);
+        slider = new entities.Slider(0, 0, 55, 12, 8, Settings.MaxHealth, Settings.Health, 0x000000, 0xBB0000, 0xFFFFFF);
         add(slider);
     }
 
@@ -140,6 +140,9 @@ class Tutorial extends Scene
         //Water
         var waterTiles = tmxEntity.loadMask("Water", "water");
 
+        //Level up
+        var levelUpTiles = tmxEntity.loadMask("LevelChangeTrigger", "levelUp");
+
         add(tmxEntity);
         add(t);
         layGroundTiles(groundTiles);
@@ -154,13 +157,21 @@ class Tutorial extends Scene
         placeTotems(totemMap);
         placeHazards();
         placeElevators(2);
+        placeLevelUpTiles(levelUpTiles);
 
         placeFloatingDialogs();
     }
 
+    public function placeLevelUpTiles(levelUpTiles:Array<TmxVec5>){
+        for(tile in levelUpTiles){
+            add(new entities.LevelUpBlock(tile.x, tile.y));
+        }
+    }
+
     public function placeFloatingDialogs(){
         add(new entities.Dialog(22*16, 29*16, 160, 30, "Welcome to Do No Harm!\nUse your arrow keys to move!"));
-        add(new entities.Dialog(40*16, 29*16, 120, 20, "Use shift to run"));
+        add(new entities.Dialog(36*16, 29*16, 120, 20, "Press x to attack"));
+        add(new entities.Dialog(48*16, 29*16, 120, 20, "Use shift to run"));
         add(new entities.Dialog(62*16, 29*16, 120, 20, "Use space to jump"));
         add(new entities.Dialog(79*16, 29*16, 90, 20, "Avoid hazards!"));
         add(new entities.Dialog(100*16, 29*16, 140, 30, "Totems control the elements.\nHit up to interact"));
