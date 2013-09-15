@@ -59,7 +59,7 @@ class Test extends Scene
         createMap();
 
          var sfx = new Sfx("sfx/haunted.mp3");
-         sfx.loop();
+         // sfx.loop();
          sfx.type = "MUSIC";
         // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
