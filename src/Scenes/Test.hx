@@ -130,7 +130,7 @@ class Test extends Scene
         ];
         placeTotems(totemMap);
         placeHazards();
-        placeElevators(1);
+        placeElevators(2);
     }
 
     public function placeElevators(count:Int){

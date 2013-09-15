@@ -7,6 +7,12 @@
     <property name="EndElevator" value="1"/>
    </properties>
   </tile>
+  <tile id="10">
+   <properties>
+    <property name="height" value=".5"/>
+    <property name="top" value=".5"/>
+   </properties>
+  </tile>
   <tile id="4">
    <properties>
     <property name="hazardType" value="swamp"/>
@@ -30,62 +36,67 @@
  </tileset>
  <layer name="PlayerSpawn" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7Dh3zQeFhKeVkETAAAAAAAAgHvzHQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA0gIcAwAC
+   eJztzgENAAAIA6Dbv7QxPh0kIAEAAPhn2gEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM5aK6MAAg==
   </data>
  </layer>
  <layer name="Bottom" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt010vA0EUBuC9ESS0QUoFUQQXuMSVr///p8wms0yms7uKaHSfJ3kz3enO7PacTlUBAAAAAPy9ybJfgA+TJCzXpJDUeshGyOaC+3533dD19WMnZDdkL5vvq3fbOrr19eMo5Liwrq/ebetqNyG3MXcLvu8qWOuY6+tH7SrkNJtr6n3S8szLuC71FMf7kIeQ55DHrhdfYaOY7SyjbCx9V+c826+p93W8vgjZSnJWWNv04yXkNebtt37gP3MQMo1j+nmapO26GZvajmPqmjc928+eN0uedVCVez6q5vs8FKX6dvWilPqeuu6HMbPqs971/DhJ+l2edM+8j0OR1rTUl9J833lJa5z2Ke+VfszL696VrvNRulc/FveV/39+Trr68ZPzke4/1H4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHR5B4wsGr0=
+   eJzt1ltPwkAQhuG9ETURiBqkRo2oUS/UOw/xwgP/lJ/qrOnKsMx2CzRpie+TfKkU2t3OdFudA4D/Z9T2BGp4kDwm8tTivJo2UumyF8mzymu5/ZS8tTivJo2MaLuSPcn+iudd97gqX5LvRKaS9wbHakuuH4eSI8lxtD9X79Rx6+pJ+pJBmX60Dek1NF5bcv04k5wbx+XqnTrO0++Bus99X+eJZOzcLKRQCfu2oR87Ffty/biV3Ekuo/2h3heJMcNx2ke59e8B/+yv89zX60HX3uqFzyBzvq7Q16UTr33rO5/r6Hyh3vfl5xvJgcqVcWzoh34PTCvmXPbgN+MavQjpr1KYlsg8w3Ut/F24hWs2P4dtqO2wjK956NlJNN5EjTV2ds8HbrnPzs3vnWIxszjxs0tvwxhdZdW3qhdW/G983U/LTNy83n7/UEV/Fyc+p+6P0Ye/9WGtjSLRE5/4HukSff1WX6z9ufWia6z7FPeqqh+p8Y25La2LuP5xz7apH1WpWh/WbzfpR+47tTXXQ+od0vV+1Ln/rXszVbtN1oe1Ltfpi/X/Vrx2uv4eAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANBNP+3sZs0=
   </data>
  </layer>
  <layer name="Middle" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1WEKgCAMBlBvYffo/neLIGEJkxhB/XgPJNA+kI1VawAAAAAAAAD/tH99AW704z1bIdOvVcmydta0J/tZvUdmzvVkn+ey+mV9Gmfb9F6cGXNTV5mPFjIjH5/6UZf9B1Z1jbMQe+B7BQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwdgAMQwT+
+   eJzt1UEKg0AMBdC5QZdjL9FNN73/yaTUgSDE2kGFDu9BEEa/i4RoKQAAwD97LMXH68B3PX983hzOtXceduK7qSNTl+rJHuUWaiTvntbkPOt3y6xzNTk/wz3USLL+ZXNq96bVc3FnrtibUefRsx8lZFo+Xs2jX/Yf2Opr3IU4gyu/VwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD1mJpUHKg==
   </data>
  </layer>
- <layer name="Top" width="100" height="100">
+ <layer name="Top" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt0dEKgCAMBdDR7DP6/98MoYchEvWSBOfAZdMhCIsAAAAAAABgtWP1B2Air0Spe7nvacM8452thG+00udwvjPb99O3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH9zAi4dAF4=
+   eJzt0UEKgDAMBMBg6jP8/zel4CGUIvaiB2dgSdpQKCQCAIC/O77+AEzklSh1L/c9bZhnrNlKeEcrfQ7nO7N9P30LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALDqBNuIAF4=
   </data>
  </layer>
- <layer name="Collision" width="100" height="100">
+ <layer name="Collision" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt0kEKwCAMRUG9/6VdW0RKseQjM+AyIHlpDQAAALhRr/4AEz2y6JFFjyx6ZNEjix5Z9MiiR5a+eV/nND5vtdu3O9fqP88e1HLbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABApQHcYgAu
+   eJzt10EOgjAQQNGy9gCN97+oYWcaVGw6OrTvJd0BgX4oUMp4W8Ax6adHLnrkkrnH7cOYUeYeK9Ijl8w9thNjNr+4pt51fz+3+mboEa+9/+uL7WqZ8xnpXQsi1pGefWdscuRobs/O+betRnVs95+xU9tjxPGi3sur9LjK98wKPa5kn//709Djv1b4PwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGI8ANVuAfk=
   </data>
  </layer>
- <layer name="Water" width="100" height="100">
+ <layer name="Water" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt0SESACAMA8H2/5/GYEExJWJ3JiryqgAAAAAAAACAX3qPDKceffmYp0cWPbLoAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwxgIx4AAR
+   eJzt0bENACAMA8Fk/6VpaKFEVriTXLn8KgAAAOBXvUeGU4++fLynRxY9sugBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABMsQAr7wAR
   </data>
  </layer>
- <layer name="Totem_test1" width="100" height="100">
+ <layer name="Totem_test1" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztzgENAAAIA6DnsH9QY3xOSEACAAAAAAAAwAfTDgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcsWxDABs=
+   eJztzjENAAAIA7DpwL9QLOwhPK2CJgAAAHBvvgMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKUFAqEAGw==
   </data>
  </layer>
- <layer name="Totem_test2" width="100" height="100">
+ <layer name="Totem_test2" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztzgENAAAIA6DnsH9QY9xNSEACAAAAAAAAwGfTDgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcs2nTABs=
+   eJztzjEBAAAMAiBzrH/Q/RbwgQQkAAAAsHPrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAeQAxABs=
   </data>
  </layer>
- <layer name="Totem_test3" width="100" height="100">
+ <layer name="Totem_test3" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztzgENAAAIA6DnsH9QY9xNSEACAAAAAAAAcMe0AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8t4+bABs=
+   eJztzjEBAAAMAiBzrH/QXWbwgQQkAAAA1K0DAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMPSX5ABs=
   </data>
  </layer>
- <layer name="Totem_test4" width="100" height="100">
+ <layer name="Totem_test4" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztzjEBAAAIA6DlsH9QK+zSBxKQAAAAAAAAAEBnvgMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABxZlWwAb
+   eJztzgENAAAIA6DnsH9QY3xOSEACAAAAN0w7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8sPuqABs=
   </data>
  </layer>
- <layer name="Elevator_0" width="100" height="100">
+ <layer name="Elevator_0" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztzkERAAAEADD++ufVgnO2BIsAAAAAAAA+yu0AAKfUdgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgUAMHdQAO
+   eJztzkERAAAEADD++ufVgnO2BIsAAJiX2wEATqntAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwSgPSlQAO
+  </data>
+ </layer>
+ <layer name="Elevator_1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztzrENAAAEAEF6+89rBkF313/yEQB8qEWbZxcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATDVF3AAO
   </data>
  </layer>
  <layer name="Hazards" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztzrENADAIA0Ea1kmf/RejYYMUEOlOerl1BAAAAAAAAMC723tGX8B/sgMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD2KOMwAHI=
+   eJztzrEJAEAIBEET2zH//hszESzhEWZgufQiAAAA7nuz9fUF3JMTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAayTkAcg==
   </data>
  </layer>
 </map>
