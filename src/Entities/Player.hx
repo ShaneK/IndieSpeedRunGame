@@ -25,8 +25,13 @@ class Player extends PhysicalBody
     private var landSnd:Sfx;
     private var goingLeft:Bool;
 
+#if debug
+    var maximumSpeed = 10000;
+    var jumpAmount = 410;
+#else
     var maximumSpeed = 75;
     var jumpAmount = 110;
+#end
     var jumpVelocity = 0;
     var isFalling = false;
 
@@ -79,6 +84,10 @@ class Player extends PhysicalBody
         var speed = maximumSpeed * .5;
         if(Input.check("run")){
             speed = maximumSpeed;
+        }else{
+#if debug
+            speed = maximumSpeed * .01;
+#end
         }
         if (Input.check("left"))
         {
