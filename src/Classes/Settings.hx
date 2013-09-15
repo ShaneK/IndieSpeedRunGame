@@ -1,4 +1,6 @@
 package classes;
+import nape.space.Space;
+import com.haxepunk.Scene;
 
 class Settings {
 	public static var Paused:Bool = false;
@@ -18,4 +20,8 @@ class Settings {
 
 	//Player
     public static var Player:entities.PhysicalBody;
+
+    //Space
+    public static var Space:Space;
+    public static var Scene:Scene;
 }
