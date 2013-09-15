@@ -22,7 +22,11 @@ class Credits extends Scene
 
     public function new()
     {
-        super();
+        super();        
+    }
+
+    public override function begin()
+    {       
         var screen = HXP.screen;
         screen.color = 0x000000;
         screen.scale = 1;
@@ -30,11 +34,9 @@ class Credits extends Scene
         shaneText = buildCreditsTest("Programming: Shane King",20,100);
         calebText = buildCreditsTest("Music / Level Design: Caleb Creed",20,200);
         benText = buildCreditsTest("Art / Programming: Ben Van Treese",20,300);
-    }
-
-    public override function begin()
-    {        
         HXP.setCamera(0,0);
+
+        super.begin();
     }
  
     public override function update()
@@ -55,6 +57,7 @@ class Credits extends Scene
 
     private function CheckInput(){
         if(Input.check("exit")){
+            super.end();
             HXP.scene = new MainMenu();
         }
     }

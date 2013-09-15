@@ -26,13 +26,17 @@ class MainMenu extends Scene
     var harmText:Text;
     var playText:Text;
 
-    var blink:Bool = false;
+    public var ready:Bool = false;
     var fade:Bool = false;
     var sfx:Sfx;
 
     public function new()
     {
-        super();
+        super();        
+    }
+
+    public override function begin()
+    {        
         sfx = new Sfx("sfx/Intro.mp3");
         sfx.loop();
         sfx.type = "MUSIC";
@@ -51,11 +55,9 @@ class MainMenu extends Scene
         playText.y = screen.height - 128;
         playText.color = 0x000000;
         addGraphic(playText);
-    }
-
-    public override function begin()
-    {        
         HXP.setCamera(0,0);
+
+        super.begin();
     }
  
     public override function update()
@@ -68,13 +70,13 @@ class MainMenu extends Scene
                 if(harmIsFaded){
                     var playIsFaded = TextUtils.fadeInText(playText);
                     if(playIsFaded){
-                        blink = true;
+                        ready = true;
                     }
                 }
             }
         }
 
-        if(blink){
+        if(ready){
             blinkText(playText);
         }
         super.update();
@@ -82,15 +84,20 @@ class MainMenu extends Scene
     }
 
     private function CheckInput(){
-        if(Input.check("start") && blink){
+        if(Input.check("start") && ready){
             sfx.stop();
             Settings.Health = Settings.MaxHealth;
             HXP.scene = new Test();
+            super.end();
         }
-        if(Input.check("credits") && blink){            
+        if(Input.check("credits") && ready){            
+            sfx.stop();
             HXP.scene = new Credits();
+            super.end();
         }
         if(Input.check("exit")){
+            sfx.stop();
+            super.end();
             #if cpp
             Sys.exit(0);
             #elseif flash
