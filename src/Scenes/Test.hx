@@ -229,7 +229,7 @@ class Test extends Scene
         for(key in totemMap.keys()){
             var totemTiles = tmxEntity.loadMask("Totem_"+key, "totem");
             for(totem in totemTiles){
-                add(new entities.Totem(totem.x, totem.y, totemMap[key]));
+                add(new entities.interactive.Totem(totem.x, totem.y, totemMap[key]));
             }
         }
     }
