@@ -35,7 +35,7 @@ class Spawner extends Entity {
 		Settings.Scene.add(npc);
 		Settings.Space.bodies.add(npc.getBody());
 
-		var stand = new entities.interactive.BananaStand(this.x,this.y, function(){trace("stealing them bananas.");});
+		var stand = new entities.interactive.BananaStand(this.x,this.y,function(){});
 		Settings.Scene.add(stand);
 	}
 

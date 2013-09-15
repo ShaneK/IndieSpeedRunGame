@@ -1,5 +1,7 @@
 package entities.npcs;
 
+import classes.EMath;
+import com.haxepunk.HXP;
 import com.haxepunk.Entity;
 import com.haxepunk.graphics.Image;
  
@@ -11,8 +13,11 @@ import nape.phys.Material;
 import com.haxepunk.graphics.Spritemap;
  
 class Farmer extends NPC
-{
+{    
     var sprite:Spritemap;
+    var timer:Float = 0;
+    var direction:Int = 1;
+    var speed:Float = 5;
 
     public function new(x:Float, y:Float)
     {
@@ -34,8 +39,30 @@ class Farmer extends NPC
     }
 
     public override function update(){
-    	super.update();
+    	super.update();        
     	x = body.position.x;
     	y = body.position.y;
+
+        body.kinematicVel.x += direction * speed * HXP.elapsed;
+
+        timer += HXP.elapsed;
+        if(timer > 1){
+            direction = EMath.randomSign();
+            timer = 0;
+        }
+        setAnimations();
     }
+
+     private function setAnimations()
+     {
+        if (body.velocity.x > 2 || body.velocity.x < -2)
+        {
+            sprite.play("walk");
+            sprite.flipped = body.velocity.x < 0;
+        }
+        else
+        {
+            sprite.play("idle");
+        }
+     }
 }
