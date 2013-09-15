@@ -5,6 +5,8 @@ import com.haxepunk.Scene;
 import com.haxepunk.graphics.Image;
 import com.haxepunk.HXP;
 import com.haxepunk.utils.Input;
+import com.haxepunk.tweens.motion.LinearMotion;
+import com.haxepunk.Tween;
 
 import flash.display.Sprite;
 import flash.events.Event;
@@ -39,6 +41,8 @@ class Test extends Scene
     private var tmxEntity:TmxEntity;
     private var cameraOffset:Int = 5;
     private var cameraSpeed:Float = .5;
+    private var freeCamera:Bool = true;
+    private var heldCameraTime:Float = 0;
 
     private var player:entities.PhysicalBody;
 
@@ -63,7 +67,6 @@ class Test extends Scene
     }
 
     public override function begin(){
-        add(new entities.buttons.SettingsMenuButton(20, 20, 16, 16));
     }
 
     public function followMe(){              
@@ -73,6 +76,7 @@ class Test extends Scene
 
         var xDiff = camera.x - newX;
         var yDiff = camera.y - newY;
+
         
         if(Math.abs(xDiff) > cameraOffset){
             HXP.camera.x += (xDiff < 0 ? cameraSpeed : -cameraSpeed) * (Math.abs(xDiff) * .1);
@@ -80,7 +84,6 @@ class Test extends Scene
         if(Math.abs(yDiff) > cameraOffset){
             HXP.camera.y += (yDiff < 0 ? cameraSpeed : -cameraSpeed) * (Math.abs(yDiff) * .1);
         }
-
         //HXP.setCamera(newX, newY);
     }
 
@@ -132,11 +135,33 @@ class Test extends Scene
                 add(new GroundEmitter(47*16, 8*16, space));
                 add(new GroundEmitter(47*16, 9*16, space));
                 add(new GroundEmitter(48*16, 9*16, space));
-             }
+             },
+            "earthbridge" => function(){
+                
+                freeCamera = false;
+
+                add(new GroundEmitter(133*16,20*16,space));
+                add(new GroundEmitter(134*16,20*16,space));
+                add(new GroundEmitter(135*16,20*16,space));
+                add(new GroundEmitter(136*16,20*16,space));
+                add(new GroundEmitter(137*16,20*16,space));
+                add(new GroundEmitter(138*16,20*16,space));
+                add(new GroundEmitter(139*16,20*16,space));
+
+                HXP.camera.x = 129*16;
+                HXP.camera.y = 17*16;
+                heldCameraTime = 1;
+                
+            },
+            "windlaunch" => function(){
+
+                 add(new AirEmitter(10, 100, 233 * 16, 9 * 16, 10, space));
+            }
+
         ];
         placeTotems(totemMap);
         placeHazards();
-        placeElevators(2);
+        placeElevators(6);
     }
 
     public function placeElevators(count:Int){
@@ -218,10 +243,12 @@ class Test extends Scene
  
     public override function update()
     {        
+
+        super.update();
         if(HXP.elapsed > 0){
             space.step(HXP.elapsed);
         }
-        super.update();
+
         followMe();
     }
 }
