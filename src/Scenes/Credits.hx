@@ -34,6 +34,7 @@ class Credits extends Scene
     {       
         Settings.sfx = new Sfx("sfx/longhouse.mp3");
         Settings.sfx.loop();
+        Settings.sfx.volume = .5;
         Settings.sfx.type = "MUSIC";
 
         var screen = HXP.screen;

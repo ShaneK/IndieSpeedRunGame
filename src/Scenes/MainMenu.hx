@@ -36,7 +36,6 @@ class MainMenu extends Scene
 
     public override function begin()
     {        
-        trace("BEGIN");
         Settings.sfx = new Sfx("sfx/Intro.mp3");
         Settings.sfx.loop();
         Settings.sfx.type = "MUSIC";
@@ -95,7 +94,6 @@ private function CheckInput(){
             super.end();
         }
         if(Input.check("exit")){
-            Settings.sfx.stop();
             super.end();
             #if cpp
             Sys.exit(0);
