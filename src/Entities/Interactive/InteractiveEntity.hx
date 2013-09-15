@@ -16,13 +16,15 @@ class InteractiveEntity extends Entity {
 	var timer:Float;
 	var sfx:Sfx;
 	var text:String;
+	var showDialog:Bool;
 
-	public function new(x:Float, y:Float, sfx:Sfx, interactionText:String){
+	public function new(x:Float, y:Float, sfx:Sfx, interactionText:String, showDialog:Bool = true){
 		super(x, y+2);
 		setOrigin(0, 2);
 		this.sfx = sfx;
 		sfx.type = "SFX";
 		text = interactionText;
+		this.showDialog = showDialog;
 	}
 
 	public function handleInput(){
@@ -50,7 +52,7 @@ class InteractiveEntity extends Entity {
 			dialogOn = false;
 			timer = 0;
 		}
-		if(isColliding){
+		if(isColliding && showDialog){
 			if(!dialogOn){
 				timer += HXP.elapsed;
 				if(timer >= .25){

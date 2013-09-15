@@ -35,6 +35,7 @@ class BananaStand extends InteractiveEntity {
 				Settings.Health += 10;
 				Settings.Steals += 1;
 				hasBanana = false;
+				showDialog = false;
 			}
 		};
 		super(x, y, new Sfx("sfx/SFX/GodYes.mp3", takeBanana), "Press Up to steal banana.");
