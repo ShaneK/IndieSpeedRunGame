@@ -72,22 +72,31 @@ class Test extends Scene
         add(slider);
     }
 
-    public function followMe(){              
-        var currentPos = HXP.camera;
-        var newX = Settings.Player.x-(HXP.halfWidth);
-        var newY = Settings.Player.y-(HXP.halfHeight);
+    public function followMe(){     
+        if(freeCamera)         {
+            var currentPos = HXP.camera;
+            var newX = Settings.Player.x-(HXP.halfWidth);
+            var newY = Settings.Player.y-(HXP.halfHeight);
 
-        var xDiff = camera.x - newX;
-        var yDiff = camera.y - newY;
+            var xDiff = camera.x - newX;
+            var yDiff = camera.y - newY;
 
-        
-        if(Math.abs(xDiff) > cameraOffset){
-            HXP.camera.x += (xDiff < 0 ? cameraSpeed : -cameraSpeed) * (Math.abs(xDiff) * .1);
+            
+            if(Math.abs(xDiff) > cameraOffset){
+                HXP.camera.x += (xDiff < 0 ? cameraSpeed : -cameraSpeed) * (Math.abs(xDiff) * .1);
+            }
+            if(Math.abs(yDiff) > cameraOffset){
+                HXP.camera.y += (yDiff < 0 ? cameraSpeed : -cameraSpeed) * (Math.abs(yDiff) * .1);
+            }
         }
-        if(Math.abs(yDiff) > cameraOffset){
-            HXP.camera.y += (yDiff < 0 ? cameraSpeed : -cameraSpeed) * (Math.abs(yDiff) * .1);
+        if(!freeCamera){
+            heldCameraTime -= HXP.elapsed;
         }
-        //HXP.setCamera(newX, newY);
+
+        if(!freeCamera && heldCameraTime <= 0){
+            heldCameraTime =0;
+            freeCamera = true;
+        }
     }
 
     public function createMap()
@@ -142,6 +151,9 @@ class Test extends Scene
             "earthbridge" => function(){
                 
                 freeCamera = false;
+                HXP.camera.x = 129*16;
+                HXP.camera.y = 17*16;
+                heldCameraTime = 2;
 
                 add(new GroundEmitter(133*16,20*16,space));
                 add(new GroundEmitter(134*16,20*16,space));
@@ -149,12 +161,7 @@ class Test extends Scene
                 add(new GroundEmitter(136*16,20*16,space));
                 add(new GroundEmitter(137*16,20*16,space));
                 add(new GroundEmitter(138*16,20*16,space));
-                add(new GroundEmitter(139*16,20*16,space));
-
-                HXP.camera.x = 129*16;
-                HXP.camera.y = 17*16;
-                heldCameraTime = 1;
-                
+                add(new GroundEmitter(139*16,20*16,space));               
             },
             "windlaunch" => function(){
 
