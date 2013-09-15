@@ -13,6 +13,8 @@ import com.haxepunk.graphics.Text;
 
 import utils.TextUtils;
 
+import classes.Settings;
+
 #if flash
 import flash.system.System;
 #end
@@ -82,6 +84,7 @@ class MainMenu extends Scene
     private function CheckInput(){
         if(Input.check("start") && blink){
             sfx.stop();
+            Settings.Health = Settings.MaxHealth;
             HXP.scene = new Test();
         }
         if(Input.check("credits") && blink){            

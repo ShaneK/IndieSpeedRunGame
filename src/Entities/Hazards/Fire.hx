@@ -10,6 +10,8 @@ import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Key;
 import com.haxepunk.Sfx;
 
+import classes.Settings;
+
 class Fire extends Entity {
 	private var w:Float;
 	private var h:Float;
@@ -34,7 +36,8 @@ class Fire extends Entity {
 		graphic = sprite;
 
 		hurtCallback = function(){
-			trace("fiiia BIAAATCH.");
+			var player = cast(Settings.Player, entities.Player);
+			player.damage(10);
 			sprite.play("campfire");
 			setRandomHurtSFX();
 		};		

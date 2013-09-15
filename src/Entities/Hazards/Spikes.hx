@@ -8,6 +8,7 @@ import com.haxepunk.graphics.Image;
 import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Key;
 import com.haxepunk.Sfx;
+import classes.Settings;
 
 class Spikes extends Entity {
 	private var w:Float;
@@ -34,7 +35,8 @@ class Spikes extends Entity {
 		graphic = sprite;
 
 		hurtCallback = function(){
-			trace("SPIKES BIAAATCH.");
+			var player = cast(Settings.Player, entities.Player);
+			player.damage(10);
 			sprite.play("spikes-bloody");
 			setRandomHurtSFX();
 		};		

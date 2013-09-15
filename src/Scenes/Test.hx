@@ -28,6 +28,8 @@ import entities.emitters.AirEmitter;
 import entities.emitters.GroundEmitter;
 import com.haxepunk.Sfx;
 
+import classes.Settings;
+
 class Test extends Scene
 {
     private var space:Space;
@@ -39,8 +41,7 @@ class Test extends Scene
     private var tmxEntity:TmxEntity;
     private var cameraOffset:Int = 5;
     private var cameraSpeed:Float = .5;
-
-    private var player:entities.PhysicalBody;
+    private var slider:entities.Slider;
 
     public function new()
     {
@@ -56,18 +57,20 @@ class Test extends Scene
         createMap();
 
          var sfx = new Sfx("sfx/haunted.mp3");
-         // sfx.loop();
+         sfx.loop(.33);
          sfx.type = "MUSIC";
         // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
 
     public override function begin(){
+        slider = new entities.Slider(0, 0, 55, 12, 8, 100, 100, 0x000000, 0xBB0000, 0xFFFFFF);
+        add(slider);
     }
 
     public function followMe(){              
         var currentPos = HXP.camera;
-        var newX = player.x-(HXP.halfWidth);
-        var newY = player.y-(HXP.halfHeight);
+        var newX = Settings.Player.x-(HXP.halfWidth);
+        var newY = Settings.Player.y-(HXP.halfHeight);
 
         var xDiff = camera.x - newX;
         var yDiff = camera.y - newY;
@@ -89,8 +92,8 @@ class Test extends Scene
 
         var playerTiles = tmxEntity.loadMask("PlayerSpawn", "p");
         for(playerSpawn in playerTiles){
-            player = new entities.Player(Std.int(playerSpawn.x), Std.int(playerSpawn.y));
-            addObjectToSpace(player);
+            Settings.Player = new entities.Player(Std.int(playerSpawn.x), Std.int(playerSpawn.y));
+            addObjectToSpace(Settings.Player);
             followMe();
         }
 
@@ -144,7 +147,6 @@ class Test extends Scene
             var endingY:Float = 0;
             var elevatorTiles = tmxEntity.loadMask("Elevator_"+i, "elevator");
             for(elevator in elevatorTiles){
-                trace(elevator.tileProperties);
                 if(elevator.tileProperties.exists("EndElevator")){
                     endingX = elevator.x;
                     endingY = elevator.y;
@@ -215,8 +217,8 @@ class Test extends Scene
  
     public override function update()
     {        
-
         super.update();
+        slider.updateSlider(Settings.Health);
         if(HXP.elapsed > 0){
             space.step(HXP.elapsed);
         }
