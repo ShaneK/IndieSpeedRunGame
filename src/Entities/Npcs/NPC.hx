@@ -5,7 +5,8 @@ import classes.Settings;
 import com.haxepunk.HXP;
 import com.haxepunk.Entity;
 import com.haxepunk.graphics.Image;
- 
+import com.haxepunk.Sfx; 
+
 import nape.phys.Body;
 import nape.phys.BodyType;
 import nape.shape.Circle;
@@ -20,6 +21,9 @@ class NPC extends PhysicalBody
     var direction:Int = 1;
     var speed:Float = 500;
     var health:Float = 100;
+    var hurtSnd:Sfx;
+    var alrtSnd:Sfx;
+    var alerted:Bool = false;
 
     public function new(x:Float, y:Float, width:Int, height:Int)
     {
@@ -53,6 +57,9 @@ class NPC extends PhysicalBody
             health -= 20;
             if(!isAlive()){
                 Settings.Kills +=1;
+            }
+            if(!hurtSnd.playing){
+                hurtSnd.play();
             }
         }
     }

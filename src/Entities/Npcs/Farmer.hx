@@ -4,7 +4,8 @@ import classes.Settings;
 import com.haxepunk.Entity;
 import com.haxepunk.HXP;
 import com.haxepunk.graphics.Image;
- 
+import com.haxepunk.Sfx; 
+
 import nape.phys.Body;
 import nape.phys.BodyType;
 import nape.shape.Polygon;
@@ -35,6 +36,9 @@ class Farmer extends NPC
         sprite.scaledWidth = width;
         sprite.scaledHeight = height;
         sprite.play("idle");
+
+        alrtSnd = new Sfx("sfx/SFX/Farmer_Alert.mp3");
+        hurtSnd = new Sfx("sfx/SFX/Farmer_Hurt.mp3");
         
         graphic = sprite;
         layer = 3;
@@ -69,6 +73,10 @@ class Farmer extends NPC
         if(scene.collideRect("player", x+4, y+8, 16, 16) != null && atkTime > 1){            
             isCowering = true;
             atkTime = 0;
+            if(!alerted){
+                alerted = true;      
+                alrtSnd.play();
+            }
         }
         else{
             if(atkTime > 1){
