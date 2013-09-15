@@ -1,6 +1,8 @@
 package entities.npcs;
 
+import classes.Settings;
 import com.haxepunk.Entity;
+import com.haxepunk.HXP;
 import com.haxepunk.graphics.Image;
  
 import nape.phys.Body;
@@ -13,6 +15,8 @@ import com.haxepunk.graphics.Spritemap;
 class Warrior extends NPC
 {
     var sprite:Spritemap;
+    var atkTime:Float = 0;
+    var isAttacking:Bool = false;
 
     public function new(x:Float, y:Float)
     {
@@ -25,6 +29,7 @@ class Warrior extends NPC
         sprite.add("walk", [1, 2, 3, 4, 5], 8, true);
         sprite.add("jump", [19]);
         sprite.add("dead", [54]);
+        sprite.add("attack", [25,26,27,28],8);
         sprite.scaledWidth = width;
         sprite.scaledHeight = height;
         sprite.play("idle");
@@ -39,17 +44,43 @@ class Warrior extends NPC
         x = body.position.x;
         y = body.position.y;
 
-        if(isAlive()){
+        if(isAlive() && !isAttacking){
             wander(8);
         }else{
             body.velocity.x = 0;
             body.kinematicVel.x = 0;
         }
         setAnimations();
+        doAggression();
+    }
+
+    private function doAggression(){
+        if((Settings.Attacks >= 4 || Settings.Kills >= 1) && isAlive()){
+            attack();
+        }
+    }
+
+    private function attack(){
+        if(scene.collideRect("player", x+4, y+8, 16, 16) != null && atkTime > .5){            
+            isAttacking = true;
+            Settings.Health -= 10;
+            atkTime = 0;
+        }
+        else{
+            if(atkTime > .5){
+                isAttacking = false;
+            }
+        }
+        atkTime += HXP.elapsed;
     }
 
      private function setAnimations()
      {
+        sprite.flipped = body.velocity.x < 0;
+        if(isAttacking){
+            sprite.play('attack');
+            return;
+        }
         if(!isAlive()){
             sprite.play("dead");
             return;
@@ -57,8 +88,7 @@ class Warrior extends NPC
 
         if (body.velocity.x > 2 || body.velocity.x < -2)
         {
-            sprite.play("walk");
-            sprite.flipped = body.velocity.x < 0;
+            sprite.play("walk");            
         }
         else
         {
