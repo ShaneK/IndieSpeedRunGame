@@ -5,6 +5,7 @@ import com.haxepunk.HXP;
 import com.haxepunk.graphics.Image;
 import com.haxepunk.graphics.Spritemap;
 import com.haxepunk.utils.Input;
+import com.haxepunk.Sfx;
 
 import nape.phys.Body;
 import nape.phys.BodyType;
@@ -20,10 +21,13 @@ class Player extends PhysicalBody
     private var velocityX:Float = 0;
     private var velocityY:Float = 0;
     private var sprite:Spritemap;
+    private var jumpSnd:Sfx;
+    private var landSnd:Sfx;
 
     var maximumSpeed = 75;
     var jumpAmount = 110;
     var jumpVelocity = 0;
+    var isFalling = false;
 
     public function new(x:Int, y:Int)
     {
@@ -34,18 +38,22 @@ class Player extends PhysicalBody
         body = new Body(); // Implicit BodyType.DYNAMIC
         body.shapes.add(new Polygon(Polygon.rect(0, 0, width, height)));
         body.position.setxy(x, y);
-        body.setShapeMaterials(new Material(0.0,500));
+        body.setShapeMaterials(new Material(0.0,1,.001));
         body.allowRotation = false;
         body.mass = 25;
 
-        sprite = new Spritemap("gfx/player.png", 32, 64);        
+        sprite = new Spritemap("gfx/warrior.png", 32, 64);        
         sprite.add("idle", [0]);        
         sprite.add("walk", [1, 2, 3, 4, 5], 8, true);
         sprite.add("jump", [19]);
+        sprite.add("push", [24]);
         sprite.scaledWidth = width;
         sprite.scaledHeight = height;
         sprite.play("idle");
         
+        jumpSnd = new Sfx('sfx/SFX/Jump.mp3');
+        landSnd = new Sfx('sfx/SFX/Land.mp3');
+
         graphic = sprite;        
         layer = 2;
         type = "player";
@@ -76,16 +84,23 @@ class Player extends PhysicalBody
             velocityX -= speed;
         }
 
-        jumpVelocity = Input.check("jump") && isOnGround() ? jumpAmount : 0;
+        if(Input.check('jump') && isOnGround()){
+            jumpVelocity = jumpAmount;            
+            jumpSnd.play();
+        }
+        else{
+            jumpVelocity = 0;    
+        }
+        
     }
 
     private function isOnGround():Bool{
-        return body.velocity.y < 1 && body.velocity.y > -1;
+        return body.interactingBodies(nape.callbacks.InteractionType.COLLISION).length != 0;
     }
 
      private function setAnimations()
      {
-        if (body.velocity.x > 1 || body.velocity.x < -1)
+        if (body.velocity.x > 10 || body.velocity.x < -10)
         {
             sprite.play("walk");
             sprite.flipped = velocityX > 0;            
@@ -97,6 +112,12 @@ class Player extends PhysicalBody
 
         if(!isOnGround()){
             sprite.play("jump");
+            isFalling = true;
+        }
+
+        if(isOnGround() && isFalling){
+            isFalling = false;
+            landSnd.play();
         }
      }
 

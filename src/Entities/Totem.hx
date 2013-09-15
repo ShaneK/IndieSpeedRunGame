@@ -7,25 +7,23 @@ import com.haxepunk.graphics.Spritemap;
 import com.haxepunk.graphics.Image;
 import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Key;
+import com.haxepunk.Sfx;
 
 class Totem extends Entity {
 	private var w:Float;
 	private var h:Float;
 	var sprite:Spritemap;
-	var upHit:Bool;
-	var upHitHook:Void->Void;
 	var isColliding:Bool;
 	var dialog:entities.Dialog;
 	var dialogOn:Bool;
 	var timer:Float;
+	var praySnd:Sfx;
 
 	public function new(x:Float, y:Float, upHit:Void->Void){
 		width = 16;
 		height = 16;
 		super(x, y+2);
 		setOrigin(0, 2);
-
-		upHitHook = upHit;
 
 		sprite = new Spritemap("gfx/tileset.png", 16, 16);
 		sprite.add("neutral", [25]);
@@ -34,19 +32,15 @@ class Totem extends Entity {
 
 		sprite.play("neutral");
 		graphic = sprite;
+
+		praySnd = new Sfx("sfx/SFX/Pray.mp3");
+		praySnd.complete = upHit;
 	}
 
 	public function handleInput(){
-        if (Input.check(Key.UP))
-        {
-        	upHit = true;
-        }else{
-        	if(upHit){
-        		upHit = false;
-        		if(isColliding){
-        			handleUpHit();
-        		}
-        	}
+        if (Input.check(Key.UP) && isColliding && !praySnd.playing)
+        {        	
+        	praySnd.play();
         }
 	}
 
@@ -82,9 +76,5 @@ class Totem extends Entity {
     	}else if(timer > 0){
     		timer = 0;
     	}
-	}
-
-	public function handleUpHit(){
-		upHitHook();
 	}
 }
