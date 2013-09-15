@@ -94,7 +94,6 @@ private function CheckInput(){
             super.end();
         }
         if(Input.check("exit")){
-            Settings.sfx.stop();
             super.end();
             #if cpp
             Sys.exit(0);

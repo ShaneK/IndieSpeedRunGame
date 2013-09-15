@@ -201,16 +201,6 @@ class Player extends PhysicalBody
         }
     }
 
-    public override function moveCollideX(e:Entity){
-        trace("HIT ENTITY " + e);
-        return true;
-    }
-
-    public override function moveCollideY(e:Entity){
-        trace("HIT ENTITY " + e);
-        return true;
-    }
-
     public function levelUpAnimation(){
         levelUpTimeout += HXP.elapsed;
         if(levelUpTimeout <= 1){
