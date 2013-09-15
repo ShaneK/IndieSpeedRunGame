@@ -38,16 +38,53 @@ class Credits extends Scene
         thingText = buildCreditsTest("This game was developed as part of Indie Speed Run 2013 (www.indiespeedrun.com).",20,0);
         thingText.size = 18;
         createdText = buildCreditsTest("Created By:",20,50);
-        shaneText = buildCreditsTest("Programming: Shane King",20,120);
-        calebText = buildCreditsTest("Music / Level Design: Caleb Creed",20,180);
-        benText = buildCreditsTest("Art / Programming: Ben Van Treese",20,240);
+        shaneText = buildCreditsTest("Level Design/Programming: Shane King",20,120);
+        calebText = buildCreditsTest("Art/Music/Level Design: Caleb Creed",20,180);
+        benText = buildCreditsTest("Art/Programming: Ben Van Treese",20,240);
 
-        var wasMean = Settings.Kills > 0 || Settings.Attacks > 0 || Settings.Steals > 0;
+        var Status = "";
+
+        Settings.Kills = 1;
+        Settings.Attacks = 7;
+        Settings.Steals = 4;
+        if(Settings.Kills == 0 && Settings.Attacks == 0 && Settings.Steals == 0){
+            Status = "HERO!";
+        }
+
+        if(Settings.Kills > 0){
+            if(Settings.Kills < 3){
+                Status += "KILLER! \n";
+            } else if(Settings.Kills < 6){
+                Status += "MASS MURDERER! \n";
+            } else {
+                Status += "BUTCHER! \n";
+            }
+        }
+        if(Settings.Attacks > 0){
+            if(Settings.Attacks < 3){
+                Status += "JERK! \n";
+            } else if(Settings.Attacks < 8){
+                Status += "MUGGER! \n";
+            } else {
+                Status += "BERSERKER! \n";
+            }
+        }
+        if(Settings.Steals > 0){
+            if(Settings.Steals < 3){
+                Status += "CUTPURSE!";
+            } else if(Settings.Steals < 6){
+                Status += "PLUNDERER!";
+            } else {
+                Status += "KLEPTOMANIAC!";
+            }
+        }
+
+
         scoreKillsText = buildCreditsTest("You killed " + Settings.Kills + " people",20,360);
-        scoreAttacksText = buildCreditsTest("and hurt " + Settings.Attacks + " people",20,400);
+        scoreAttacksText = buildCreditsTest("and attacked people " + Settings.Attacks + " times",20,400);
         scoreStealsText = buildCreditsTest("and stole " + Settings.Steals + " bananas.",20,440);
-        scoreStatusText = buildCreditsTest(wasMean ? " JERK!" : " HERO!",480,380);
-        scoreStatusText.size = 92;
+        scoreStatusText = buildCreditsTest(Status,540,300);
+        scoreStatusText.size = 64;
 
         HXP.setCamera(0,0);
 
