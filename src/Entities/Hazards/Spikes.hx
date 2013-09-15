@@ -59,7 +59,7 @@ class Spikes extends Entity {
 	}
 
 	public function checkForCollision(){
-		isColliding = scene.collideRect("player", x, y, 16, 16) != null;
+		isColliding = scene.collideRect("player", x+4, y+8, 4, 4) != null;
 	}
 
 	public override function update(){
