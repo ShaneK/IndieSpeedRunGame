@@ -50,7 +50,7 @@ class NPC extends PhysicalBody
     public function onAttacked(){        
         if(isAlive()){
             Settings.Attacks += 1;
-            health -= 25;
+            health -= 20;
             if(!isAlive()){
                 Settings.Kills +=1;
             }
