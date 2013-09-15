@@ -48,6 +48,7 @@ class Player extends PhysicalBody
         sprite = new Spritemap("gfx/warrior.png", 32, 64);        
         sprite.add("idle", [0]);        
         sprite.add("walk", [1, 2, 3, 4, 5], 8, true);
+        sprite.add("run", [1, 2, 3, 4, 5], 12, true);
         sprite.add("jump", [19]);
         sprite.add("push", [24]);
         sprite.scaledWidth = width;
@@ -108,7 +109,7 @@ class Player extends PhysicalBody
         if (body.velocity.x > 10 || body.velocity.x < -10)
         {
             goingLeft = velocityX > 0;
-            sprite.play("walk");
+            Input.check('run') ? sprite.play("run") : sprite.play("walk");
             sprite.flipped = goingLeft;
         }
         else
