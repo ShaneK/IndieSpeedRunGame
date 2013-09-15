@@ -24,6 +24,7 @@ class Credits extends Scene
     var scoreAttacksText:Text;
     var scoreStealsText:Text;
     var scoreStatusText:Text;
+    var returnText:Text;
 
     public function new()
     {
@@ -87,6 +88,9 @@ class Credits extends Scene
         scoreStatusText = buildCreditsTest(Status,540,300);
         scoreStatusText.size = 64;
 
+
+        returnText = buildCreditsTest("Press 'ESC' to return to the menu.",20,520);
+
         HXP.setCamera(0,0);
 
         super.begin();
@@ -103,6 +107,7 @@ class Credits extends Scene
         if(TextUtils.fadeInText(scoreAttacksText)){
         if(TextUtils.fadeInText(scoreStealsText)){
         if(TextUtils.fadeInText(scoreStatusText)){
+        if(TextUtils.fadeInText(returnText)){
         }}}}}}}}}
         super.update();
         CheckInput();
