@@ -108,11 +108,8 @@ class Tutorial extends Scene
         var map = "maps/Tutorial.tmx";
 
         // create the map, set the assets in your nmml file to bytes
-        trace("MADE IT HERE 1");
         tmxEntity = new TmxEntity(map);
-        trace("MADE IT HERE2");
         tmxEntity.loadGraphic("gfx/tileset.png", ["Bottom", "Middle"]);
-        trace("MADE IT HERE3");
 
         var spawnTiles = tmxEntity.loadMask("PlayerSpawn", "p");
         for(spawnTile in spawnTiles){
@@ -125,13 +122,11 @@ class Tutorial extends Scene
                 case 'farmer': spawners.push(new Spawner(Std.int(spawnTile.x), Std.int(spawnTile.y), FARMER));   
             }
         }
-        trace("MADE IT HERE23");
 
         var t = new TmxEntity(map);
         t.loadGraphic("gfx/tileset.png", ["Top"]);
         t.layer = 1;
 
-        trace("MADE IT HERE33");
         // loads a grid layer named collision and sets the entity type to walls
         var groundTiles = tmxEntity.loadMask("Collision", "walls");
 
