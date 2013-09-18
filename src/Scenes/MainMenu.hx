@@ -10,6 +10,7 @@ import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Input;
 import com.haxepunk.graphics.Image;
 import com.haxepunk.graphics.Text;
+import com.haxepunk.utils.Touch;
 
 import utils.TextUtils;
 
@@ -25,6 +26,7 @@ class MainMenu extends Scene
     var noText:Text;
     var harmText:Text;
     var playText:Text;
+    var touched:Bool;
 
     public var ready:Bool = false;
     var fade:Bool = false;
@@ -60,6 +62,8 @@ class MainMenu extends Scene
         addGraphic(playText);
         HXP.setCamera(0,0);
 
+        touched = false;
+
         super.begin();
     }
  
@@ -85,7 +89,11 @@ class MainMenu extends Scene
     }
 
 private function CheckInput(){
-        if(Input.check("start") && ready){
+        var touches:Map<Int,Touch> = Input.touches;
+        if(Lambda.count(touches) > 0){
+            touched = true;
+        }
+        if((Input.check("start") && ready) || (touched && Lambda.count(touches) == 0 && ready)){
             Settings.restoreDefault();
             HXP.scene = new Tutorial();
             super.end();
