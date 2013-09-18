@@ -1,4 +1,4 @@
-package entities;
+package entities.buttons;
  
 import com.haxepunk.Entity;
 import com.haxepunk.HXP;

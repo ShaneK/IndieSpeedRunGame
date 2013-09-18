@@ -31,7 +31,7 @@ class MainMenu extends Scene
 
     public function new()
     {
-        super();        
+        super();
     }
 
     public override function begin()
@@ -41,18 +41,22 @@ class MainMenu extends Scene
         Settings.sfx.type = "MUSIC";
 
         var screen = HXP.screen;
-        screen.color = 0x000000;
         screen.scale = 1;
 
         doText = buildIntroText("DO",(screen.width/2) + 128,20);
         noText = buildIntroText("NO",(screen.width/2) + 128,120);
         harmText = buildIntroText("HARM",(screen.width/2) + 128,220);
 
-        playText = new Text("Press 'ENTER' to play.");
+        if(Settings.IsMobile){
+            playText = new Text("Tap to play.");
+        }else{
+            playText = new Text("Press 'ENTER' to play.");
+        }
         playText.size = 64;
         playText.x = (screen.width/2) - 320;
         playText.y = screen.height - 128;
-        playText.color = 0x000000;
+        playText.color = 0xFFFFFF;
+        playText.alpha = 0;
         addGraphic(playText);
         HXP.setCamera(0,0);
 
@@ -68,9 +72,7 @@ class MainMenu extends Scene
                 var harmIsFaded = TextUtils.fadeInText(harmText);
                 if(harmIsFaded){
                     var playIsFaded = TextUtils.fadeInText(playText);
-                    if(playIsFaded){
-                        ready = true;
-                    }
+                    ready = true;
                 }
             }
         }
@@ -108,19 +110,24 @@ private function CheckInput(){
         text.size = 128;
         text.x = x;
         text.y = y;
-        text.color = 0x000000;
+        text.color = 0xFFFFFF;
+        text.alpha = 0;
         addGraphic(text);
 
         return text;
     }
 
     private function blinkText(text:Text):Void{
-        if(text.color >= 0xCCCCCC && fade){
-            text.color -= 0x020202;
-            fade = true;
+        if(text.alpha > 0 && fade){
+            text.alpha -= .01;
+            if(text.alpha <= 0){
+                fade = false;
+            }
         }else{
-            fade = false;
-            text.color += 0x020202;
+            text.alpha += .01;
+            if(text.alpha >= 1){
+                fade = true;
+            }
         }
     }
 }

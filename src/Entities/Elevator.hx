@@ -26,6 +26,10 @@ class Elevator extends PhysicalBody
     private var duration:Float;
     private var speed:Int;
     private var range:Float;
+    private var distX:Float;
+    private var distY:Float;
+    private var targetX:Float;
+    private var targetY:Float;
 
     public function new(xb:Float, yb:Float, xe:Float, ye:Float, duration:Float = 1, speed:Int = 1)
     {
@@ -49,12 +53,13 @@ class Elevator extends PhysicalBody
         xEnding = xe;
         yEnding = ye;
 
-        goingTowardsEnd = true;
-
         this.duration = duration;
         this.speed = speed;
         timer = 0;
         range = .5;
+
+        goingTowardsEnd = false;
+        changeDirection(); //Calculates distance normalization
     }
 
     public override function update(){
@@ -74,8 +79,6 @@ class Elevator extends PhysicalBody
         body.position.y += yi;
     }
 
-    
-
     public function move(){
         if(waiting){
             timer += HXP.elapsed;
@@ -86,8 +89,16 @@ class Elevator extends PhysicalBody
                 return;
             }
         }
-        var targetX:Float;
-        var targetY:Float;
+        body.position.setxy(x + distX * speed, y + distY * speed);
+        movePlayer(distX*speed, distY*speed);
+        if(body.position.x + range >= targetX && body.position.x - range <= targetX && body.position.y + range >= targetY && body.position.y - range <= targetY){
+            waiting = true;
+            changeDirection();
+        }
+    }
+
+    public function changeDirection(){
+        goingTowardsEnd = !goingTowardsEnd;
         if(goingTowardsEnd){
             targetX = xEnding;
             targetY = yEnding;
@@ -95,16 +106,10 @@ class Elevator extends PhysicalBody
             targetX = xStart;
             targetY = yStart;
         }
-        var distX = targetX - x;
-        var distY = targetY - y;
+        distX = targetX - x;
+        distY = targetY - y;
         var length = EMath.getLengthOfVector([distX, distY]);
         distX /= length;
         distY /= length;
-        body.position.setxy(x + distX * speed, y + distY * speed);
-        movePlayer(distX*speed, distY*speed);
-        if(body.position.x + range >= targetX && body.position.x - range <= targetX && body.position.y + range >= targetY && body.position.y - range <= targetY){
-            goingTowardsEnd = !goingTowardsEnd;
-            waiting = true;
-        }
     }
 }

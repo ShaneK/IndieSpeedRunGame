@@ -42,6 +42,12 @@ class Settings {
     public static var Space:Space;
     public static var Scene:Scene;
 
+#if android
+    public static var IsMobile:Bool = true;
+#else
+    public static var IsMobile:Bool = false;
+#end
+
     public static function restoreDefault(){
 		Paused = false;
 		Health = 100;
