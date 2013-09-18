@@ -43,8 +43,14 @@ class Slider extends Entity
 
         sliderText = new Text(Math.ceil((value/maxValue)*100) + "%");
         sliderText.size = textSize;
-        sliderText.x = foreground.x + (foreground.scaledWidth/2) - sliderText.textWidth*.5;
-        sliderText.y = foreground.y + (foreground.scaledHeight/2) - sliderText.textHeight*.5;
+        var sliderTextWidthOffset = (sliderText.textWidth*.5);
+        var sliderTextHeightOffset = (sliderText.textHeight*.5);
+        if(Settings.IsMobile){
+            sliderTextWidthOffset /= HXP.screen.scale;
+            sliderTextHeightOffset /= HXP.screen.scale;
+        }
+        sliderText.x = foreground.x + (foreground.scaledWidth/2) - sliderTextWidthOffset;
+        sliderText.y = foreground.y + (foreground.scaledHeight/2) - sliderTextHeightOffset;
         sliderText.color = textColor;
 		sliderText.scrollX = 0;
 		sliderText.scrollY = 0;

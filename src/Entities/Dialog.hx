@@ -3,6 +3,8 @@ package entities;
 import com.haxepunk.Entity;
 import com.haxepunk.graphics.Image;
 import com.haxepunk.graphics.Text;
+import classes.Settings;
+import com.haxepunk.HXP;
 
 class Dialog extends Entity
 {
@@ -24,9 +26,18 @@ class Dialog extends Entity
         addGraphic(foreground);
 
         dialogText = new Text(text);
-        dialogText.size = 8;
-        dialogText.x = foreground.x + (foreground.width/2) - dialogText.textWidth*.5;
-        dialogText.y = foreground.y + (foreground.scaledHeight/2) - dialogText.textHeight*.5;
+        dialogText.size = Settings.TextSize;
+
+        var dialogTextWidthOffset = (dialogText.textWidth*.5);
+        var dialogTextHeightOffset = (dialogText.textHeight*.5);
+
+        if(Settings.IsMobile){
+            dialogTextWidthOffset /= HXP.screen.scale;
+            dialogTextHeightOffset /= HXP.screen.scale;
+        }
+
+        dialogText.x = foreground.x + (foreground.scaledWidth/2) - dialogTextWidthOffset;
+        dialogText.y = foreground.y + (foreground.scaledHeight/2) - dialogTextHeightOffset;
         dialogText.color = 0x000000;
         addGraphic(dialogText);
 

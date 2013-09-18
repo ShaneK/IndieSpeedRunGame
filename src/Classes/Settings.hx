@@ -38,6 +38,12 @@ class Settings {
     	return new scenes.Credits();
     }
 
+#if android
+    public static var TextSize = 30;
+#else
+    public static var TextSize = 8;
+#end
+
     //Space
     public static var Space:Space;
     public static var Scene:Scene;

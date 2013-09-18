@@ -72,7 +72,7 @@ class Tutorial extends Scene
         for(spawner in spawners){
             spawner.spawn();
         }
-        slider = new entities.Slider(0, 0, 55, 12, 8, Settings.MaxHealth, Settings.Health, 0x000000, 0xBB0000, 0xFFFFFF);
+        slider = new entities.Slider(0, 0, 55, 12, Settings.TextSize, Settings.MaxHealth, Settings.Health, 0x000000, 0xBB0000, 0xFFFFFF);
         add(slider);
     }
 
