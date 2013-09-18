@@ -65,6 +65,9 @@ class Tutorial extends Scene
 
         spawners = new Array<Spawner>();
         createMap();
+
+        add(new entities.android.Joypad());
+        add(new entities.android.Jump());
         // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
 
@@ -162,10 +165,17 @@ class Tutorial extends Scene
     }
 
     public function placeFloatingDialogs(){
-        add(new entities.Dialog(22*16, 29*16, 160, 30, "Welcome to Do No Harm!\nUse your arrow keys to move!"));
-        add(new entities.Dialog(36*16, 29*16, 120, 20, "Press x to attack"));
-        add(new entities.Dialog(48*16, 29*16, 120, 20, "Use shift to run"));
-        add(new entities.Dialog(62*16, 29*16, 120, 20, "Use space to jump"));
+        if(Settings.IsMobile){
+            add(new entities.Dialog(22*16, 29*16, 160, 30, "Welcome to Do No Harm!\nUse your imagination to move!"));
+            add(new entities.Dialog(36*16, 29*16, 120, 20, "Press the attack button to attack"));
+            add(new entities.Dialog(48*16, 29*16, 120, 20, "Use the run button to run"));
+            add(new entities.Dialog(62*16, 29*16, 120, 20, "Use the jump button to jump"));
+        }else{
+            add(new entities.Dialog(22*16, 29*16, 160, 30, "Welcome to Do No Harm!\nUse your arrow keys to move!"));
+            add(new entities.Dialog(36*16, 29*16, 120, 20, "Press x to attack"));
+            add(new entities.Dialog(48*16, 29*16, 120, 20, "Use shift to run"));
+            add(new entities.Dialog(62*16, 29*16, 120, 20, "Use space to jump"));
+        }
         add(new entities.Dialog(79*16, 29*16, 90, 20, "Avoid hazards!"));
         add(new entities.Dialog(100*16, 29*16, 140, 30, "Totems control the elements.\nHit up to interact"));
         add(new entities.Dialog(113*16, 29*16, 140, 20, "Don't let your health hit zero!"));

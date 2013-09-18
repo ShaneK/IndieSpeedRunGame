@@ -16,52 +16,73 @@ class Button extends Entity
     var buttonForeground:Image;
     var buttonText:Text;
     var preservedTouches:Map<Int,Touch>;
+    var vis:Bool;
+    var w:Int;
+    var h:Int;
+    var hitThisFrame:Bool;
  
-    public function new(x:Float, y:Float, width:Int, height:Int, text:String)
+    public function new(x:Float, y:Float, width:Int, height:Int, text:String, visible:Bool = true)
     {
         super(x, y);
  
-        buttonStroke = Image.createRect(width, height, 0x999999);
-        addGraphic(buttonStroke);
- 
-        buttonForeground = Image.createRect(width-4, height-4, 0xDDDDDD);
-        buttonForeground.x = buttonStroke.x + 2;
-        buttonForeground.y = buttonStroke.y + 2;
-        addGraphic(buttonForeground);
- 
- 
-        buttonText = new Text(text);
-        buttonText.size = 30;
-        buttonText.x = buttonForeground.x + (buttonForeground.width/2) - buttonText.textWidth*.5;
-        buttonText.y = buttonForeground.y + (buttonForeground.scaledHeight/2) - buttonText.textHeight*.5;
-        buttonText.color = 0x000000;
-        addGraphic(buttonText);
+        if(visible){
+            buttonStroke = Image.createRect(width, height, 0x999999);
+            addGraphic(buttonStroke);
+     
+            buttonForeground = Image.createRect(width-4, height-4, 0xDDDDDD);
+            buttonForeground.x = buttonStroke.x + 2;
+            buttonForeground.y = buttonStroke.y + 2;
+            addGraphic(buttonForeground);
+     
+     
+            buttonText = new Text(text);
+            buttonText.size = 30;
+            buttonText.x = buttonForeground.x + (buttonForeground.width/2) - buttonText.textWidth*.5;
+            buttonText.y = buttonForeground.y + (buttonForeground.scaledHeight/2) - buttonText.textHeight*.5;
+            buttonText.color = 0x000000;
+            addGraphic(buttonText);
+        }
+
+        this.vis = visible;
+        this.w = width;
+        this.h = height;
   
         type = "button";
+        layer = 0;
     }
  
     public override function update()
     {
         super.update();
+        hitThisFrame = false;
         var touches:Map<Int,Touch> = Input.touches;
-        if(Input.mouseDown){
+        if(Lambda.count(touches) > 0){
+            // trace("Touched");
+            preservedTouches = touches;
+            touched = true;
+            for(elem in preservedTouches){
+                trace("NEW X: " + elem.x + HXP.camera.x + ", NEW Y: " + elem.y + HXP.camera.y);
+                if(hit(elem.x + HXP.camera.x, elem.y + HXP.camera.y)){
+                    hitThisFrame = true;
+                    goActive();
+                    onClick();
+                }else{
+                    goInactive();
+                }
+            }
+            if(!hitThisFrame){
+                onRelease();
+                goInactive();
+                touched = false;
+            }
+        }else if(Input.mouseDown){
+            // trace("MOUSE DOWN");
             clicked = true;
             if(hit(scene.mouseX, scene.mouseY)){
                 goActive();
                 onClick();
             }else{
                 goInactive();
-            }
-        }else if(Lambda.count(touches) > 0){
-            touched = true;
-            preservedTouches = touches;
-            for(elem in preservedTouches){
-                if(hit(elem.x, elem.y)){
-                    goActive();
-                    onClick();
-                }else{
-                    goInactive();
-                }
             }
         }else if(clicked && Input.mouseReleased){
             if(hit(scene.mouseX, scene.mouseY)){
@@ -70,11 +91,7 @@ class Button extends Entity
             goInactive();
             clicked = false;
         }else if(touched){
-            for(elem in preservedTouches){
-                if(hit(elem.x, elem.y)){
-                    onRelease();
-                }
-            }
+            onRelease();
             goInactive();
             touched = false;
         }
@@ -91,6 +108,8 @@ class Button extends Entity
     }
  
     public function goActive(){
+        if(!vis) return;
+
         //Before X and Y
         var beforeX:Float = buttonStroke.scaledWidth;
         var beforeY:Float = buttonStroke.scaledHeight;
@@ -119,6 +138,7 @@ class Button extends Entity
     }
  
     public function goInactive(){
+        if(!vis) return;
         //Before X and Y
         var beforeX:Float = buttonStroke.scaledWidth;
         var beforeY:Float = buttonStroke.scaledHeight;
@@ -147,6 +167,10 @@ class Button extends Entity
     }
  
     public function hit(rX:Float, rY:Float){
-        return collideRect(rX, rY, x, y, buttonStroke.scaledWidth, buttonStroke.scaledHeight);
+        if(vis){
+            return collideRect(rX, rY, x, y, buttonStroke.scaledWidth, buttonStroke.scaledHeight);
+        }else{
+            return collideRect(rX, rY, x, y, w, h);
+        }
     }
 }

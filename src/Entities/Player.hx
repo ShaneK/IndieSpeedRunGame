@@ -16,6 +16,7 @@ import nape.phys.Material;
 
 import classes.EMath;
 import classes.Settings;
+import entities.android.Controller;
  
 class Player extends PhysicalBody
 {
@@ -35,13 +36,8 @@ class Player extends PhysicalBody
     private var levelingUp:Bool = false;
     private var levelUpTimeout:Float = 0;
 
-#if debug
-    var maximumSpeed = 10000;
-    var jumpAmount = 410;
-#else
     var maximumSpeed = 75;
     var jumpAmount = 110;
-#end
     var jumpVelocity = 0;
     var isFalling = false;
 
@@ -105,28 +101,24 @@ class Player extends PhysicalBody
 
     public function handleInput(){         
         var speed = maximumSpeed * .5;
-        if(Input.check("run")){
+        if(Input.check("run") || Controller.RunButtonHit){
             speed = maximumSpeed;
-        }else{
-#if debug
-            speed = maximumSpeed * .01;
-#end
         }
-        if (Input.check("left"))
+        if (Input.check("left") || Controller.LeftButtonHit)
         {
             velocityX += speed;
         } 
         
-        if (Input.check("right"))
+        if (Input.check("right") || Controller.RightButtonHit)
         {
             velocityX -= speed;
         }
 
-        if(Input.check("attack")){
+        if(Input.check("attack") || Controller.AttackButtonHit){
             attack();
         }
 
-        if(Input.check('jump') && isOnGround()){
+        if((Input.check('jump') || Controller.JumpButtonHit) && isOnGround()){
             jumpVelocity = jumpAmount;            
             jumpSnd.play();
         }
@@ -148,7 +140,7 @@ class Player extends PhysicalBody
         if (body.velocity.x > 10 || body.velocity.x < -10)
         {
             goingLeft = body.velocity.x <= 0;
-            Input.check('run') ? sprite.play("run") : sprite.play("walk");
+            Input.check('run') || Controller.RunButtonHit ? sprite.play("run") : sprite.play("walk");
             sprite.flipped = goingLeft;
         }
         else

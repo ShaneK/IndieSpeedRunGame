@@ -13,11 +13,7 @@ class Settings {
 	public static var SoundMuted:Bool = false;
 
 	//Game data
-#if debug
-	public static var MaxHealth:Int = 100000;
-#else
 	public static var MaxHealth:Int = 100;
-#end
 	public static var Health:Int = 100;
 	public static var Kills:Int = 0;
 	public static var Attacks:Int = 0;
