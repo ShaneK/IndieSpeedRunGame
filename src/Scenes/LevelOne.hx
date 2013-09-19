@@ -66,16 +66,13 @@ class LevelOne extends Scene
         spawners = new Array<Spawner>();
         createMap();
 
-        Settings.sfx.stop();
+        if(Settings.sfx != null){
+            Settings.sfx.stop();
+        }
         Settings.sfx = new Sfx("sfx/haunted.mp3");
         Settings.sfx.loop();
         Settings.sfx.volume = .33;
         Settings.sfx.type = "MUSIC";
-
-        if(Settings.IsMobile){
-            add(new entities.android.Joypad());
-            add(new entities.android.Jump());
-        }
     }
 
     public override function begin(){
@@ -179,6 +176,11 @@ class LevelOne extends Scene
         placeHazards();
         placeElevators(7);
         placeLevelUpTiles(levelUpTiles);
+
+        if(Settings.IsMobile){
+            add(new entities.android.Joypad());
+            add(new entities.android.Jump());
+        }
     }
 
     public function placeLevelUpTiles(levelUpTiles:Array<TmxVec5>){

@@ -126,7 +126,8 @@ class Credits extends Scene
         text.size = 32;
         text.x = x;
         text.y = y;
-        text.color = 0x000000;
+        text.color = 0xFFFFFF;
+        text.alpha = 0;
         addGraphic(text);
 
         return text;

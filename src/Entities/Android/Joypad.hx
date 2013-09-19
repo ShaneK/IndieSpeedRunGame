@@ -11,13 +11,20 @@ class Joypad extends entities.buttons.Button {
 	private var joypadWidth:Int;
 	private var joypadHeight:Int;
 	private var orgX:Float = 0;
+	private static var count:Int = 0;
 
 	public function new(){
-		this.actualScreenHeight = Math.floor(HXP.height/HXP.screen.scaleY);
-		this.actualScreenWidth = Math.floor(HXP.width/HXP.screen.scaleX);
+		if(count > 0){
+			this.actualScreenHeight = Math.floor(HXP.height);
+			this.actualScreenWidth = Math.floor(HXP.width);
+		}else{
+			this.actualScreenHeight = Math.floor(HXP.height/HXP.screen.scaleY);
+			this.actualScreenWidth = Math.floor(HXP.width/HXP.screen.scaleX);
+		}
 		this.joypadHeight = Math.floor(actualScreenHeight/2);
 		this.joypadWidth = Math.floor(actualScreenWidth/2);
 		super(0, 0, joypadWidth, joypadHeight, "Test", false);
+		count++;
 	}
 
 	public override function update(){
