@@ -57,11 +57,9 @@ class Button extends Entity
         hitThisFrame = false;
         var touches:Map<Int,Touch> = Input.touches;
         if(Lambda.count(touches) > 0){
-            // trace("Touched");
             preservedTouches = touches;
             touched = true;
             for(elem in preservedTouches){
-                trace("NEW X: " + elem.x + HXP.camera.x + ", NEW Y: " + elem.y + HXP.camera.y);
                 if(hit(elem.x + HXP.camera.x, elem.y + HXP.camera.y)){
                     hitThisFrame = true;
                     goActive();
@@ -76,7 +74,6 @@ class Button extends Entity
                 touched = false;
             }
         }else if(Input.mouseDown){
-            // trace("MOUSE DOWN");
             clicked = true;
             if(hit(scene.mouseX, scene.mouseY)){
                 goActive();

@@ -32,8 +32,8 @@ class Dialog extends Entity
         var dialogTextHeightOffset = (dialogText.textHeight*.5);
 
         if(Settings.IsMobile){
-            dialogTextWidthOffset /= HXP.screen.scale;
-            dialogTextHeightOffset /= HXP.screen.scale;
+            dialogTextWidthOffset /= HXP.screen.scaleX;
+            dialogTextHeightOffset /= HXP.screen.scaleX;
         }
 
         dialogText.x = foreground.x + (foreground.scaledWidth/2) - dialogTextWidthOffset;

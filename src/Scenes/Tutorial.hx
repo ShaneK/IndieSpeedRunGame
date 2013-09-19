@@ -54,7 +54,8 @@ class Tutorial extends Scene
     {
         super();
 
-        HXP.screen.scale = 4;
+        // HXP.screen.scale = 4;
+        HXP.screen.scaleX = HXP.screen.scaleY = 4;
         var bg = new entities.Background(0, 0);
         add(bg);
 
@@ -66,8 +67,10 @@ class Tutorial extends Scene
         spawners = new Array<Spawner>();
         createMap();
 
-        add(new entities.android.Joypad());
-        add(new entities.android.Jump());
+        if(Settings.IsMobile){
+            add(new entities.android.Joypad());
+            add(new entities.android.Jump());
+        }
         // add(new WaterEmitter(500, 500, 490, 0, 10));
     }
 

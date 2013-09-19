@@ -13,8 +13,8 @@ class Jump extends entities.buttons.Button {
 
 
 	public function new(){
-		this.actualScreenHeight = Math.floor(HXP.height/HXP.screen.scale);
-		this.actualScreenWidth = Math.floor(HXP.width/HXP.screen.scale);
+		this.actualScreenHeight = Math.floor(HXP.height/HXP.screen.scaleY);
+		this.actualScreenWidth = Math.floor(HXP.width/HXP.screen.scaleX);
 		this.jumpButtonHeight = Math.floor(actualScreenHeight/10);
 		this.jumpButtonWidth = Math.floor(actualScreenWidth/10);
 		super(0, 0, jumpButtonWidth, jumpButtonHeight, "", true);

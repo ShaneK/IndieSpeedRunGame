@@ -46,8 +46,8 @@ class Slider extends Entity
         var sliderTextWidthOffset = (sliderText.textWidth*.5);
         var sliderTextHeightOffset = (sliderText.textHeight*.5);
         if(Settings.IsMobile){
-            sliderTextWidthOffset /= HXP.screen.scale;
-            sliderTextHeightOffset /= HXP.screen.scale;
+            sliderTextWidthOffset /= HXP.screen.scaleX;
+            sliderTextHeightOffset /= HXP.screen.scaleY;
         }
         sliderText.x = foreground.x + (foreground.scaledWidth/2) - sliderTextWidthOffset;
         sliderText.y = foreground.y + (foreground.scaledHeight/2) - sliderTextHeightOffset;

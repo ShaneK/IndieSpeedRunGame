@@ -54,7 +54,7 @@ class LevelTwo extends Scene
     {
         super();
 
-        HXP.screen.scale = 4;
+        HXP.screen.scaleX = HXP.screen.scaleY = 4;
         var bg = new entities.Background(0, 0);
         add(bg);
 
@@ -73,6 +73,11 @@ class LevelTwo extends Scene
 
          
         // add(new WaterEmitter(500, 500, 490, 0, 10));
+
+        if(Settings.IsMobile){
+            add(new entities.android.Joypad());
+            add(new entities.android.Jump());
+        }
     }
 
     public override function begin(){

@@ -120,7 +120,7 @@ class Player extends PhysicalBody
 
         if((Input.check('jump') || Controller.JumpButtonHit) && isOnGround()){
             jumpVelocity = jumpAmount;            
-            jumpSnd.play();
+            // jumpSnd.play();
         }
         else{
             jumpVelocity = 0;    
