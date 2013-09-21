@@ -8,7 +8,7 @@ class Controller {
 	public static var UpButtonHit:Bool = false;
 	public static var RightButtonHit:Bool = false;
 	public static var LeftButtonHit:Bool = false;
-	public static var RunButtonHit:Bool = true;
+	public static var RunButtonHit:Bool = false;
 	public static var JumpButtonHit:Bool = false;
 	public static var AttackButtonHit:Bool = false;
 }

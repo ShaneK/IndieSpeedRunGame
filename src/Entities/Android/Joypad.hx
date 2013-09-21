@@ -12,6 +12,7 @@ class Joypad extends entities.buttons.Button {
 	private var joypadHeight:Int;
 	private var orgX:Float = 0;
 	private static var count:Int = 0;
+	private var runDistance:Int = 20;
 
 	public function new(){
 		if(count > 0){
@@ -48,9 +49,19 @@ class Joypad extends entities.buttons.Button {
 						continue;
 					}
 					if(elem.x > orgX){
+						if(elem.x - orgX >= runDistance){
+							Controller.RunButtonHit = true;
+						}else{
+							Controller.RunButtonHit = false;
+						}
 						Controller.RightButtonHit = true;
 						Controller.LeftButtonHit = false;
 					}else{
+						if(orgX - elem.x >= runDistance){
+							Controller.RunButtonHit = true;
+						}else{
+							Controller.RunButtonHit = false;
+						}
 						Controller.RightButtonHit = false;
 						Controller.LeftButtonHit = true;
 					}
@@ -63,6 +74,7 @@ class Joypad extends entities.buttons.Button {
 	public override function onRelease(){
 		Controller.RightButtonHit = false;
 		Controller.LeftButtonHit = false;
+		Controller.RunButtonHit = false;
 		orgX = 0;
 		super.onRelease();
 	}
