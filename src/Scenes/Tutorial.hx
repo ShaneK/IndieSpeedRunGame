@@ -40,9 +40,4 @@ class Tutorial extends Level
         add(new entities.Dialog(113*16, 29*16, 140, 20, "Don't let your health hit zero!"));
         add(new entities.Dialog(128*16, 29*16, 90, 20, "Have fun!"));
     }
- 
-    public override function update()
-    {        
-        super.update();
-    }
 }

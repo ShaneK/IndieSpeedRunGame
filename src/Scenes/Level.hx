@@ -22,8 +22,6 @@ import nape.phys.Material;
 import com.haxepunk.tmx.TmxEntity;
 import com.haxepunk.tmx.TmxVec5;
 
-import classes.PlanetBody;
-
 import entities.npcs.Spawner;
 import entities.emitters.WaterEmitter;
 import entities.emitters.FireEmitter;
@@ -39,7 +37,6 @@ class Level extends Scene
     private var floor:Entity;
     private var floorBody:Body;
     private var dragging:entities.Circle;
-    private var planetList:Array<PlanetBody>;
     private var samplePoint:Body;
     private var tmxEntity:TmxEntity;
     private var cameraOffset:Int = 5;
@@ -47,8 +44,6 @@ class Level extends Scene
     private var freeCamera:Bool = true;
     private var heldCameraTime:Float = 0;
     private var slider:entities.Slider;
-    private var map:String;
-
     private var spawners:Array<Spawner>;
 
     public function new(map:String, music:String = null)
@@ -65,8 +60,7 @@ class Level extends Scene
         Settings.Scene = this;
 
         spawners = new Array<Spawner>();
-        this.map = map;
-        createMap();
+        createMap(map);
 
         if(music != null){
             if(Settings.sfx != null){
@@ -115,7 +109,7 @@ class Level extends Scene
         }
     }
 
-    public function createMap()
+    public function createMap(map:String)
     {
         // create the map, set the assets in your nmml file to bytes
         tmxEntity = new TmxEntity(map);
@@ -132,10 +126,6 @@ class Level extends Scene
                 case 'farmer': spawners.push(new Spawner(Std.int(spawnTile.x), Std.int(spawnTile.y), FARMER));   
             }
         }
-
-        // var npc = new entities.npcs.Trainer(27*16, 18*16);
-        // addObjectToSpace(npc);
-        // add(new entities.SpeechBubble(110, 10, "Press up to talk to me", npc.getBody()));
 
         var t = new TmxEntity(map);
         t.loadGraphic("gfx/tileset.png", ["Top"]);
