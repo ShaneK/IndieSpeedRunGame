@@ -77,6 +77,7 @@ class Farmer extends NPC
                 alerted = true;      
                 alrtSnd.play();
             }
+            facePlayer();
         }
         else{
             if(atkTime > 1){
@@ -89,7 +90,7 @@ class Farmer extends NPC
 
      private function setAnimations()
      {
-        sprite.flipped = body.velocity.x < 0;
+        sprite.flipped = direction > 0;
         if(isCowering){            
             sprite.play('cower');
             return;

@@ -35,6 +35,7 @@ class NPC extends PhysicalBody
         body = new Body();
         var polygon = new Circle(width/2, new Vec2(width/2,18));
         polygon.filter.collisionGroup = 2;
+        polygon.filter.collisionMask = ~2;
         body.shapes.add(polygon);
         body.position.setxy(x, y-height);
         body.setShapeMaterials(Material.steel());
@@ -78,6 +79,11 @@ class NPC extends PhysicalBody
             direction = EMath.randomSignWithZero();
             randTimer = 0;
         }
-        body.kinematicVel.x = direction * speed * HXP.elapsed;            
+        body.kinematicVel.x = direction * speed * HXP.elapsed;   
+    }
+
+    public function facePlayer(){
+        var difference = x - Settings.Player.getBody().position.x;
+        direction = HXP.sign(difference);
     }
 }

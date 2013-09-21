@@ -78,6 +78,7 @@ class Warrior extends NPC
                 alerted = true;      
                 alrtSnd.play();
             }
+            facePlayer();
         }
         else{
             if(atkTime > .5){
@@ -89,7 +90,7 @@ class Warrior extends NPC
 
      private function setAnimations()
      {
-        sprite.flipped = body.velocity.x < 0;
+        sprite.flipped = direction > 0;
         if(isAttacking){
             sprite.play('attack');
             return;
