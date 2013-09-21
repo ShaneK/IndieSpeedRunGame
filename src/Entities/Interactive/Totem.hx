@@ -18,7 +18,7 @@ class Totem extends InteractiveEntity {
 	public function new(x:Float, y:Float, upHit:Void->Void){
 		width = 16;
 		height = 16;
-		super(x, y, new Sfx("sfx/SFX/Pray.mp3", upHit), "Press Up to Pray.");
+		super(x, y, new Sfx("sfx/SFX/Pray.ogg", upHit), "Press Up to Pray.");
 
 		sprite = new Spritemap("gfx/tileset.png", 16, 16);
 		sprite.add("neutral", [25]);

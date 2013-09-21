@@ -37,8 +37,8 @@ class Farmer extends NPC
         sprite.scaledHeight = height;
         sprite.play("idle");
 
-        alrtSnd = new Sfx("sfx/SFX/Farmer_Alert.mp3");
-        hurtSnd = new Sfx("sfx/SFX/Farmer_Hurt.mp3");
+        alrtSnd = new Sfx("sfx/SFX/Farmer_Alert.ogg");
+        hurtSnd = new Sfx("sfx/SFX/Farmer_Hurt.ogg");
         
         graphic = sprite;
         layer = 3;

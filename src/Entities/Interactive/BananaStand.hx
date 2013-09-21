@@ -38,7 +38,7 @@ class BananaStand extends InteractiveEntity {
 				showDialog = false;
 			}
 		};
-		super(x, y, new Sfx("sfx/SFX/GodYes.mp3", takeBanana), "Press Up to steal banana.");
+		super(x, y, new Sfx("sfx/SFX/GodYes.ogg", takeBanana), "Press Up to steal banana.");
 	}
 
 	public override function update(){

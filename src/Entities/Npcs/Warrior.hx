@@ -36,8 +36,8 @@ class Warrior extends NPC
         sprite.scaledHeight = height;
         sprite.play("idle");
 
-        alrtSnd = new Sfx("sfx/SFX/Warrior_Alert.mp3");
-        hurtSnd = new Sfx("sfx/SFX/Warrior_Hurt.mp3");
+        alrtSnd = new Sfx("sfx/SFX/Warrior_Alert.ogg");
+        hurtSnd = new Sfx("sfx/SFX/Warrior_Hurt.ogg");
         
         graphic = sprite;
         layer = 3;

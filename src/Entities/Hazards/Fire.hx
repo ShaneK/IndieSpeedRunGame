@@ -48,7 +48,7 @@ class Fire extends Entity {
 
 	private function setRandomHurtSFX(){
 		var hurtnum = Std.random(2) + 1;
-		hurtSnd = new Sfx("sfx/SFX/Hurt"+hurtnum+".mp3", hurtCallback);
+		hurtSnd = new Sfx("sfx/SFX/Hurt"+hurtnum+".ogg", hurtCallback);
 		hurtSnd.type = "SFX";
 	}
 
