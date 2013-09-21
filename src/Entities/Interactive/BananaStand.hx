@@ -15,6 +15,11 @@ class BananaStand extends InteractiveEntity {
 	private var h:Float;
 	var sprite:Spritemap;
 	var hasBanana:Bool = true;
+#if android
+	private static var floatingText = "Click to steal banana";
+#else
+	private static var floatingText = "Press up to steal banana";
+#end
 
 	public function new(x:Float, y:Float, upHit:Void->Void){
 		width = 16;
@@ -38,7 +43,7 @@ class BananaStand extends InteractiveEntity {
 				showDialog = false;
 			}
 		};
-		super(x, y, new Sfx("sfx/SFX/GodYes" + Settings.SoundEffectsFileType, takeBanana), "Press Up to steal banana.");
+		super(x, y, new Sfx("sfx/SFX/GodYes" + Settings.SoundEffectsFileType, takeBanana), floatingText);
 	}
 
 	public override function update(){
