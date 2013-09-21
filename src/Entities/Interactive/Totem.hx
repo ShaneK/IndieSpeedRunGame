@@ -9,16 +9,23 @@ import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Key;
 import com.haxepunk.Sfx;
 
+import classes.Settings;
+
 class Totem extends InteractiveEntity {
 	private var w:Float;
 	private var h:Float;
 	var sprite:Spritemap;
-	
+#if android
+	private static var floatingText = "Click to pray";
+#else
+	private static var floatingText = "Press up to pray";
+#end
 
 	public function new(x:Float, y:Float, upHit:Void->Void){
 		width = 16;
 		height = 16;
-		super(x, y, new Sfx("sfx/SFX/Pray.ogg", upHit), "Press Up to Pray.");
+
+		super(x, y, new Sfx("sfx/SFX/Pray" + Settings.SoundEffectsFileType, upHit), floatingText);
 
 		sprite = new Spritemap("gfx/tileset.png", 16, 16);
 		sprite.add("neutral", [25]);

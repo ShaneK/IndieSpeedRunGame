@@ -44,6 +44,12 @@ class Settings {
     public static var TextSize = 8;
 #end
 
+#if android
+	public static var SoundEffectsFileType = ".ogg";
+#else
+	public static var SoundEffectsFileType = ".mp3";
+#end
+
     //Space
     public static var Space:Space;
     public static var Scene:Scene;

@@ -6,8 +6,12 @@ import com.haxepunk.graphics.Emitter;
 import com.haxepunk.graphics.Spritemap;
 import com.haxepunk.graphics.Image;
 import com.haxepunk.utils.Input;
+import com.haxepunk.utils.Touch;
 import com.haxepunk.utils.Key;
 import com.haxepunk.Sfx;
+
+import entities.android.Controller;
+import classes.Settings;
 
 class InteractiveEntity extends Entity {
 	var isColliding:Bool;
@@ -28,10 +32,23 @@ class InteractiveEntity extends Entity {
 	}
 
 	public function handleInput(){
-        if (Input.check(Key.UP) && isColliding && !sfx.playing)
-        {        	
-        	sfx.play();
-        }
+	    if (isColliding && !sfx.playing)
+	    {     
+			if(Settings.IsMobile){
+				if(Controller.RightButtonHit || Controller.LeftButtonHit) return; //Player is moving, ignore this.
+		        var touches:Map<Int,Touch> = Input.touches;
+		        if(Lambda.count(touches) > 0){
+		            for(elem in touches){
+		                if(collideRect(elem.x + HXP.camera.x, elem.y + HXP.camera.y, x, y, 16, 16)){
+	    					sfx.play();
+	    					return;
+		                }
+		            }
+		        }
+		    }else if(Input.check(Key.UP)){
+	    		sfx.play();
+		    }
+	    }
 	}
 
 	public function checkForCollision(){

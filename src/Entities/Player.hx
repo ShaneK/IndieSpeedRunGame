@@ -69,10 +69,10 @@ class Player extends PhysicalBody
 
         goingLeft = false;
         
-        jumpSnd = new Sfx('sfx/SFX/Jump.ogg');
-        landSnd = new Sfx('sfx/SFX/Land.ogg');
-        atkSnd = new Sfx('sfx/SFX/Hurt1.ogg');
-        dieSnd = new Sfx('sfx/SFX/Die.ogg');
+        jumpSnd = new Sfx('sfx/SFX/Jump' + Settings.SoundEffectsFileType);
+        landSnd = new Sfx('sfx/SFX/Land' + Settings.SoundEffectsFileType);
+        atkSnd = new Sfx('sfx/SFX/Hurt1' + Settings.SoundEffectsFileType);
+        dieSnd = new Sfx('sfx/SFX/Die' + Settings.SoundEffectsFileType);
 
         graphic = sprite;        
         layer = 2;
