@@ -18,6 +18,11 @@ import nape.phys.BodyType;
 import nape.shape.Polygon;
 import nape.space.Space;
 import nape.phys.Material;
+import nape.callbacks.PreListener;
+import nape.callbacks.CbType;
+import nape.callbacks.PreFlag;
+import nape.callbacks.PreCallback;
+import nape.callbacks.InteractionType;
 
 import com.haxepunk.tmx.TmxEntity;
 import com.haxepunk.tmx.TmxVec5;
@@ -41,6 +46,7 @@ class Level extends Scene
     private var heldCameraTime:Float = 0;
     private var slider:entities.Slider;
     private var spawners:Array<Spawner>;
+    private var oneWayType:CbType;
 
     public function new(map:String, music:String = null)
     {
@@ -56,6 +62,17 @@ class Level extends Scene
         Settings.Scene = this;
 
         spawners = new Array<Spawner>();
+
+        oneWayType = new CbType();
+        space.listeners.add(new PreListener(
+            InteractionType.COLLISION,
+            oneWayType,
+            CbType.ANY_BODY,
+            oneWayHandler,
+            /*precedence*/ 0,
+            /*pure*/ true
+        ));
+
         createMap(map);
 
         if(music != null){
@@ -66,6 +83,29 @@ class Level extends Scene
             Settings.sfx.loop();
             Settings.sfx.volume = .33;
             Settings.sfx.type = "MUSIC";
+        }
+    }
+
+    public function oneWayHandler(cb:PreCallback):PreFlag {
+        // We assigned the listener to have the one-way platform as first
+        // interactor.
+        //
+        // PreCallback 'swapped' property as API docs describe tells us that
+        // if true; arbiter.normal points from int2 to int1, else from int1 to int2
+        //
+        // To allow objects to move upwards through one-way platforms we must
+        // ignore collisions with arbiter (pointing from one-way platform) whose normal
+        // points down (y > 0). Taking swapped into account we have:
+        //
+        // Equally we gave the interactino type as COLLISION so that accessing
+        // arbiter.collisionArbiter is always valid (non-null).
+        var colArb = cb.arbiter.collisionArbiter;
+ 
+        if ((colArb.normal.y > 0) != cb.swapped) {
+            return PreFlag.IGNORE;
+        }
+        else {
+            return PreFlag.ACCEPT;
         }
     }
 
@@ -119,7 +159,9 @@ class Level extends Scene
                     Settings.Player = new entities.Player(Std.int(spawnTile.x), Std.int(spawnTile.y));
                     addObjectToSpace(Settings.Player);
                 case 'warrior': spawners.push(new Spawner(Std.int(spawnTile.x), Std.int(spawnTile.y), WARRIOR));   
-                case 'farmer': spawners.push(new Spawner(Std.int(spawnTile.x), Std.int(spawnTile.y), FARMER));   
+                case 'farmer': spawners.push(new Spawner(Std.int(spawnTile.x), Std.int(spawnTile.y), FARMER));
+                default:
+                    trace("UNKNOWN SPAWN TYPE: " + spawnType);
             }
         }
 
@@ -172,7 +214,7 @@ class Level extends Scene
                     beginningY = elevator.y;
                 }
             }
-            addObjectToSpace(new entities.Elevator(beginningX, beginningY, endingX, endingY));
+            addObjectToSpace(new entities.Elevator(beginningX, beginningY, endingX, endingY, oneWayType));
         }
     }
 

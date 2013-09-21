@@ -28,7 +28,7 @@ class Tutorial extends Level
             add(new entities.Dialog(49*16, 29*16, 170, 30, "Run by moving further away from the\njoypad while holding onto it"));
             add(new entities.Dialog(62*16, 29*16, 130, 20, "Use the jump button to jump"));
             add(new entities.Dialog(79*16, 29*16, 90, 20, "Avoid hazards!"));
-            add(new entities.Dialog(100*16, 29*16, 170, 30, "Totems control the elements.\nStand by them and click on them to\ninteract"));
+            add(new entities.Dialog(95*16, 29*16, 170, 30, "Totems control the elements.\nStand by them and click on them to\ninteract"));
         }else{
             add(new entities.Dialog(22*16, 29*16, 160, 30, "Welcome to Do No Harm!\nUse your arrow keys to move!"));
             add(new entities.Dialog(36*16, 29*16, 120, 20, "Press x to attack"));

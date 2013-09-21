@@ -2,6 +2,7 @@ package entities;
 
 import com.haxepunk.Entity;
 import com.haxepunk.graphics.Image;
+import com.haxepunk.graphics.Spritemap;
  
 import com.haxepunk.HXP;
 import nape.phys.Body;
@@ -9,7 +10,7 @@ import nape.phys.BodyType;
 import nape.shape.Polygon;
 import nape.geom.Vec2;
 import nape.phys.Material;
-import com.haxepunk.graphics.Spritemap;
+import nape.callbacks.CbType;
 
 import classes.EMath;
 
@@ -31,7 +32,7 @@ class Elevator extends PhysicalBody
     private var targetX:Float;
     private var targetY:Float;
 
-    public function new(xb:Float, yb:Float, xe:Float, ye:Float, duration:Float = 1, speed:Int = 1)
+    public function new(xb:Float, yb:Float, xe:Float, ye:Float, cbType:CbType)
     {
         super(xb+2, yb);
         width = 15;
@@ -42,6 +43,7 @@ class Elevator extends PhysicalBody
         body.shapes.add(polygon);
         body.position.setxy(x, y);
         body.allowRotation = false;
+        body.cbTypes.add(cbType);
 
         sprite = new Spritemap("gfx/tileset.png", 16, 16);
         sprite.add("elevator", [11]);
@@ -53,8 +55,8 @@ class Elevator extends PhysicalBody
         xEnding = xe;
         yEnding = ye;
 
-        this.duration = duration;
-        this.speed = speed;
+        this.duration = 1;
+        this.speed = 1;
         timer = 0;
         range = .5;
 
