@@ -68,10 +68,10 @@ class Level extends Scene
         this.map = map;
         createMap();
 
-        if(Settings.sfx != null){
-            Settings.sfx.stop();
-        }
         if(music != null){
+            if(Settings.sfx != null){
+                Settings.sfx.stop();
+            }
             Settings.sfx = new Sfx(music);
             Settings.sfx.loop();
             Settings.sfx.volume = .33;
