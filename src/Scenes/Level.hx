@@ -34,10 +34,6 @@ import classes.Settings;
 class Level extends Scene
 {
     private var space:Space;
-    private var floor:Entity;
-    private var floorBody:Body;
-    private var dragging:entities.Circle;
-    private var samplePoint:Body;
     private var tmxEntity:TmxEntity;
     private var cameraOffset:Int = 5;
     private var cameraSpeed:Float = .5;
