@@ -22,11 +22,11 @@ class BananaStand extends InteractiveEntity {
 #end
 
 	public function new(x:Float, y:Float, upHit:Void->Void){
-		width = 16;
-		height = 16;
+		width = 64;
+		height = 64;
 		
 
-		sprite = new Spritemap("gfx/tileset.png", 16, 16);
+		sprite = new Spritemap("gfx/tileset.png", 64, 64);
 		sprite.add("stand", [50]);
 		sprite.add("empty", [60]);
 

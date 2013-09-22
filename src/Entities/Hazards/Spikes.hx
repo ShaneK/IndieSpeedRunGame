@@ -27,7 +27,7 @@ class Spikes extends Entity {
 		super(x, y+2);
 		setOrigin(0, 2);
 
-		sprite = new Spritemap("gfx/tileset.png", 16, 16);
+		sprite = new Spritemap("gfx/tileset.png", 64, 64);
 		sprite.add("spikes-normal", [45]);
 		sprite.add("spikes-bloody", [55]);
 

@@ -39,7 +39,7 @@ class InteractiveEntity extends Entity {
 		        var touches:Map<Int,Touch> = Input.touches;
 		        if(Lambda.count(touches) > 0){
 		            for(elem in touches){
-		                if(collideRect(elem.x + HXP.camera.x, elem.y + HXP.camera.y, x, y, 16, 16)){
+		                if(collideRect(elem.x + HXP.camera.x, elem.y + HXP.camera.y, x, y, 64, 64)){
 	    					sfx.play();
 	    					return;
 		                }
@@ -52,7 +52,7 @@ class InteractiveEntity extends Entity {
 	}
 
 	public function checkForCollision(){
-		isColliding = scene.collideRect("player", x, y, 16, 16) != null;
+		isColliding = scene.collideRect("player", x, y, 64, 64) != null;
 	}
 
 	public override function update(){
@@ -64,8 +64,8 @@ class InteractiveEntity extends Entity {
 
 	public function handleDialogDisplay(){
 		if(dialog == null){
-			var width = text.length * 5;
-			dialog = new entities.Dialog(Std.int(x)-28, Std.int(y)-18, width, 10, text);
+			var width = text.length * 15;
+			dialog = new entities.Dialog(Std.int(x)-98, Std.int(y)-58, width, 35, text);
 			dialogOn = false;
 			timer = 0;
 		}

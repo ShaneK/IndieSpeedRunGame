@@ -56,7 +56,7 @@ class Elevator extends PhysicalBody
         yEnding = ye;
 
         this.duration = 1;
-        this.speed = 1;
+        this.speed = 2;
         timer = 0;
         range = .5;
 
@@ -72,11 +72,11 @@ class Elevator extends PhysicalBody
     }
 
     public function movePlayer(xi:Float, yi:Float){
-        var player = scene.collideRect("player", x, y, 16, 16);
+        var player = scene.collideRect("player", x, y-32, 64, 32);
         if(player == null) return;
         var p = cast(player, PhysicalBody);
         var body = p.getBody();
-        if(body.position.y+22 > y-yi) return;
+        if(body.position.y+100 > y-yi) return;
         body.position.x += xi;
         body.position.y += yi;
     }

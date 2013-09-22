@@ -22,9 +22,9 @@ class Warrior extends NPC
 
     public function new(x:Float, y:Float)
     {
-        super(x, y, 12, 24);
-        width = 12;
-        height = 24;
+        width = 46;
+        height = 100;
+        super(x, y, width, height);
 
         sprite = new Spritemap("gfx/warrior.png", 32, 64);        
         sprite.add("idle", [0]);        

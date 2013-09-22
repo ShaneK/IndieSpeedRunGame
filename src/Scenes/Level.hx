@@ -72,7 +72,6 @@ class Level extends Scene
             /*precedence*/ 0,
             /*pure*/ true
         ));
-
         createMap(map);
 
         if(music != null){

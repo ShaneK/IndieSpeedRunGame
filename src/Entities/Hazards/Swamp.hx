@@ -27,7 +27,7 @@ class Swamp extends Entity {
 		super(x + 1, y+1);
 		setOrigin(0, 2);
 
-		sprite = new Spritemap("gfx/tileset.png", 16, 16);
+		sprite = new Spritemap("gfx/tileset.png", 64, 64);
 		sprite.add("swamp", [4]);
 		sprite.play("swamp");
 		graphic = sprite;

@@ -22,12 +22,12 @@ class Totem extends InteractiveEntity {
 #end
 
 	public function new(x:Float, y:Float, upHit:Void->Void){
-		width = 16;
-		height = 16;
+		width = 64;
+		height = 64;
 
 		super(x, y, new Sfx("sfx/SFX/Pray" + Settings.SoundEffectsFileType, upHit), floatingText);
 
-		sprite = new Spritemap("gfx/tileset.png", 16, 16);
+		sprite = new Spritemap("gfx/tileset.png", 64, 64);
 		sprite.add("neutral", [25]);
 		sprite.add("sad", [15]);
 		sprite.add("happy", [35]);

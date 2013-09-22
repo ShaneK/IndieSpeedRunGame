@@ -37,7 +37,7 @@ class Player extends PhysicalBody
     private var levelUpTimeout:Float = 0;
 
     var maximumSpeed = 300;//75;
-    var jumpAmount = 400;
+    var jumpAmount = 350;
     var jumpVelocity = 0;
     var isFalling = false;
 

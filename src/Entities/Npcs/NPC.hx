@@ -19,7 +19,7 @@ class NPC extends PhysicalBody
     var timer:Float = 0;
     var randTimer:Float = 0;
     var direction:Int = 1;
-    var speed:Float = 500;
+    var speed:Float = 800;
     var health:Float = 100;
     var hurtSnd:Sfx;
     var alrtSnd:Sfx;
@@ -33,7 +33,7 @@ class NPC extends PhysicalBody
  		this.height = height;
  		
         body = new Body();
-        var polygon = new Circle(width/2, new Vec2(width/2,18));
+        var polygon = new Circle(width/2, new Vec2(width/2, height*.78));
         polygon.filter.collisionGroup = 2;
         polygon.filter.collisionMask = ~2;
         body.shapes.add(polygon);

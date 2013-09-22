@@ -22,8 +22,8 @@ class Farmer extends NPC
     public function new(x:Float, y:Float)
     {
         startX = x;
-        width = 12;
-        height = 24;
+        width = 46;
+        height = 100;
         super(x, y, width, height);
         
 

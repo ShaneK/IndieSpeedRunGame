@@ -30,7 +30,7 @@ class Fire extends Entity {
 		super(x, y+2);
 		setOrigin(0, 2);
 
-		sprite = new Spritemap("gfx/tileset.png", 16, 16);
+		sprite = new Spritemap("gfx/tileset.png", 64, 64);
 		sprite.add("campfire", [56]);
 		sprite.play("campfire");
 		graphic = sprite;
@@ -66,7 +66,7 @@ class Fire extends Entity {
 
 	public override function update(){
 		if(fire == null){
-			fire = new FireEmitter(6,6,x+3,y+12,-1);
+			fire = new FireEmitter(25,80,x+15,y+55,-1, 4);
 			scene.add(fire);
 		}
 		super.update();
