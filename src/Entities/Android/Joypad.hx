@@ -4,6 +4,7 @@ import com.haxepunk.Entity;
 import com.haxepunk.HXP;
 import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Touch;
+import com.haxepunk.graphics.Image;
 
 class Joypad extends entities.buttons.Button {
 	private var actualScreenHeight:Int;
@@ -11,8 +12,13 @@ class Joypad extends entities.buttons.Button {
 	private var joypadWidth:Int;
 	private var joypadHeight:Int;
 	private var orgX:Float = 0;
+	private var orgY:Float = 0;
+	private var currentX:Float = 0;
+	private var currentY:Float = 0;
 	private static var count:Int = 0;
 	private var runDistance:Int = 20;
+	private var image:Image;
+	private var nob:Image;
 
 	public function new(){
 		if(count > 0){
@@ -26,6 +32,14 @@ class Joypad extends entities.buttons.Button {
 		this.joypadWidth = Math.floor(actualScreenWidth/2);
 		super(0, 0, joypadWidth, joypadHeight, "Test", false);
 		count++;
+
+		image = Image.createCircle(20, 0x888888);
+		image.relative = false;
+		nob = Image.createCircle(17, 0x777777);
+		nob.relative = false;
+		nob.alpha = 0;
+		addGraphic(image);
+		addGraphic(nob);
 	}
 
 	public override function update(){
@@ -36,6 +50,20 @@ class Joypad extends entities.buttons.Button {
 	public override function render(){
 		x = HXP.camera.x;
 		y = HXP.camera.y + actualScreenHeight - joypadHeight;
+		if(orgX == 0){
+			image.x = x + (joypadWidth/4) - (image.scaledWidth/2);
+			image.y = y + (joypadHeight/1.5) - (image.scaledHeight/2);
+		}else{
+			image.x = orgX + HXP.camera.x - (image.scaledWidth/2);
+			image.y = orgY + HXP.camera.y - (image.scaledHeight/2);
+		}
+		if(currentX == 0){
+			nob.alpha = 0;
+		}else{
+			nob.alpha = 1;
+			nob.x = currentX + HXP.camera.x - (nob.scaledWidth/2);
+			nob.y = currentY + HXP.camera.y - (nob.scaledHeight/2);
+		}
 		super.render();
 	}
 
@@ -46,8 +74,11 @@ class Joypad extends entities.buttons.Button {
 				if(hit(elem.x + HXP.camera.x, elem.y + HXP.camera.y)){
 					if(orgX == 0){
 						orgX = elem.x;
+						orgY = elem.y;
 						continue;
 					}
+					currentX = elem.x;
+					currentY = elem.y;
 					if(elem.x > orgX){
 						if(elem.x - orgX >= runDistance){
 							Controller.RunButtonHit = true;
@@ -76,6 +107,7 @@ class Joypad extends entities.buttons.Button {
 		Controller.LeftButtonHit = false;
 		Controller.RunButtonHit = false;
 		orgX = 0;
+		currentX = 0;
 		super.onRelease();
 	}
 }

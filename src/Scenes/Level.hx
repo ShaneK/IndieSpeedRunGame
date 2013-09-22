@@ -87,18 +87,6 @@ class Level extends Scene
     }
 
     public function oneWayHandler(cb:PreCallback):PreFlag {
-        // We assigned the listener to have the one-way platform as first
-        // interactor.
-        //
-        // PreCallback 'swapped' property as API docs describe tells us that
-        // if true; arbiter.normal points from int2 to int1, else from int1 to int2
-        //
-        // To allow objects to move upwards through one-way platforms we must
-        // ignore collisions with arbiter (pointing from one-way platform) whose normal
-        // points down (y > 0). Taking swapped into account we have:
-        //
-        // Equally we gave the interactino type as COLLISION so that accessing
-        // arbiter.collisionArbiter is always valid (non-null).
         var colArb = cb.arbiter.collisionArbiter;
  
         if ((colArb.normal.y > 0) != cb.swapped) {
@@ -186,7 +174,7 @@ class Level extends Scene
         placeHazards();
         placeLevelUpTiles(levelUpTiles);
 
-        if(Settings.IsMobile){
+        if(true){//Settings.IsMobile){
             add(new entities.android.Joypad());
             add(new entities.android.Jump());
         }
