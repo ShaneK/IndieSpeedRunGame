@@ -25,12 +25,12 @@ class Tutorial extends Level
 
     public function placeFloatingDialogs(){
         if(Settings.IsMobile){
-            add(new entities.Dialog(9*64, 12*64, 140, 30, "Welcome to Do No Harm!\nUse the joypad in the lower\nleft to move!"));
-            add(new entities.Dialog(18*64, 12*64, 160, 20, "Press the attack button to attack"));
-            add(new entities.Dialog(49*64, 12*64, 170, 30, "Run by moving further away from the\njoypad while holding onto it"));
-            add(new entities.Dialog(62*64, 12*64, 130, 20, "Use the jump button to jump"));
-            add(new entities.Dialog(79*64, 12*64, 90, 20, "Avoid hazards!"));
-            add(new entities.Dialog(95*64, 12*64, 170, 30, "Totems control the elements.\nStand by them and click on them to\ninteract"));
+            add(new entities.Dialog(9*64, 12*64, 450, 75, "Welcome to Do No Harm!\nUse the joypad in the lower\nleft to move!"));
+            add(new entities.Dialog(18*64, 12*64, 350, 65, "Press the attack button\nto attack"));
+            add(new entities.Dialog(Math.floor(23.5*64), 12*64, 300, 65, "Use the jump button\nto jump"));
+            add(new entities.Dialog(30*64, 12*64, 550, 65, "Run by moving further away from the\njoypad while holding onto it"));
+            add(new entities.Dialog(40*64, 12*64, 230, 65, "Avoid hazards!"));
+            add(new entities.Dialog(68*64, 12*64, 500, 75, "Totems control the elements.\nStand by them and click on them to\ninteract"));
         }else{
             add(new entities.Dialog(9*64, 12*64, 450, 75, "Welcome to Do No Harm!\nUse your arrow keys to move!"));
             add(new entities.Dialog(18*64, 12*64, 300, 65, "Press x to attack"));

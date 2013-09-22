@@ -22,21 +22,16 @@ class Joypad extends entities.buttons.Button {
 	private var nob:Image;
 
 	public function new(){
-		if(Settings.Level > 1){
-			this.actualScreenHeight = Math.floor(HXP.height);
-			this.actualScreenWidth = Math.floor(HXP.width);
-		}else{
-			this.actualScreenHeight = Math.floor(HXP.height/HXP.screen.scaleY);
-			this.actualScreenWidth = Math.floor(HXP.width/HXP.screen.scaleX);
-		}
+		this.actualScreenHeight = HXP.height;
+		this.actualScreenWidth = HXP.width;
 		this.joypadHeight = Math.floor(actualScreenHeight/2);
 		this.joypadWidth = Math.floor(actualScreenWidth/2);
 		super(0, 0, joypadWidth, joypadHeight, "Test", false);
 
-		image = Image.createCircle(20, 0x888888);
+		image = Image.createCircle(50, 0x888888);
 		image.relative = false;
 		image.alpha = 0.6;
-		nob = Image.createCircle(17, 0x777777);
+		nob = Image.createCircle(40, 0x777777);
 		nob.relative = false;
 		nob.alpha = 0;
 		addGraphic(image);
