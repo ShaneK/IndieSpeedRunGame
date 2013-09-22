@@ -56,7 +56,7 @@ class Swamp extends Entity {
 	}
 
 	public function checkForCollision(){
-		isColliding = scene.collideRect("player", x+4, y+8, 4, 4) != null;
+		isColliding = scene.collideRect("player", x, y, 64, 64) != null;
 	}
 
 	public override function update(){

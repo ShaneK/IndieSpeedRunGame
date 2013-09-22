@@ -15,14 +15,14 @@ class GroundEmitter extends Entity {
 	private var space:Space;
 
 	public function new(x:Float, y:Float, space:Space){
-		width = Std.int(16);
-		height = Std.int(16);
-		this.w = 16;
-		this.h = 16;
+		width = Std.int(64);
+		height = Std.int(64);
+		this.w = 64;
+		this.h = 64;
 
 		super(x, y);
 		this.space = space;
-		emitter = new Emitter("gfx/particles.png", 2, 2);
+		emitter = new Emitter("gfx/particles.png", 8, 8);
 		emitter.newType("dirt", [0]);
 		emitter.setMotion("dirt", 0, 250, 20, 360, 10);
 		emitter.setAlpha("dirt", 1);

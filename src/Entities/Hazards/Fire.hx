@@ -61,12 +61,12 @@ class Fire extends Entity {
 	}
 
 	public function checkForCollision(){
-		isColliding = scene.collideRect("player", x+4, y+8, 4, 4) != null;
+		isColliding = scene.collideRect("player", x+2, y+2, 60, 60) != null;
 	}
 
 	public override function update(){
 		if(fire == null){
-			fire = new FireEmitter(25,80,x+15,y+55,-1, 4);
+			fire = new FireEmitter(20,80,x+18,y+50,-1);
 			scene.add(fire);
 		}
 		super.update();

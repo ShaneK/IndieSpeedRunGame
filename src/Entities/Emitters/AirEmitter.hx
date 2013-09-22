@@ -23,7 +23,7 @@ class AirEmitter extends Entity {
 		this.h = h;
 
 		super(x, y);
-		emitter = new Emitter("gfx/particles.png", 2, 2);
+		emitter = new Emitter("gfx/particles.png", 8, 8);
 		emitter.newType("air", [3]);
 		var direction = left ? -180 : 0;
 		emitter.setMotion("air", direction, 500, 1, 0, 10);

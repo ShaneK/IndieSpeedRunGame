@@ -15,8 +15,8 @@ class Block extends PhysicalBody
     public function new(x:Float, y:Float)
     {
         super(x, y+2);
- 		width = 16;
- 		height = 16;
+ 		width = 64;
+ 		height = 64;
  		
         body = new Body(BodyType.STATIC); // Implicit BodyType.DYNAMIC
         var polygon = new Polygon(Polygon.rect(0, 0, width, height));
@@ -25,7 +25,7 @@ class Block extends PhysicalBody
         body.setShapeMaterials(Material.steel());
         body.allowRotation = false;
 
-        var sprite = new Spritemap("gfx/tileset.png", 16, 16);
+        var sprite = new Spritemap("gfx/tileset.png", 64, 64);
         sprite.add("stone", [20]);
         sprite.play("stone");
         graphic = sprite;

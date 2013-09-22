@@ -10,10 +10,12 @@ class Tutorial extends Level
 {
     public function new()
     {
-        super("maps/Test.tmx");
+        super("maps/Tut.tmx");
         var totemMap = [
             "Example" => function(){
-                add(new WaterEmitter(512, 512, 95*64, 25*64, 10, 5));
+                for(i in 0...8){
+                    add(new GroundEmitter((71+i+1)*64, 15*64, Settings.Space));
+                }
             }
         ];
         placeTotems(totemMap);
@@ -31,13 +33,13 @@ class Tutorial extends Level
             add(new entities.Dialog(95*64, 12*64, 170, 30, "Totems control the elements.\nStand by them and click on them to\ninteract"));
         }else{
             add(new entities.Dialog(9*64, 12*64, 450, 75, "Welcome to Do No Harm!\nUse your arrow keys to move!"));
-            add(new entities.Dialog(18*64, 12*64, 400, 65, "Press x to attack"));
-            add(new entities.Dialog(48*64, 12*64, 120, 20, "Use shift to run"));
-            add(new entities.Dialog(62*64, 12*64, 120, 20, "Use space to jump"));
-            add(new entities.Dialog(79*64, 12*64, 90, 20, "Avoid hazards!"));
-            add(new entities.Dialog(100*64, 12*64, 140, 30, "Totems control the elements.\nHit up to interact"));
+            add(new entities.Dialog(18*64, 12*64, 300, 65, "Press x to attack"));
+            add(new entities.Dialog(Math.floor(23.5*64), 12*64, 300, 65, "Use space to jump"));
+            add(new entities.Dialog(30*64, 12*64, 300, 65, "Use shift to run"));
+            add(new entities.Dialog(41*64, 12*64, 230, 65, "Avoid hazards!"));
+            add(new entities.Dialog(68*64, 12*64, 450, 75, "Totems control the elements.\nHit up to interact"));
         }
-        add(new entities.Dialog(113*64, 12*64, 140, 20, "Don't let your health hit zero!"));
-        add(new entities.Dialog(128*64, 12*64, 90, 20, "Have fun!"));
+        add(new entities.Dialog(53*64, 12*64, 450, 65, "Don't let your health hit zero!"));
+        add(new entities.Dialog(85*64, 12*64, 200, 65, "Have fun!"));
     }
 }

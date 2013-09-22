@@ -19,7 +19,7 @@ class WaterEmitter extends Entity {
 		this.h = h;
 
 		super(xi, yi);
-		emitter = new Emitter("gfx/particles.png", 2, 2);
+		emitter = new Emitter("gfx/particles.png", 8, 8);
 		emitter.newType("water", [1]);
 		emitter.setMotion("water", 270, 1500, xTime);
 		// emitter.setColor("water", 0xFF0000);

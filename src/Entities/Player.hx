@@ -91,9 +91,9 @@ class Player extends PhysicalBody
             velocityManagement();
             setAnimations();
             watchHealth();
-            if(y > 880){
-                damage(Settings.Health);
-            }
+            // if(y > 880){
+            //     damage(Settings.Health);
+            // }
         }else{
             levelUpAnimation();
         }
@@ -211,7 +211,7 @@ class Player extends PhysicalBody
         if(Settings.Health <= 0){
             if(Settings.Level == 1){
                 Settings.Health = Settings.MaxHealth;
-                body.position.setxy(112*16, 32*16);
+                body.position.setxy(54*64, 14*64);
                 return;
             }
             Settings.sfx.stop();

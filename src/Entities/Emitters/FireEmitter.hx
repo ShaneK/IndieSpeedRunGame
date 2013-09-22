@@ -19,7 +19,7 @@ class FireEmitter extends Entity {
 		this.h = h;
 
 		super(x, y);
-		emitter = new Emitter("gfx/particles.png", 2, 2);
+		emitter = new Emitter("gfx/particles.png", 8, 8);
 		emitter.newType("fire", [2]);
 		emitter.setMotion("fire", 90, 30, 1, 0, 10);
 		emitter.setAlpha("fire", 1);
