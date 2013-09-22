@@ -174,7 +174,7 @@ class Level extends Scene
         placeHazards();
         placeLevelUpTiles(levelUpTiles);
 
-        if(true){//Settings.IsMobile){
+        if(Settings.IsMobile){
             add(new entities.android.Joypad());
             add(new entities.android.Jump());
         }

@@ -8,6 +8,8 @@ import com.haxepunk.utils.Key;
 import com.haxepunk.utils.Touch;
 import com.haxepunk.graphics.Text;
  
+ import classes.Settings;
+
 class Button extends Entity
 {
     var clicked:Bool = false;
@@ -33,10 +35,9 @@ class Button extends Entity
             buttonForeground.x = buttonStroke.x + 2;
             buttonForeground.y = buttonStroke.y + 2;
             addGraphic(buttonForeground);
-     
-     
+
             buttonText = new Text(text);
-            buttonText.size = 30;
+            buttonText.size = Settings.TextSize;
             buttonText.x = buttonForeground.x + (buttonForeground.width/2) - buttonText.textWidth*.5;
             buttonText.y = buttonForeground.y + (buttonForeground.scaledHeight/2) - buttonText.textHeight*.5;
             buttonText.color = 0x000000;
@@ -129,7 +130,7 @@ class Button extends Entity
         buttonForeground.y -= (afterY-beforeY)/2;
  
         //Button text
-        buttonText.size = 35;
+        buttonText.size = Settings.TextSize;
         buttonText.x = buttonForeground.x + (buttonForeground.scaledWidth/2) - buttonText.textWidth*.5;
         buttonText.y = buttonForeground.y + (buttonForeground.scaledHeight/2) - buttonText.textHeight*.5;
     }
@@ -158,7 +159,7 @@ class Button extends Entity
         buttonForeground.y += (beforeY-afterY)/2;
  
         //Button text
-        buttonText.size = 30;
+        buttonText.size = Settings.TextSize;
         buttonText.x = buttonForeground.x + (buttonForeground.scaledWidth/2) - buttonText.textWidth*.5;
         buttonText.y = buttonForeground.y + (buttonForeground.scaledHeight/2) - buttonText.textHeight*.5;
     }

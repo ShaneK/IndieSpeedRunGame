@@ -35,6 +35,7 @@ class Joypad extends entities.buttons.Button {
 
 		image = Image.createCircle(20, 0x888888);
 		image.relative = false;
+		image.alpha = 0.6;
 		nob = Image.createCircle(17, 0x777777);
 		nob.relative = false;
 		nob.alpha = 0;
@@ -51,9 +52,11 @@ class Joypad extends entities.buttons.Button {
 		x = HXP.camera.x;
 		y = HXP.camera.y + actualScreenHeight - joypadHeight;
 		if(orgX == 0){
+			image.alpha = 0.6;
 			image.x = x + (joypadWidth/4) - (image.scaledWidth/2);
 			image.y = y + (joypadHeight/1.5) - (image.scaledHeight/2);
 		}else{
+			image.alpha = 0.8;
 			image.x = orgX + HXP.camera.x - (image.scaledWidth/2);
 			image.y = orgY + HXP.camera.y - (image.scaledHeight/2);
 		}
