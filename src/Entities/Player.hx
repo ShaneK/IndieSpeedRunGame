@@ -30,6 +30,7 @@ class Player extends PhysicalBody
     private var dieSnd:Sfx;
     private var goingLeft:Bool;
     private var ignoreInput:Bool = false;
+    public static var DeathPoint:Float = 0;
     
     
     //Leveling up related
@@ -91,9 +92,9 @@ class Player extends PhysicalBody
             velocityManagement();
             setAnimations();
             watchHealth();
-            // if(y > 880){
-            //     damage(Settings.Health);
-            // }
+            if(y >= DeathPoint && DeathPoint > 0){
+                damage(Settings.Health);
+            }
         }else{
             levelUpAnimation();
         }

@@ -231,13 +231,18 @@ class Level extends Scene
 
     public function layGroundTiles(groundTiles:Array<TmxVec5>){
         //Loop through all the ground tiles and place a static body where they are
+        var lowestY:Float = 0;
         for(groundTile in groundTiles){
+            if(lowestY == 0 || lowestY < groundTile.y + groundTile.height){
+                lowestY = groundTile.y + groundTile.height;
+            }
             var body = new Body(BodyType.STATIC); // Implicit BodyType.DYNAMIC
             body.shapes.add(new Polygon(Polygon.rect(0, groundTile.top, groundTile.width, groundTile.height)));
             body.position.setxy(groundTile.x, groundTile.y);
             body.setShapeMaterials(Material.sand());
             space.bodies.add(body);
         }
+        entities.Player.DeathPoint = lowestY+100;
     }
 
     public function layWaterTiles(waterTiles:Array<TmxVec5>){
