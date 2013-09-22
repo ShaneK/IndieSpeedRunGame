@@ -36,20 +36,20 @@ class Player extends PhysicalBody
     private var levelingUp:Bool = false;
     private var levelUpTimeout:Float = 0;
 
-    var maximumSpeed = 75;
-    var jumpAmount = 110;
+    var maximumSpeed = 300;//75;
+    var jumpAmount = 400;
     var jumpVelocity = 0;
     var isFalling = false;
 
     public function new(x:Int, y:Int)
     {
         super(x, y);
- 		width = 12;
- 		height = 24;
+ 		width = 46;
+ 		height = 100;
 
         body = new Body(); // Implicit BodyType.DYNAMIC
         //var polygon = new Polygon(Polygon.rect(0, 0, width, height));
-        var polygon = new Circle(width/2, new Vec2(width/2,18));
+        var polygon = new Circle(width/2, new Vec2(width/2, height*.78));
         polygon.filter.collisionMask = ~2;
         body.shapes.add(polygon);
         body.position.setxy(x, y-16);
@@ -101,7 +101,7 @@ class Player extends PhysicalBody
 
     public function handleInput(){         
         var speed = maximumSpeed * .5;
-        if(Input.check("run") || Controller.RunButtonHit){
+        if((Input.check("run") || Controller.RunButtonHit) && isOnGround()){
             speed = maximumSpeed;
         }
         if (Input.check("left") || Controller.LeftButtonHit)
@@ -121,8 +121,7 @@ class Player extends PhysicalBody
         if((Input.check('jump') || Controller.JumpButtonHit) && isOnGround()){
             jumpVelocity = jumpAmount;            
             // jumpSnd.play();
-        }
-        else{
+        } else {
             jumpVelocity = 0;    
         }
         
@@ -162,7 +161,7 @@ class Player extends PhysicalBody
     public function velocityManagement(){        
         body.kinematicVel.x = EMath.clamp(velocityX, -maximumSpeed, maximumSpeed);
         if(!isOnGround()){
-            body.velocity.x -= EMath.clamp(velocityX * 2 * HXP.elapsed, -maximumSpeed, maximumSpeed);
+            body.velocity.x -= EMath.clamp(velocityX * HXP.elapsed, -maximumSpeed, maximumSpeed);
         }
         body.kinematicVel.y = jumpVelocity;
     }

@@ -6,7 +6,6 @@ import com.haxepunk.Scene;
 import com.haxepunk.graphics.Image;
 import com.haxepunk.HXP;
 import com.haxepunk.utils.Input;
-import com.haxepunk.utils.Input;
 import com.haxepunk.graphics.Image;
 import com.haxepunk.graphics.Text;
 import com.haxepunk.Sfx;
@@ -25,6 +24,8 @@ class Credits extends Scene
     var scoreStealsText:Text;
     var scoreStatusText:Text;
     var returnText:Text;
+    private var hit:Bool = false;
+    private var changing:Bool = false;
 
     public function new()
     {
@@ -39,14 +40,15 @@ class Credits extends Scene
         Settings.sfx.type = "MUSIC";
 
         var screen = HXP.screen;
-        screen.color = 0x000000;
-        screen.scale = 1;
-        thingText = buildCreditsTest("This game was developed as part of Indie Speed Run 2013 (www.indiespeedrun.com).",20,0);
-        thingText.size = 18;
-        createdText = buildCreditsTest("Created By:",20,50);
-        shaneText = buildCreditsTest("Level Design/Programming: Shane King",20,120);
-        calebText = buildCreditsTest("Art/Original Music/Level Design: Caleb Creed",20,180);
-        benText = buildCreditsTest("Art/Programming: Ben Van Treese",20,240);
+        // screen.scaleX = screen.scaleY = screen.scale = 1;
+
+        var baseHeight = (HXP.height/HXP.screen.scaleY)*.1;
+        var baseWidth = (HXP.height/HXP.screen.scaleY)*.02;
+
+        createdText = buildCreditsTest("Created By:",baseWidth,0);
+        shaneText = buildCreditsTest("Level Design/Programming: Shane King",baseWidth,baseHeight);
+        calebText = buildCreditsTest("Art/Original Music/Level Design: Caleb Creed",baseWidth,baseHeight*2);
+        benText = buildCreditsTest("Art/Programming: Ben Van Treese",baseWidth,baseHeight*3);
 
         var Status = "";
 
@@ -82,14 +84,17 @@ class Credits extends Scene
             }
         }
 
-        scoreKillsText = buildCreditsTest("You killed " + Settings.Kills + (Settings.Kills == 1 ? " person" : " people"),20,360);
-        scoreAttacksText = buildCreditsTest("and attacked people " + Settings.Attacks + (Settings.Attacks == 1 ? " time" : " times"),20,400);
-        scoreStealsText = buildCreditsTest("and stole " + Settings.Steals + (Settings.Steals == 1 ? " banana" : " bananas"),20,440);
-        scoreStatusText = buildCreditsTest(Status,540,300);
-        scoreStatusText.size = 64;
+        scoreKillsText = buildCreditsTest("You killed " + Settings.Kills + (Settings.Kills == 1 ? " person" : " people"),baseWidth,baseHeight*5);
+        scoreAttacksText = buildCreditsTest("and attacked people " + Settings.Attacks + (Settings.Attacks == 1 ? " time" : " times"),baseWidth,baseHeight*6);
+        scoreStealsText = buildCreditsTest("and stole " + Settings.Steals + (Settings.Steals == 1 ? " banana" : " bananas"),baseWidth,baseHeight*7);
+        scoreStatusText = buildCreditsTest(Status,baseWidth*50,baseHeight*5);
+        scoreStatusText.size = Math.floor(2.13*Settings.TextSize);
 
-
-        returnText = buildCreditsTest("Press 'ESC' to return to the menu.",20,520);
+#if android
+        returnText = buildCreditsTest("Tap to return to the menu.",baseWidth,baseHeight*10);
+#else
+        returnText = buildCreditsTest("Press 'ESC' to return to the menu.",baseWidth,baseHeight*10);
+#end
 
         HXP.setCamera(0,0);
 
@@ -98,7 +103,6 @@ class Credits extends Scene
  
     public override function update()
     {
-        if(TextUtils.fadeInText(thingText)){
         if(TextUtils.fadeInText(createdText)){
         if(TextUtils.fadeInText(shaneText)){
         if(TextUtils.fadeInText(calebText)){
@@ -108,22 +112,33 @@ class Credits extends Scene
         if(TextUtils.fadeInText(scoreStealsText)){
         if(TextUtils.fadeInText(scoreStatusText)){
         if(TextUtils.fadeInText(returnText)){
-        }}}}}}}}}}
+        }}}}}}}}}
         super.update();
         CheckInput();
     }
 
     private function CheckInput(){
+        if(changing) return;
         if(Input.check("exit")){
+            changing = true;
             super.end();
             Settings.sfx.stop();
             HXP.scene = new MainMenu();
+        }else{
+            if(Lambda.count(Input.touches) > 0){
+                hit = true;
+            }else if(hit){
+                changing = true;
+                super.end();
+                Settings.sfx.stop();
+                HXP.scene = new MainMenu();
+            }
         }
     }
     
     private function buildCreditsTest(string:String,x:Float,y:Float):Text{
         var text = new Text(string);
-        text.size = 32;
+        text.size = Settings.TextSize;
         text.x = x;
         text.y = y;
         text.color = 0xFFFFFF;

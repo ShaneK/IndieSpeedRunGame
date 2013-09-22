@@ -12,7 +12,8 @@ class LevelOne extends Level
 {
     public function new()
     {
-        super("maps/Level_1.tmx", "sfx/haunted.mp3");
+        // super("maps/Level_1.tmx", "sfx/haunted.mp3");
+        super("maps/Test.tmx", "sfx/haunted.mp3");
 
         //Totems
         var totemMap = [
@@ -36,7 +37,7 @@ class LevelOne extends Level
             }
 
         ];
-        placeTotems(totemMap);
-        placeElevators(7);
+        // placeTotems(totemMap);
+        placeElevators(1);
     }
 }

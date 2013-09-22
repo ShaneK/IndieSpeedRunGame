@@ -39,9 +39,9 @@ class Settings {
     }
 
 #if android
-    public static var TextSize = 30;
+    public static var TextSize = 25;
 #else
-    public static var TextSize = 8;
+    public static var TextSize = 25;
 #end
 
 #if android

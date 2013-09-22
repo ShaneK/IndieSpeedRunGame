@@ -43,7 +43,7 @@ class MainMenu extends Scene
         Settings.sfx.type = "MUSIC";
 
         var screen = HXP.screen;
-        screen.scale = 1;
+        // screen.scale = 1;
 
         doText = buildIntroText("DO",(screen.width/2) + 128,20);
         noText = buildIntroText("NO",(screen.width/2) + 128,120);

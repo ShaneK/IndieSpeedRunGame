@@ -35,7 +35,7 @@ class Elevator extends PhysicalBody
     public function new(xb:Float, yb:Float, xe:Float, ye:Float, cbType:CbType)
     {
         super(xb+2, yb);
-        width = 15;
+        width = 64;
  		height = 1;
  		
         body = new Body(BodyType.KINEMATIC);
@@ -45,7 +45,7 @@ class Elevator extends PhysicalBody
         body.allowRotation = false;
         body.cbTypes.add(cbType);
 
-        sprite = new Spritemap("gfx/tileset.png", 16, 16);
+        sprite = new Spritemap("gfx/tileset.png", 64, 64);
         sprite.add("elevator", [11]);
         sprite.play("elevator");
         graphic = sprite;

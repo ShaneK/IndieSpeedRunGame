@@ -52,11 +52,11 @@ class Level extends Scene
     {
         super();
 
-        HXP.screen.scaleX = HXP.screen.scaleY = 4;
+        // HXP.screen.scaleX = HXP.screen.scaleY = 4;
         var bg = new entities.Background(0, 0);
         add(bg);
 
-        var gravity:Vec2 = new Vec2(0, 300); // units are pixels/second/second
+        var gravity:Vec2 = new Vec2(0, 600); // units are pixels/second/second
         space = new Space(gravity);
         Settings.Space = space;
         Settings.Scene = this;
@@ -101,7 +101,7 @@ class Level extends Scene
         for(spawner in spawners){
             spawner.spawn();
         }
-        slider = new entities.Slider(0, 0, 55, 12, Settings.TextSize, Settings.MaxHealth, Settings.Health, 0x000000, 0xBB0000, 0xFFFFFF);
+        slider = new entities.Slider(0, 0, 150, 25, Settings.TextSize, Settings.MaxHealth, Settings.Health, 0x000000, 0xBB0000, 0xFFFFFF);
         add(slider);
         super.begin();
     }

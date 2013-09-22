@@ -6,6 +6,8 @@ import com.haxepunk.utils.Input;
 import com.haxepunk.utils.Touch;
 import com.haxepunk.graphics.Image;
 
+import classes.Settings;
+
 class Joypad extends entities.buttons.Button {
 	private var actualScreenHeight:Int;
 	private var actualScreenWidth:Int;
@@ -15,13 +17,12 @@ class Joypad extends entities.buttons.Button {
 	private var orgY:Float = 0;
 	private var currentX:Float = 0;
 	private var currentY:Float = 0;
-	private static var count:Int = 0;
-	private var runDistance:Int = 20;
+	private var runDistance:Int = 35;
 	private var image:Image;
 	private var nob:Image;
 
 	public function new(){
-		if(count > 0){
+		if(Settings.Level > 1){
 			this.actualScreenHeight = Math.floor(HXP.height);
 			this.actualScreenWidth = Math.floor(HXP.width);
 		}else{
@@ -31,7 +32,6 @@ class Joypad extends entities.buttons.Button {
 		this.joypadHeight = Math.floor(actualScreenHeight/2);
 		this.joypadWidth = Math.floor(actualScreenWidth/2);
 		super(0, 0, joypadWidth, joypadHeight, "Test", false);
-		count++;
 
 		image = Image.createCircle(20, 0x888888);
 		image.relative = false;
