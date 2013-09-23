@@ -91,9 +91,9 @@ class Credits extends Scene
         scoreStatusText.size = Math.floor(2.13*Settings.TextSize);
 
 #if android
-        returnText = buildCreditsTest("Tap to return to the menu.",baseWidth,baseHeight*10);
+        returnText = buildCreditsTest("Tap to return to the menu.",baseWidth,baseHeight*9);
 #else
-        returnText = buildCreditsTest("Press 'ESC' to return to the menu.",baseWidth,baseHeight*10);
+        returnText = buildCreditsTest("Press 'ESC' to return to the menu.",baseWidth,baseHeight*9);
 #end
 
         HXP.setCamera(0,0);
