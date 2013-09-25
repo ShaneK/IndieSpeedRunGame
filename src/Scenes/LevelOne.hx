@@ -19,17 +19,13 @@ class LevelOne extends Level
             "earthbridge" => function(){
                 
                 freeCamera = false;
-                HXP.camera.x = 129*16;
-                HXP.camera.y = 17*16;
+                HXP.camera.x = 109*64;
+                HXP.camera.y = 53*64;
                 heldCameraTime = 2;
 
-                add(new GroundEmitter(133*16, 20*16, Settings.Space));
-                add(new GroundEmitter(134*16, 20*16, Settings.Space));
-                add(new GroundEmitter(135*16, 20*16, Settings.Space));
-                add(new GroundEmitter(136*16, 20*16, Settings.Space));
-                add(new GroundEmitter(137*16, 20*16, Settings.Space));
-                add(new GroundEmitter(138*16, 20*16, Settings.Space));
-                add(new GroundEmitter(139*16, 20*16, Settings.Space));
+                for(i in 0...7){
+                    add(new GroundEmitter((113+i+1)*64, 58*64, Settings.Space));
+                }
             },
             "windlaunch" => function(){
                  add(new AirEmitter(10, 100, 233 * 16, 9 * 16, 10,  Settings.Space));

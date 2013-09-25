@@ -20,7 +20,7 @@ class Main extends Engine
 #if debug
 		HXP.console.enable();
 #end
-		HXP.scene = new scenes.LevelOne();
+		HXP.scene = new scenes.MainMenu();
 	}
 
 	public static function main() { new Main(); }
