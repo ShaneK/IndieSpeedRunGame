@@ -10,7 +10,7 @@ class Tutorial extends Level
 {
     public function new()
     {
-        super("maps/Tut.tmx");
+        super("maps/Tutorial.tmx");
         var totemMap = [
             "Example" => function(){
                 for(i in 0...8){

@@ -58,7 +58,7 @@ class Elevator extends PhysicalBody
         this.duration = 1;
         this.speed = 2;
         timer = 0;
-        range = .5;
+        range = 1;
 
         goingTowardsEnd = false;
         changeDirection(); //Calculates distance normalization
