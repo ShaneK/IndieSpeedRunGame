@@ -16,7 +16,7 @@ class BananaStand extends InteractiveEntity {
 	var sprite:Spritemap;
 	var hasBanana:Bool = true;
 #if android
-	private static var floatingText = "Click to steal banana";
+	private static var floatingText = "Tap to steal banana";
 #else
 	private static var floatingText = "Press up to steal banana";
 #end

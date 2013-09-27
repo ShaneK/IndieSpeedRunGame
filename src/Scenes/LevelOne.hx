@@ -26,11 +26,10 @@ class LevelOne extends Level
                 for(i in 0...7){
                     add(new GroundEmitter((113+i+1)*64, 58*64, Settings.Space));
                 }
-            },
-            "windlaunch" => function(){
-                 add(new AirEmitter(10, 100, 233 * 16, 9 * 16, 10,  Settings.Space));
             }
-
+            // "windlaunch" => function(){
+            //      add(new AirEmitter(10, 100, 233 * 16, 9 * 16, 10,  Settings.Space));
+            // }
         ];
         placeTotems(totemMap);
         placeElevators(7);

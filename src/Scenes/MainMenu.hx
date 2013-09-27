@@ -26,7 +26,10 @@ class MainMenu extends Scene
     var noText:Text;
     var harmText:Text;
     var playText:Text;
+    var loadingText:Text;
     var touched:Bool;
+    var changingScene:Bool = false;
+    var sceneChangeDuration:Float = 0;
 
     public var ready:Bool = false;
     var fade:Bool = false;
@@ -60,6 +63,15 @@ class MainMenu extends Scene
         playText.color = 0xFFFFFF;
         playText.alpha = 0;
         addGraphic(playText);
+
+        loadingText = new Text("Loading...");
+        loadingText.size = 64;
+        loadingText.x = (screen.width/2) - 320;
+        loadingText.y = screen.height - 128;
+        loadingText.color = 0xFFFFFF;
+        loadingText.alpha = 0;
+        addGraphic(loadingText);
+
         HXP.setCamera(0,0);
 
         touched = false;
@@ -81,22 +93,30 @@ class MainMenu extends Scene
             }
         }
 
-        if(ready){
+        if(ready && !changingScene){
             blinkText(playText);
         }
         super.update();
         CheckInput();
+
+        if(changingScene && sceneChangeDuration >= .05){
+            Settings.restoreDefault();
+            HXP.scene = new Tutorial();
+            super.end();
+        }else if(changingScene){
+            sceneChangeDuration += HXP.elapsed;
+        }
     }
 
 private function CheckInput(){
         var touches:Map<Int,Touch> = Input.touches;
-        if(Lambda.count(touches) > 0){
+        if(Lambda.count(touches) > 0 && ready){
             touched = true;
         }
         if((Input.check("start") && ready) || (touched && Lambda.count(touches) == 0 && ready)){
-            Settings.restoreDefault();
-            HXP.scene = new Tutorial();
-            super.end();
+            playText.alpha = 0;
+            loadingText.alpha = 1;
+            changingScene = true;
         }
         if(Input.check("credits") && ready){            
             Settings.sfx.stop();

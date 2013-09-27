@@ -54,7 +54,7 @@ class Player extends PhysicalBody
         polygon.filter.collisionMask = ~2;
         body.shapes.add(polygon);
         body.position.setxy(x, y-16);
-        body.setShapeMaterials(new Material(0.0, .8, .0001));
+        body.setShapeMaterials(new Material(0.0, 5, .0001));
         body.allowRotation = false;
         body.mass = 25;
 

@@ -16,7 +16,7 @@ class Totem extends InteractiveEntity {
 	private var h:Float;
 	var sprite:Spritemap;
 #if android
-	private static var floatingText = "Click to pray";
+	private static var floatingText = "Tap to pray";
 #else
 	private static var floatingText = "Press up to pray";
 #end
