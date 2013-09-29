@@ -26,6 +26,7 @@ class Credits extends Scene
     var returnText:Text;
     private var hit:Bool = false;
     private var changing:Bool = false;
+    private var ready:Bool = false;
 
     public function new()
     {
@@ -103,18 +104,22 @@ class Credits extends Scene
  
     public override function update()
     {
-        if(TextUtils.fadeInText(createdText)){
-        if(TextUtils.fadeInText(shaneText)){
-        if(TextUtils.fadeInText(calebText)){
-        if(TextUtils.fadeInText(benText)){
-        if(TextUtils.fadeInText(scoreKillsText)){
-        if(TextUtils.fadeInText(scoreAttacksText)){
-        if(TextUtils.fadeInText(scoreStealsText)){
-        if(TextUtils.fadeInText(scoreStatusText)){
-        if(TextUtils.fadeInText(returnText)){
-        }}}}}}}}}
+        if(!ready){
+            if(TextUtils.fadeInText(createdText)){
+            if(TextUtils.fadeInText(shaneText)){
+            if(TextUtils.fadeInText(calebText)){
+            if(TextUtils.fadeInText(benText)){
+            if(TextUtils.fadeInText(scoreKillsText)){
+            if(TextUtils.fadeInText(scoreAttacksText)){
+            if(TextUtils.fadeInText(scoreStealsText)){
+            if(TextUtils.fadeInText(scoreStatusText)){
+            if(TextUtils.fadeInText(returnText)){
+                ready = true;
+            }}}}}}}}}
+        }else{
+            CheckInput();
+        }
         super.update();
-        CheckInput();
     }
 
     private function CheckInput(){
