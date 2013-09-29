@@ -56,7 +56,7 @@ class Level extends Scene
         var bg = new entities.Background(0, 0);
         add(bg);
 
-        var gravity:Vec2 = new Vec2(0, 600); // units are pixels/second/second
+        var gravity:Vec2 = new Vec2(0, 800); // units are pixels/second/second
         space = new Space(gravity);
         Settings.Space = space;
         Settings.Scene = this;
