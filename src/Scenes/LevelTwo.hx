@@ -16,12 +16,13 @@ class LevelTwo extends Level
 
         var totemMap = [
             "landbridge" => function(){
-                add(new GroundEmitter(192*16,34*16,Settings.Space));
-                add(new GroundEmitter(193*16,33*16,Settings.Space));
-                add(new GroundEmitter(194*16,33*16,Settings.Space));
+                add(new GroundEmitter(110*64,40*64,Settings.Space));
+                for(i in 0...3){
+                    add(new GroundEmitter((111+i)*64,39*64,Settings.Space));
+                }
             }
         ];
         placeTotems(totemMap);
-        placeElevators(5);
+        placeElevators(6);
     }
 }
